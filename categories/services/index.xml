@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Services on Sander Schutten&#39;s Blog</title>
+    <link>https://sschutten.github.io/categories/services/</link>
+    <description>Recent content in Services on Sander Schutten&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Jul 2008 11:32:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://sschutten.github.io/categories/services/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Video: BizTalk Services Explained</title>
+      <link>https://sschutten.github.io/posts/video-biztalk-services-explained/</link>
+      <pubDate>Wed, 02 Jul 2008 11:32:47 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/posts/video-biztalk-services-explained/</guid>
+      <description>In this video, James Conard talks with John Shewchuk and Dennis Pilarinos about BizTalk Services.
+In the simplest definition, BizTalk Services simplifies application connectivity by extending WCF and providing a set of hosted services. John and Dennis quickly explain BizTalk Services by discussing the challenges with building applications today. Dennis also shows four demos of BizTalk Services and then drops into Visual Studio along the way to show the programming model.</description>
+    </item>
+    
+  </channel>
+</rss>

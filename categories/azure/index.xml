@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure on Sander Schutten&#39;s Blog</title>
+    <link>https://sschutten.github.io/categories/azure/</link>
+    <description>Recent content in Azure on Sander Schutten&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Feb 2018 14:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sschutten.github.io/categories/azure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Logic Apps improvement suggestions</title>
+      <link>https://sschutten.github.io/posts/logic-apps-improvement-suggestions/</link>
+      <pubDate>Tue, 06 Feb 2018 14:00:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/posts/logic-apps-improvement-suggestions/</guid>
+      <description>I must say that Logic Apps has come a long way in its brief lifetime. It&amp;rsquo;s surprisingly easy to get up and go with Logic Apps and the number of available connectors is crazy. However there are still a couple of things that could be improved to make it friendlier for the more serious applications. Here&amp;rsquo;s my list.
+The last few weeks I had the chance to spend a lot of time with Azure Logic Apps.</description>
+    </item>
+    
+    <item>
+      <title>Move your development VM to Azure</title>
+      <link>https://sschutten.github.io/posts/move-your-development-vm-to-azure/</link>
+      <pubDate>Fri, 21 Jun 2013 07:37:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/posts/move-your-development-vm-to-azure/</guid>
+      <description>During my day job I regularly had to use virtual machines to do my work on. It just simply isn&amp;rsquo;t convenient to run BizTalk Server or SharePoint on you laptop. I&amp;rsquo;ve used many types and brands of virtualisation software like Virtual PC, Virtual Server and VMWare. More recently I started using Hyper-V, which, because baked into Windows 8, sounds like a very natural thing to do.
+Unfortunately, whatever software I used, the performance I get just doesn&amp;rsquo;t provide a good user experience.</description>
+    </item>
+    
+  </channel>
+</rss>
