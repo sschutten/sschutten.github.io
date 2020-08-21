@@ -41,26 +41,39 @@ if (!doNotTrack) {
     
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
     <div class="container-fluid bg-dimmed wrapper">
       
       
-    <nav class="navbar navbar-expand-lg top-navbar final-navbar shadow">
-    <div class="container">
-      <a class="navbar-brand" href="">
-        <img src="/images/logo.png">Sander Schutten&#39;s Blog</a>
-      <button class="navbar-toggler navbar-light" type="button" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+    
+    
+    
+    
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="https://sschutten.github.io">
+      <img src="/assets/images/main-logo.png">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="top-nav-items">
-        <ul class="navbar-nav ml-auto">
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      </ul>
     </div>
+  </div>
+  
+  <img src="/assets/images/main-logo.png" class="d-none" id="main-logo">
+  <img src="/assets/images/inverted-logo.png" class="d-none" id="inverted-logo">
 </nav>
 
 
+
+      
+       
 
       
       
@@ -74,6 +87,9 @@ if (!doNotTrack) {
     </div>
 </div>
 
+
+      
+       
     </div>
 
     <footer class="container-fluid text-center align-content-center footer pb-2">
@@ -128,7 +144,7 @@ if (!doNotTrack) {
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script src="/assets/js/navbar.js"></script>
-<script src="/assets/js/jquery.filterizr.min.js"></script>
+<script src="/assets/js/main.js"></script>
 
 
     

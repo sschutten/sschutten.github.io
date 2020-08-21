@@ -3,6 +3,7 @@
   <head>
 	<meta name="generator" content="Hugo 0.74.1" />
     <title>Sander Schutten&#39;s Blog</title>
+    <meta name="description" content="" />
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -21,13 +22,13 @@
 <link rel="icon" type="image/png" href="/images/favicon.png" />
 
 
-    <link rel="stylesheet" href="/assets/css/home.css" />
-    <link rel="stylesheet" href="/assets/css/about.css" />
-    <link rel="stylesheet" href="/assets/css/skills.css" />
-    <link rel="stylesheet" href="/assets/css/experiences.css" />
-    <link rel="stylesheet" href="/assets/css/projects.css" />
-    <link rel="stylesheet" href="/assets/css/recent-posts.css" />
-    <link rel="stylesheet" href="/assets/css/achievements.css" />
+    <link rel="stylesheet" href="/assets/css/sections/home.css" />
+    <link rel="stylesheet" href="/assets/css/sections/about.css" />
+    <link rel="stylesheet" href="/assets/css/sections/skills.css" />
+    <link rel="stylesheet" href="/assets/css/sections/experiences.css" />
+    <link rel="stylesheet" href="/assets/css/sections/projects.css" />
+    <link rel="stylesheet" href="/assets/css/sections/recent-posts.css" />
+    <link rel="stylesheet" href="/assets/css/sections/achievements.css" />
 
     
     
@@ -47,14 +48,18 @@ if (!doNotTrack) {
   </head>
   <body data-spy="scroll" data-target="#top-navbar" data-offset="100">
 
-    <nav class="navbar navbar-expand-lg top-navbar initial-navbar" id="top-navbar">
+    <nav class="navbar navbar-expand-xl top-navbar initial-navbar" id="top-navbar">
   <div class="container">
+    
+    
+    
+    
     <a class="navbar-brand" href="https://sschutten.github.io">
-      <img src="/images/logo.png" id="logo">Sander Schutten&#39;s Blog</a>
+      <img src="/assets/images/inverted-logo.png" id="logo">Sander Schutten&#39;s Blog</a>
     <button
       class="navbar-toggler navbar-dark"
       id="navbar-toggler"
-      ,type="button"
+      type="button"
       data-toggle="collapse"
       data-target="#top-nav-items"
     >
@@ -64,11 +69,11 @@ if (!doNotTrack) {
     <div class="collapse navbar-collapse" id="top-nav-items">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link smooth-scroll" href="#home">Home</a>
+          <a class="nav-link" href="#home">Home</a>
         </li>
             
               <li class="nav-item">
-                <a class="nav-link smooth-scroll" href="#recent-posts">Recent Posts</a>
+                <a class="nav-link" href="#recent-posts">Recent Posts</a>
               </li>
             
         
@@ -78,13 +83,16 @@ if (!doNotTrack) {
         
         
           <li class="nav-item">
-            <a class="nav-link" id="blog-link" href="/posts">All posts</a>
+            <a class="nav-link" id="blog-link" href="/posts">Posts</a>
           </li>
         
         
       </ul>
     </div>
   </div>
+  
+  <img src="/assets/images/main-logo.png" class="d-none" id="main-logo">
+  <img src="/assets/images/inverted-logo.png" class="d-none" id="inverted-logo">
 </nav>
 <div class="container-fluid home" id="home">
   <div
@@ -137,7 +145,7 @@ if (!doNotTrack) {
   <div class="container">
     <div class="row" id="recent-post-cards">
       
-        <div class="col-lg-4 col-md-6 pt-2">
+        <div class="col-lg-4 col-md-6 pt-2 post-card">
   <a href="/posts/difference-between-apply-to-each-and-for-each-actions/" class="post-card-link">
     <div class="card">
       <div class="card-head">
@@ -159,7 +167,7 @@ if (!doNotTrack) {
 </div>
 
       
-        <div class="col-lg-4 col-md-6 pt-2">
+        <div class="col-lg-4 col-md-6 pt-2 post-card">
   <a href="/posts/edge-multi-profile-with-custom-images/" class="post-card-link">
     <div class="card">
       <div class="card-head">
@@ -181,7 +189,7 @@ One of the benefits of the Chromium based Edge is that it brings profiles to Edg
 </div>
 
       
-        <div class="col-lg-4 col-md-6 pt-2">
+        <div class="col-lg-4 col-md-6 pt-2 post-card">
   <a href="/posts/connect-azure-ad-authenticated-signalr-hub-from-spfx/" class="post-card-link">
     <div class="card">
       <div class="card-head">
@@ -267,12 +275,13 @@ One of the benefits of the Chromium based Edge is that it brings profiles to Edg
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script src="/assets/js/navbar.js"></script>
-<script src="/assets/js/jquery.filterizr.min.js"></script>
+<script src="/assets/js/main.js"></script>
 
 
     
     <script src="/assets/js/itype.min.js"></script>
     <script src="/assets/js/github-button.js"></script>
     <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/jquery.filterizr.min.js"></script>
   </body>
 </html>

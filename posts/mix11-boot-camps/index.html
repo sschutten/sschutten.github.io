@@ -21,11 +21,13 @@
 
 
     
+<meta name="description" content="MIX11: Boot Camps" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
 />
 <link rel="stylesheet" href="/assets/css/single.css" />
+<link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
 
 
     
@@ -45,48 +47,80 @@ if (!doNotTrack) {
     
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
     <div class="container-fluid bg-dimmed wrapper">
       
       
-    <nav class="navbar navbar-expand-lg top-navbar final-navbar shadow">
-    <div class="container">
-      <a class="navbar-brand" href="/posts">
-        <img src="/images/logo.png">Sander Schutten&#39;s Blog</a>
-      <button class="navbar-toggler navbar-light" type="button" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+    
+    
+    
+    
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="https://sschutten.github.io">
+      <img src="/assets/images/main-logo.png">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="top-nav-items">
-        <ul class="navbar-nav ml-auto">
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      </ul>
     </div>
+  </div>
+  
+  <img src="/assets/images/main-logo.png" class="d-none" id="main-logo">
+  <img src="/assets/images/inverted-logo.png" class="d-none" id="inverted-logo">
 </nav>
 
 
 
       
       
-<div class="container p-0 read-area">
-  
-  <div class="hero-area col-sm-12" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
-  </div>
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <input type="text" value="" placeholder="Search" data-search="" id="search-box" />
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
 
-  
-  <div class="page-content">
-    <div class="author-profile ml-auto align-self-lg-center">
-      <img class="rounded-circle" src='/images/avatar.jpg'/>
-      <h5 class="author-name">Sander Schutten</h5>
-      <p>April 12, 2011</p>
+            </div>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="title">
-      <h1>MIX11: Boot Camps</h1>
-    </div>
 
-    <div class="post-content" id="post-content">
-      <p><a href="/images/DevExpress_MIX2011_7290E0D7.png"><img src="/images/DevExpress_MIX2011_7290E0D7.png" alt="" title="MIX2011 logo"></a>
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg'/>
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>April 12, 2011</p>
+        </div>
+
+        <div class="title">
+          <h1>MIX11: Boot Camps</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p><a href="/images/DevExpress_MIX2011_7290E0D7.png"><img src="/images/DevExpress_MIX2011_7290E0D7.png" alt="" title="MIX2011 logo"></a>
 Today was the preconference day at MIX11, which means boot camps for everyone that applied for them. There were options for the morning and afternoon boot camps and I chose the Silverlight and SharePoint &amp; Silverlight boot camps. This is a brief summary of what I think were things of interest.</p>
 <h2 id="silverlight-boot-camp">Silverlight boot camp</h2>
 <p>I didn’t came to this boot camp to improve my knowledge on Silverlight, but more because of the speakers: John Papa and Mike Taulty. I think they might be considered heroes in the field of Silverlight. As expected, the boot camp was planned well and packed with the basics for building line of business apps with Silverlight. Even for an experienced Silverlight developer there were interesting things as well.</p>
@@ -131,21 +165,21 @@ Today was the preconference day at MIX11, which means boot camps for everyone th
 <p>An other option to get to the SharePoint data is to use the SharePoint client object model. This client object model provides access to a subset of types and members contained in the Microsoft.SharePoint namespace from .NET, JavaScript and Silverlight. This means you can access lists and pages from within Silverlight just as you would when using the server object model. Pros for this method: flexible, code re-use.</p>
 <p>That’s it for now, more tomorrow on the first conference day at MIX11. I think we can expect a few announcements / releases during the keynote. My thoughts are: Silverlight 5 beta and new Windows Phone 7 SDK with new APIs.</p>
 
-    </div>
+        </div>
 
-    
-    
-      <div class="btn-improve-page">
-          <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5cmix11-boot-camps.md">
-            <i class="fas fa-code-branch"></i>
-            Improve This Page
-          </a>
-      </div>
-    
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5cmix11-boot-camps.md">
+                <i class="fas fa-code-branch"></i>
+                Improve This Page
+              </a>
+          </div>
+        
 
-    
-  <hr />
-    <div class="row next-prev-navigator">
+        
+      <hr />
+        <div class="row next-prev-navigator">
 
 
   
@@ -325,10 +359,10 @@ Today was the preconference day at MIX11, which means boot camps for everyone th
 
 </div>
 
-  <hr />
-  
-  
-      <div id="disqus_thread"></div>
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
 <script type="text/javascript">
   (function () {
     
@@ -356,8 +390,18 @@ Today was the preconference day at MIX11, which means boot camps for everyone th
   >comments powered by <span class="logo-disqus">Disqus</span></a
 >
 
-  
-</div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+  </section>
 
     </div>
 
@@ -413,7 +457,7 @@ Today was the preconference day at MIX11, which means boot camps for everyone th
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script src="/assets/js/navbar.js"></script>
-<script src="/assets/js/jquery.filterizr.min.js"></script>
+<script src="/assets/js/main.js"></script>
 
 
     

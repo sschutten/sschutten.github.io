@@ -21,11 +21,13 @@
 
 
     
+<meta name="description" content="Home Server campaign" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
 />
 <link rel="stylesheet" href="/assets/css/single.css" />
+<link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
 
 
     
@@ -45,66 +47,98 @@ if (!doNotTrack) {
     
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
     <div class="container-fluid bg-dimmed wrapper">
       
       
-    <nav class="navbar navbar-expand-lg top-navbar final-navbar shadow">
-    <div class="container">
-      <a class="navbar-brand" href="/posts">
-        <img src="/images/logo.png">Sander Schutten&#39;s Blog</a>
-      <button class="navbar-toggler navbar-light" type="button" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+    
+    
+    
+    
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="https://sschutten.github.io">
+      <img src="/assets/images/main-logo.png">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="top-nav-items">
-        <ul class="navbar-nav ml-auto">
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      </ul>
     </div>
+  </div>
+  
+  <img src="/assets/images/main-logo.png" class="d-none" id="main-logo">
+  <img src="/assets/images/inverted-logo.png" class="d-none" id="inverted-logo">
 </nav>
 
 
 
       
       
-<div class="container p-0 read-area">
-  
-  <div class="hero-area col-sm-12" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
-  </div>
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <input type="text" value="" placeholder="Search" data-search="" id="search-box" />
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
 
-  
-  <div class="page-content">
-    <div class="author-profile ml-auto align-self-lg-center">
-      <img class="rounded-circle" src='/images/avatar.jpg'/>
-      <h5 class="author-name">Sander Schutten</h5>
-      <p>July 2, 2008</p>
+            </div>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="title">
-      <h1>Home Server campaign</h1>
-    </div>
 
-    <div class="post-content" id="post-content">
-      <p>[](File URL) <a href="/images/homeserverbook.jpg"></a> <a href="/images/homeserverbook.jpg"><img src="/images/homeserverbook-150x150.jpg" alt="" title="homeserverbook"></a>in case you haven’t seen this yet, Microsoft has a rather interesting marketing campaign around Windows Home Server. One of the parts of the campaign is a book about Home Server which looks like it’s written for kids. The book explains what the magic‘Server’ in the house is all about.</p>
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg'/>
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>July 2, 2008</p>
+        </div>
+
+        <div class="title">
+          <h1>Home Server campaign</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p>[](File URL) <a href="/images/homeserverbook.jpg"></a> <a href="/images/homeserverbook.jpg"><img src="/images/homeserverbook-150x150.jpg" alt="" title="homeserverbook"></a>in case you haven’t seen this yet, Microsoft has a rather interesting marketing campaign around Windows Home Server. One of the parts of the campaign is a book about Home Server which looks like it’s written for kids. The book explains what the magic &lsquo;Server&rsquo; in the house is all about.</p>
 <p>Microsoft went so far with this campaign that it actually looks like you can <a href="http://www.amazon.com/Mommy-Why-There-Server-House/dp/160530641X/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1200003350&amp;sr=8-1">buy the book </a>from Amazon! Absolutely hilarious!</p>
 <p>If you would like to know more about that weird ‘Server’ that suddenly appeared in your house and what it does, you should definitely <a href="http://gizmodo.com/photogallery/microserveces08">read the book</a>!</p>
 
-    </div>
+        </div>
 
-    
-    
-      <div class="btn-improve-page">
-          <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5c86.md">
-            <i class="fas fa-code-branch"></i>
-            Improve This Page
-          </a>
-      </div>
-    
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5c86.md">
+                <i class="fas fa-code-branch"></i>
+                Improve This Page
+              </a>
+          </div>
+        
 
-    
-  <hr />
-    <div class="row next-prev-navigator">
+        
+      <hr />
+        <div class="row next-prev-navigator">
 
 
   
@@ -284,10 +318,10 @@ if (!doNotTrack) {
 
 </div>
 
-  <hr />
-  
-  
-      <div id="disqus_thread"></div>
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
 <script type="text/javascript">
   (function () {
     
@@ -315,8 +349,18 @@ if (!doNotTrack) {
   >comments powered by <span class="logo-disqus">Disqus</span></a
 >
 
-  
-</div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+  </section>
 
     </div>
 
@@ -372,7 +416,7 @@ if (!doNotTrack) {
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script src="/assets/js/navbar.js"></script>
-<script src="/assets/js/jquery.filterizr.min.js"></script>
+<script src="/assets/js/main.js"></script>
 
 
     

@@ -21,11 +21,13 @@
 
 
     
+<meta name="description" content="Accessing flat file content in orchestration" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
 />
 <link rel="stylesheet" href="/assets/css/single.css" />
+<link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
 
 
     
@@ -45,64 +47,96 @@ if (!doNotTrack) {
     
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
     <div class="container-fluid bg-dimmed wrapper">
       
       
-    <nav class="navbar navbar-expand-lg top-navbar final-navbar shadow">
-    <div class="container">
-      <a class="navbar-brand" href="/posts">
-        <img src="/images/logo.png">Sander Schutten&#39;s Blog</a>
-      <button class="navbar-toggler navbar-light" type="button" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+    
+    
+    
+    
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="https://sschutten.github.io">
+      <img src="/assets/images/main-logo.png">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="top-nav-items">
-        <ul class="navbar-nav ml-auto">
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      </ul>
     </div>
+  </div>
+  
+  <img src="/assets/images/main-logo.png" class="d-none" id="main-logo">
+  <img src="/assets/images/inverted-logo.png" class="d-none" id="inverted-logo">
 </nav>
 
 
 
       
       
-<div class="container p-0 read-area">
-  
-  <div class="hero-area col-sm-12" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
-  </div>
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <input type="text" value="" placeholder="Search" data-search="" id="search-box" />
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
 
-  
-  <div class="page-content">
-    <div class="author-profile ml-auto align-self-lg-center">
-      <img class="rounded-circle" src='/images/avatar.jpg'/>
-      <h5 class="author-name">Sander Schutten</h5>
-      <p>January 5, 2007</p>
-    </div>
-
-    <div class="title">
-      <h1>Accessing flat file content in orchestration</h1>
-    </div>
-
-    <div class="post-content" id="post-content">
-      <p>Sometimes the requirement for your BizTalk solution is to receive a flat file (read: not xml) in your orchestration an do something with the data. An example could be receiving a PDF file and extracting some portions of data out of it. Some BizTalk developers already know that you can receive whatever file without treating it as XML by using System.Xml.XmlDocument as its message type (sounds silly doesn’t it?). After you’ve received the message you can’t access it as you normally do because it’s still a byte stream. Charles Young <a href="http://geekswithblogs.net/cyoung/articles/84735.aspx">dives into this subject</a>and explains how you can access the data that is contained in such messages. Thanks Charles!</p>
-
-    </div>
-
-    
-    
-      <div class="btn-improve-page">
-          <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5caccessing-flat-file-content-in-orchestration.md">
-            <i class="fas fa-code-branch"></i>
-            Improve This Page
-          </a>
+            </div>
+          </ul>
+        </div>
       </div>
-    
+    </div>
+  </section>
 
-    
-  <hr />
-    <div class="row next-prev-navigator">
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg'/>
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>January 5, 2007</p>
+        </div>
+
+        <div class="title">
+          <h1>Accessing flat file content in orchestration</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p>Sometimes the requirement for your BizTalk solution is to receive a flat file (read: not xml) in your orchestration an do something with the data. An example could be receiving a PDF file and extracting some portions of data out of it. Some BizTalk developers already know that you can receive whatever file without treating it as XML by using System.Xml.XmlDocument as its message type (sounds silly doesn’t it?). After you’ve received the message you can’t access it as you normally do because it’s still a byte stream. Charles Young <a href="http://geekswithblogs.net/cyoung/articles/84735.aspx">dives into this subject</a> and explains how you can access the data that is contained in such messages. Thanks Charles!</p>
+
+        </div>
+
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5caccessing-flat-file-content-in-orchestration.md">
+                <i class="fas fa-code-branch"></i>
+                Improve This Page
+              </a>
+          </div>
+        
+
+        
+      <hr />
+        <div class="row next-prev-navigator">
 
 
   
@@ -282,10 +316,10 @@ if (!doNotTrack) {
 
 </div>
 
-  <hr />
-  
-  
-      <div id="disqus_thread"></div>
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
 <script type="text/javascript">
   (function () {
     
@@ -313,8 +347,18 @@ if (!doNotTrack) {
   >comments powered by <span class="logo-disqus">Disqus</span></a
 >
 
-  
-</div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+  </section>
 
     </div>
 
@@ -370,7 +414,7 @@ if (!doNotTrack) {
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script src="/assets/js/navbar.js"></script>
-<script src="/assets/js/jquery.filterizr.min.js"></script>
+<script src="/assets/js/main.js"></script>
 
 
     

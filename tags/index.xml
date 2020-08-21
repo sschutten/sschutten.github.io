@@ -11,5 +11,779 @@
 	<atom:link href="https://sschutten.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>concurrency</title>
+      <link>https://sschutten.github.io/tags/concurrency/</link>
+      <pubDate>Tue, 01 Oct 2019 10:48:10 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/concurrency/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Flow</title>
+      <link>https://sschutten.github.io/tags/flow/</link>
+      <pubDate>Tue, 01 Oct 2019 10:48:10 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/flow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>logic apps</title>
+      <link>https://sschutten.github.io/tags/logic-apps/</link>
+      <pubDate>Tue, 01 Oct 2019 10:48:10 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/logic-apps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Edge</title>
+      <link>https://sschutten.github.io/tags/edge/</link>
+      <pubDate>Mon, 12 Aug 2019 06:18:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/edge/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Profiles</title>
+      <link>https://sschutten.github.io/tags/profiles/</link>
+      <pubDate>Mon, 12 Aug 2019 06:18:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/profiles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tricks</title>
+      <link>https://sschutten.github.io/tags/tricks/</link>
+      <pubDate>Mon, 12 Aug 2019 06:18:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/tricks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>signalr</title>
+      <link>https://sschutten.github.io/tags/signalr/</link>
+      <pubDate>Tue, 11 Dec 2018 07:30:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/signalr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spfx</title>
+      <link>https://sschutten.github.io/tags/spfx/</link>
+      <pubDate>Tue, 11 Dec 2018 07:30:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/spfx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Azure</title>
+      <link>https://sschutten.github.io/tags/azure/</link>
+      <pubDate>Tue, 06 Feb 2018 14:00:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/azure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>connectors</title>
+      <link>https://sschutten.github.io/tags/connectors/</link>
+      <pubDate>Tue, 06 Feb 2018 14:00:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/connectors/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>improvements</title>
+      <link>https://sschutten.github.io/tags/improvements/</link>
+      <pubDate>Tue, 06 Feb 2018 14:00:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/improvements/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>serverless</title>
+      <link>https://sschutten.github.io/tags/serverless/</link>
+      <pubDate>Tue, 06 Feb 2018 14:00:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/serverless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>visual studio</title>
+      <link>https://sschutten.github.io/tags/visual-studio/</link>
+      <pubDate>Tue, 06 Feb 2018 14:00:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/visual-studio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iaas</title>
+      <link>https://sschutten.github.io/tags/iaas/</link>
+      <pubDate>Fri, 21 Jun 2013 07:37:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/iaas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vhd</title>
+      <link>https://sschutten.github.io/tags/vhd/</link>
+      <pubDate>Fri, 21 Jun 2013 07:37:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/vhd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>virtual machine</title>
+      <link>https://sschutten.github.io/tags/virtual-machine/</link>
+      <pubDate>Fri, 21 Jun 2013 07:37:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/virtual-machine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dotnetmag</title>
+      <link>https://sschutten.github.io/tags/dotnetmag/</link>
+      <pubDate>Wed, 10 Aug 2011 18:10:44 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/dotnetmag/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lightswitch</title>
+      <link>https://sschutten.github.io/tags/lightswitch/</link>
+      <pubDate>Wed, 10 Aug 2011 18:10:44 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/lightswitch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Silverlight</title>
+      <link>https://sschutten.github.io/tags/silverlight/</link>
+      <pubDate>Wed, 10 Aug 2011 18:10:44 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/silverlight/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Features</title>
+      <link>https://sschutten.github.io/tags/features/</link>
+      <pubDate>Tue, 05 Jul 2011 11:40:23 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/features/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mango</title>
+      <link>https://sschutten.github.io/tags/mango/</link>
+      <pubDate>Tue, 05 Jul 2011 11:40:23 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/mango/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows Phone 7</title>
+      <link>https://sschutten.github.io/tags/windows-phone-7/</link>
+      <pubDate>Tue, 05 Jul 2011 11:40:23 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/windows-phone-7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OData</title>
+      <link>https://sschutten.github.io/tags/odata/</link>
+      <pubDate>Fri, 21 Jan 2011 13:18:12 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/odata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SyncFX</title>
+      <link>https://sschutten.github.io/tags/syncfx/</link>
+      <pubDate>Fri, 21 Jan 2011 13:18:12 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/syncfx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bing</title>
+      <link>https://sschutten.github.io/tags/bing/</link>
+      <pubDate>Mon, 06 Dec 2010 15:41:25 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/bing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>geolocate</title>
+      <link>https://sschutten.github.io/tags/geolocate/</link>
+      <pubDate>Mon, 06 Dec 2010 15:41:25 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/geolocate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>location</title>
+      <link>https://sschutten.github.io/tags/location/</link>
+      <pubDate>Mon, 06 Dec 2010 15:41:25 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/location/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wp7</title>
+      <link>https://sschutten.github.io/tags/wp7/</link>
+      <pubDate>Mon, 06 Dec 2010 15:41:25 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/wp7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WCF RIA Services</title>
+      <link>https://sschutten.github.io/tags/wcf-ria-services/</link>
+      <pubDate>Wed, 24 Nov 2010 17:46:33 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/wcf-ria-services/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>code</title>
+      <link>https://sschutten.github.io/tags/code/</link>
+      <pubDate>Wed, 28 Jan 2009 07:21:02 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Editor</title>
+      <link>https://sschutten.github.io/tags/editor/</link>
+      <pubDate>Wed, 28 Jan 2009 07:21:02 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/editor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Guide</title>
+      <link>https://sschutten.github.io/tags/guide/</link>
+      <pubDate>Wed, 28 Jan 2009 07:21:02 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/guide/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MCE</title>
+      <link>https://sschutten.github.io/tags/mce/</link>
+      <pubDate>Wed, 28 Jan 2009 07:21:02 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/mce/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>source</title>
+      <link>https://sschutten.github.io/tags/source/</link>
+      <pubDate>Wed, 28 Jan 2009 07:21:02 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Avanade</title>
+      <link>https://sschutten.github.io/tags/avanade/</link>
+      <pubDate>Fri, 28 Nov 2008 10:15:38 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/avanade/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>brand</title>
+      <link>https://sschutten.github.io/tags/brand/</link>
+      <pubDate>Fri, 28 Nov 2008 10:15:38 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/brand/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>car</title>
+      <link>https://sschutten.github.io/tags/car/</link>
+      <pubDate>Fri, 28 Nov 2008 10:15:38 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/car/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>.net magazine</title>
+      <link>https://sschutten.github.io/tags/.net-magazine/</link>
+      <pubDate>Mon, 24 Nov 2008 15:05:26 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/.net-magazine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>add-in</title>
+      <link>https://sschutten.github.io/tags/add-in/</link>
+      <pubDate>Mon, 24 Nov 2008 15:05:26 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/add-in/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Media Center</title>
+      <link>https://sschutten.github.io/tags/media-center/</link>
+      <pubDate>Mon, 24 Nov 2008 15:05:26 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/media-center/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vista</title>
+      <link>https://sschutten.github.io/tags/vista/</link>
+      <pubDate>Mon, 24 Nov 2008 15:05:26 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/vista/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dublin</title>
+      <link>https://sschutten.github.io/tags/dublin/</link>
+      <pubDate>Mon, 27 Oct 2008 13:20:27 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/dublin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ice hockey</title>
+      <link>https://sschutten.github.io/tags/ice-hockey/</link>
+      <pubDate>Mon, 27 Oct 2008 13:20:27 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/ice-hockey/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Oslo</title>
+      <link>https://sschutten.github.io/tags/oslo/</link>
+      <pubDate>Mon, 27 Oct 2008 13:20:27 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/oslo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PDC</title>
+      <link>https://sschutten.github.io/tags/pdc/</link>
+      <pubDate>Mon, 27 Oct 2008 13:20:27 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/pdc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows 7</title>
+      <link>https://sschutten.github.io/tags/windows-7/</link>
+      <pubDate>Mon, 27 Oct 2008 13:20:27 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/windows-7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sharepoint</title>
+      <link>https://sschutten.github.io/tags/sharepoint/</link>
+      <pubDate>Thu, 23 Oct 2008 08:29:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/sharepoint/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WCF</title>
+      <link>https://sschutten.github.io/tags/wcf/</link>
+      <pubDate>Thu, 23 Oct 2008 08:29:00 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/wcf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>.NET</title>
+      <link>https://sschutten.github.io/tags/.net/</link>
+      <pubDate>Fri, 22 Aug 2008 16:23:04 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/.net/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>API</title>
+      <link>https://sschutten.github.io/tags/api/</link>
+      <pubDate>Fri, 22 Aug 2008 16:23:04 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C#</title>
+      <link>https://sschutten.github.io/tags/c#/</link>
+      <pubDate>Fri, 22 Aug 2008 16:23:04 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/c#/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Viddler</title>
+      <link>https://sschutten.github.io/tags/viddler/</link>
+      <pubDate>Fri, 22 Aug 2008 16:23:04 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/viddler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BizTalk</title>
+      <link>https://sschutten.github.io/tags/biztalk/</link>
+      <pubDate>Thu, 10 Jul 2008 07:43:58 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/biztalk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Optimization</title>
+      <link>https://sschutten.github.io/tags/optimization/</link>
+      <pubDate>Thu, 10 Jul 2008 07:43:58 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/optimization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gadget</title>
+      <link>https://sschutten.github.io/tags/gadget/</link>
+      <pubDate>Tue, 08 Jul 2008 10:23:52 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/gadget/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SideShow</title>
+      <link>https://sschutten.github.io/tags/sideshow/</link>
+      <pubDate>Tue, 08 Jul 2008 10:23:52 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/sideshow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BizUnit</title>
+      <link>https://sschutten.github.io/tags/bizunit/</link>
+      <pubDate>Fri, 04 Jul 2008 05:21:05 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/bizunit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unit Test</title>
+      <link>https://sschutten.github.io/tags/unit-test/</link>
+      <pubDate>Fri, 04 Jul 2008 05:21:05 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/unit-test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>XML</title>
+      <link>https://sschutten.github.io/tags/xml/</link>
+      <pubDate>Fri, 04 Jul 2008 05:21:05 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/xml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Poster</title>
+      <link>https://sschutten.github.io/tags/poster/</link>
+      <pubDate>Wed, 02 Jul 2008 12:42:37 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/poster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Book</title>
+      <link>https://sschutten.github.io/tags/book/</link>
+      <pubDate>Wed, 02 Jul 2008 12:07:36 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/book/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Home Server</title>
+      <link>https://sschutten.github.io/tags/home-server/</link>
+      <pubDate>Wed, 02 Jul 2008 12:07:36 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/home-server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microsoft</title>
+      <link>https://sschutten.github.io/tags/microsoft/</link>
+      <pubDate>Wed, 02 Jul 2008 12:07:36 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/microsoft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>3.5</title>
+      <link>https://sschutten.github.io/tags/3.5/</link>
+      <pubDate>Wed, 02 Jul 2008 11:40:56 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/3.5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ASP.NET</title>
+      <link>https://sschutten.github.io/tags/asp.net/</link>
+      <pubDate>Wed, 02 Jul 2008 11:40:56 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/asp.net/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Screencast</title>
+      <link>https://sschutten.github.io/tags/screencast/</link>
+      <pubDate>Wed, 02 Jul 2008 11:40:56 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/screencast/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Services</title>
+      <link>https://sschutten.github.io/tags/services/</link>
+      <pubDate>Wed, 02 Jul 2008 11:32:47 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/services/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Extensions</title>
+      <link>https://sschutten.github.io/tags/extensions/</link>
+      <pubDate>Wed, 02 Jul 2008 11:26:58 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/extensions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WF</title>
+      <link>https://sschutten.github.io/tags/wf/</link>
+      <pubDate>Wed, 02 Jul 2008 11:26:58 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/wf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Workflow</title>
+      <link>https://sschutten.github.io/tags/workflow/</link>
+      <pubDate>Wed, 02 Jul 2008 11:26:58 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/workflow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LoadGen</title>
+      <link>https://sschutten.github.io/tags/loadgen/</link>
+      <pubDate>Wed, 02 Jul 2008 11:03:40 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/loadgen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Performance</title>
+      <link>https://sschutten.github.io/tags/performance/</link>
+      <pubDate>Wed, 02 Jul 2008 11:03:40 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Excel</title>
+      <link>https://sschutten.github.io/tags/excel/</link>
+      <pubDate>Wed, 02 Jul 2008 08:41:57 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/excel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pipeline</title>
+      <link>https://sschutten.github.io/tags/pipeline/</link>
+      <pubDate>Wed, 02 Jul 2008 08:41:57 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/pipeline/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spread</title>
+      <link>https://sschutten.github.io/tags/spread/</link>
+      <pubDate>Wed, 02 Jul 2008 08:41:57 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/spread/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DateTime</title>
+      <link>https://sschutten.github.io/tags/datetime/</link>
+      <pubDate>Tue, 01 Jul 2008 13:33:16 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/datetime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mapper</title>
+      <link>https://sschutten.github.io/tags/mapper/</link>
+      <pubDate>Tue, 01 Jul 2008 13:33:16 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/mapper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Schema</title>
+      <link>https://sschutten.github.io/tags/schema/</link>
+      <pubDate>Tue, 01 Jul 2008 13:33:16 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/schema/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R2</title>
+      <link>https://sschutten.github.io/tags/r2/</link>
+      <pubDate>Tue, 01 Jul 2008 13:17:42 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/r2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Video</title>
+      <link>https://sschutten.github.io/tags/video/</link>
+      <pubDate>Tue, 01 Jul 2008 13:17:42 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/video/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ajax</title>
+      <link>https://sschutten.github.io/tags/ajax/</link>
+      <pubDate>Tue, 01 Jul 2008 13:04:01 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/ajax/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DHTML</title>
+      <link>https://sschutten.github.io/tags/dhtml/</link>
+      <pubDate>Tue, 01 Jul 2008 13:04:01 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/dhtml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ext JS</title>
+      <link>https://sschutten.github.io/tags/ext-js/</link>
+      <pubDate>Tue, 01 Jul 2008 13:04:01 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/ext-js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Javascript</title>
+      <link>https://sschutten.github.io/tags/javascript/</link>
+      <pubDate>Tue, 01 Jul 2008 13:04:01 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R3</title>
+      <link>https://sschutten.github.io/tags/r3/</link>
+      <pubDate>Wed, 23 Apr 2008 09:34:08 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/r3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Guide Editor</title>
+      <link>https://sschutten.github.io/tags/guide-editor/</link>
+      <pubDate>Sun, 16 Mar 2008 17:47:05 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/tags/guide-editor/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

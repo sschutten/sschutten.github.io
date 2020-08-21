@@ -21,11 +21,13 @@
 
 
     
+<meta name="description" content="Add existing project from web drama" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
 />
 <link rel="stylesheet" href="/assets/css/single.css" />
+<link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
 
 
     
@@ -45,49 +47,80 @@ if (!doNotTrack) {
     
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
     <div class="container-fluid bg-dimmed wrapper">
       
       
-    <nav class="navbar navbar-expand-lg top-navbar final-navbar shadow">
-    <div class="container">
-      <a class="navbar-brand" href="/posts">
-        <img src="/images/logo.png">Sander Schutten&#39;s Blog</a>
-      <button class="navbar-toggler navbar-light" type="button" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+    
+    
+    
+    
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="https://sschutten.github.io">
+      <img src="/assets/images/main-logo.png">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="top-nav-items">
-        <ul class="navbar-nav ml-auto">
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      </ul>
     </div>
+  </div>
+  
+  <img src="/assets/images/main-logo.png" class="d-none" id="main-logo">
+  <img src="/assets/images/inverted-logo.png" class="d-none" id="inverted-logo">
 </nav>
 
 
 
       
       
-<div class="container p-0 read-area">
-  
-  <div class="hero-area col-sm-12" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
-  </div>
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <input type="text" value="" placeholder="Search" data-search="" id="search-box" />
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
 
-  
-  <div class="page-content">
-    <div class="author-profile ml-auto align-self-lg-center">
-      <img class="rounded-circle" src='/images/avatar.jpg'/>
-      <h5 class="author-name">Sander Schutten</h5>
-      <p>November 18, 2006</p>
+            </div>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="title">
-      <h1>Add existing project from web drama</h1>
-    </div>
 
-    <div class="post-content" id="post-content">
-      <p></p>
-<p>Are you tired of dealing with the drama regarding adding an existing project from web in Visual Studio? If so read on, because if you follow these steps tightly you’re ready to go in a minute, or … well,faster then figuring this one out yourself <img src="/wp-includes/images/smilies/simple-smile.png" alt=":)"></p>
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg'/>
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>November 18, 2006</p>
+        </div>
+
+        <div class="title">
+          <h1>Add existing project from web drama</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p>Are you tired of dealing with the drama regarding adding an existing project from web in Visual Studio? If so read on, because if you follow these steps tightly you’re ready to go in a minute, or … well, faster then figuring this one out yourself <img src="/wp-includes/images/smilies/simple-smile.png" alt=":)"></p>
 <ol>
 <li>Open your solution in Visual Studio and choose Add &gt; Existing Project From Web</li>
 <li>Type the url to your site, e.g. <a href="http://localhost/YourSite">http://localhost/YourSite</a></li>
@@ -96,21 +129,21 @@ if (!doNotTrack) {
 </ol>
 <p>As if magic, Visual Studio suddenly adds your project to the soltion. I hope this helps you not to waste hours to figure it out or even let you create a new project file (I dit that most of the time, go figure!).</p>
 
-    </div>
+        </div>
 
-    
-    
-      <div class="btn-improve-page">
-          <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5cadd-existing-project-from-web-drama.md">
-            <i class="fas fa-code-branch"></i>
-            Improve This Page
-          </a>
-      </div>
-    
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5cadd-existing-project-from-web-drama.md">
+                <i class="fas fa-code-branch"></i>
+                Improve This Page
+              </a>
+          </div>
+        
 
-    
-  <hr />
-    <div class="row next-prev-navigator">
+        
+      <hr />
+        <div class="row next-prev-navigator">
 
 
   
@@ -290,10 +323,10 @@ if (!doNotTrack) {
 
 </div>
 
-  <hr />
-  
-  
-      <div id="disqus_thread"></div>
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
 <script type="text/javascript">
   (function () {
     
@@ -321,8 +354,18 @@ if (!doNotTrack) {
   >comments powered by <span class="logo-disqus">Disqus</span></a
 >
 
-  
-</div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+  </section>
 
     </div>
 
@@ -378,7 +421,7 @@ if (!doNotTrack) {
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script src="/assets/js/navbar.js"></script>
-<script src="/assets/js/jquery.filterizr.min.js"></script>
+<script src="/assets/js/main.js"></script>
 
 
     

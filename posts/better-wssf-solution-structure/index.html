@@ -21,11 +21,13 @@
 
 
     
+<meta name="description" content="Better WSSF solution structure" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
 />
 <link rel="stylesheet" href="/assets/css/single.css" />
+<link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
 
 
     
@@ -45,57 +47,89 @@ if (!doNotTrack) {
     
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
     <div class="container-fluid bg-dimmed wrapper">
       
       
-    <nav class="navbar navbar-expand-lg top-navbar final-navbar shadow">
-    <div class="container">
-      <a class="navbar-brand" href="/posts">
-        <img src="/images/logo.png">Sander Schutten&#39;s Blog</a>
-      <button class="navbar-toggler navbar-light" type="button" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+    
+    
+    
+    
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="https://sschutten.github.io">
+      <img src="/assets/images/main-logo.png">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="top-nav-items">
-        <ul class="navbar-nav ml-auto">
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      </ul>
     </div>
+  </div>
+  
+  <img src="/assets/images/main-logo.png" class="d-none" id="main-logo">
+  <img src="/assets/images/inverted-logo.png" class="d-none" id="inverted-logo">
 </nav>
 
 
 
       
       
-<div class="container p-0 read-area">
-  
-  <div class="hero-area col-sm-12" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
-  </div>
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <input type="text" value="" placeholder="Search" data-search="" id="search-box" />
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
 
-  
-  <div class="page-content">
-    <div class="author-profile ml-auto align-self-lg-center">
-      <img class="rounded-circle" src='/images/avatar.jpg'/>
-      <h5 class="author-name">Sander Schutten</h5>
-      <p>October 15, 2008</p>
+            </div>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="title">
-      <h1>Better WSSF solution structure</h1>
-    </div>
 
-    <div class="post-content" id="post-content">
-      <p><a href="http://None"><img src="/images/wssfsolutionstructure.gif" alt="" title="WSSF Solution Structure"></a>I’ve done my share of work with the Web Service Software Factory modelling edition, but never have I liked the solution structure it generates for me. Or either the namespaces of the projects are wrong, or the paths became too long because of the fully qualified names I’d use. This time I reserved some time to tackle this once and for all. The result is an easy to apply patch for WSSF: Modelling Edition.</p>
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg'/>
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>October 15, 2008</p>
+        </div>
+
+        <div class="title">
+          <h1>Better WSSF solution structure</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p><a href="http://None"><img src="/images/wssfsolutionstructure.gif" alt="" title="WSSF Solution Structure"></a>I’ve done my share of work with the Web Service Software Factory modelling edition, but never have I liked the solution structure it generates for me. Or either the namespaces of the projects are wrong, or the paths became too long because of the fully qualified names I’d use. This time I reserved some time to tackle this once and for all. The result is an easy to apply patch for WSSF: Modelling Edition.</p>
 <p>What does it do:</p>
 <ul>
-<li>Does not add the service name to each project but namethem simply BusinessEntities, ServiceImplementation or DataContracts</li>
+<li>Does not add the service name to each project but name them simply BusinessEntities, ServiceImplementation or DataContracts</li>
 <li>Let the user choose his own namespace, which is then added to each project name. E.g. a user chooses the namespace MyCompany.MyProduct. The BusinessEntities project then gets the namespace MyCompany.MyProduct.BusinessEntities.</li>
 <li>Names the host application after the service instead of just ‘Host’</li>
 </ul>
 <p>What doesn’t it do:</p>
 <ul>
-<li>It doesn’t change the assembly name. There seems to be a bug in the templating system of Visual Studioso the AssemblyName property of a template project is always set to the project name. I haven’t tested this with Visual Studio 2008 SP1, so I’m interested to know if that service pack solves this.</li>
+<li>It doesn’t change the assembly name. There seems to be a bug in the templating system of Visual Studio so the AssemblyName property of a template project is always set to the project name. I haven’t tested this with Visual Studio 2008 SP1, so I’m interested to know if that service pack solves this.</li>
 <li>It currently doesn’t work for ASMX implementation project, only for WCF implementation projects. I don’t think ASMX is done with WSSF that much these days, so I didn’t bother to implement it for ASMX.</li>
 </ul>
 <p>How to apply the patch:</p>
@@ -106,26 +140,26 @@ if (!doNotTrack) {
 <p>How to use the patch:</p>
 <ul>
 <li>Choose to generate the WCF implementation projects like you normally do. This means right clicking on the solution and choosing <strong>Add &gt; WCF Implementation Projects</strong>.</li>
-<li>Enter the desired name for the service. A simple name will do, do not enter a fully qualified name here becuaseyou can choose a namespace in the next step. <a href="/images/wssfservicename.gif">Screenshot</a></li>
+<li>Enter the desired name for the service. A simple name will do, do not enter a fully qualified name here becuase you can choose a namespace in the next step. <a href="/images/wssfservicename.gif">Screenshot</a></li>
 <li>In the next screen you supply a desired namespace. Remember that the namespace you enter here will be added to every project that is generated. <a href="/images/wssfservicenamespace.gif">Screenshot</a></li>
 </ul>
 <p><span style="font-family: Courier New;">[download#5#image]</span></p>
 
-    </div>
+        </div>
 
-    
-    
-      <div class="btn-improve-page">
-          <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5cbetter-wssf-solution-structure.md">
-            <i class="fas fa-code-branch"></i>
-            Improve This Page
-          </a>
-      </div>
-    
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5cbetter-wssf-solution-structure.md">
+                <i class="fas fa-code-branch"></i>
+                Improve This Page
+              </a>
+          </div>
+        
 
-    
-  <hr />
-    <div class="row next-prev-navigator">
+        
+      <hr />
+        <div class="row next-prev-navigator">
 
 
   
@@ -305,10 +339,10 @@ if (!doNotTrack) {
 
 </div>
 
-  <hr />
-  
-  
-      <div id="disqus_thread"></div>
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
 <script type="text/javascript">
   (function () {
     
@@ -336,8 +370,18 @@ if (!doNotTrack) {
   >comments powered by <span class="logo-disqus">Disqus</span></a
 >
 
-  
-</div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+  </section>
 
     </div>
 
@@ -393,7 +437,7 @@ if (!doNotTrack) {
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script src="/assets/js/navbar.js"></script>
-<script src="/assets/js/jquery.filterizr.min.js"></script>
+<script src="/assets/js/main.js"></script>
 
 
     

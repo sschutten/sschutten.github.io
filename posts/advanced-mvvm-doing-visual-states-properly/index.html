@@ -21,11 +21,13 @@
 
 
     
+<meta name="description" content="Advanced MVVM: Doing visual states properly" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
 />
 <link rel="stylesheet" href="/assets/css/single.css" />
+<link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
 
 
     
@@ -45,48 +47,80 @@ if (!doNotTrack) {
     
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
     <div class="container-fluid bg-dimmed wrapper">
       
       
-    <nav class="navbar navbar-expand-lg top-navbar final-navbar shadow">
-    <div class="container">
-      <a class="navbar-brand" href="/posts">
-        <img src="/images/logo.png">Sander Schutten&#39;s Blog</a>
-      <button class="navbar-toggler navbar-light" type="button" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+    
+    
+    
+    
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="https://sschutten.github.io">
+      <img src="/assets/images/main-logo.png">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="top-nav-items">
-        <ul class="navbar-nav ml-auto">
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      </ul>
     </div>
+  </div>
+  
+  <img src="/assets/images/main-logo.png" class="d-none" id="main-logo">
+  <img src="/assets/images/inverted-logo.png" class="d-none" id="inverted-logo">
 </nav>
 
 
 
       
       
-<div class="container p-0 read-area">
-  
-  <div class="hero-area col-sm-12" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
-  </div>
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <input type="text" value="" placeholder="Search" data-search="" id="search-box" />
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
 
-  
-  <div class="page-content">
-    <div class="author-profile ml-auto align-self-lg-center">
-      <img class="rounded-circle" src='/images/avatar.jpg'/>
-      <h5 class="author-name">Sander Schutten</h5>
-      <p>March 14, 2011</p>
+            </div>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="title">
-      <h1>Advanced MVVM: Doing visual states properly</h1>
-    </div>
 
-    <div class="post-content" id="post-content">
-      <p>An important plus of rich internet applications is the potential user experience you can achieve by applying UX patterns. A part of this is the visual states and their transitions. A visual state determines what the user interface looks like at a certain point in time and the transitions describe how the application moves from one visual state to the other, many times using animations to enhance the experience.</p>
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg'/>
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>March 14, 2011</p>
+        </div>
+
+        <div class="title">
+          <h1>Advanced MVVM: Doing visual states properly</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p>An important plus of rich internet applications is the potential user experience you can achieve by applying UX patterns. A part of this is the visual states and their transitions. A visual state determines what the user interface looks like at a certain point in time and the transitions describe how the application moves from one visual state to the other, many times using animations to enhance the experience.</p>
 <p><a href="/images/image.png"><img src="/images/image_thumb.png" alt="image" title="image"></a></p>
 <p>The most obvious way when you’re unfamiliar with XAML is to change the visual state of an application by writing code to show or hide controls when events occur, like e.g. a button click. Besides that on many occasions it requires a considerable amount of code, it doesn’t fit properly with the Model-View-ViewModel pattern. Although the pattern doesn’t prevent you from writing code in the codebehind as long as it related to the View, the pattern encourages to do it as little as possible.</p>
 <p>The next commonly seen approach from people that want to stick to the MVVM-believes is to show/hide controls by binding properties like Visibility and Opacity to the ViewModel. This works fine for simple visual states, but has a couple of downsides, such as hard to maintain when a lot of controls are part of the visual state change, no support for animations and lack of seperation between View and ViewModel.</p>
@@ -102,21 +136,21 @@ This is where behaviors come into the picture. Expression Blend 4 comes packed w
 <p>When you want more functionality, there’s also the <a href="http://expressionblend.codeplex.com/">Expression Blend Samples</a>. Although the name suggests differently, the Expression Blend Samples contains some very mature additions to the default Blend behaviors and triggers. The package included the DataStateBehavior since Blend 3, which is now packed with Blend 4. The package also contains the DataStateSwitchBehavior, which, as its name suggests, acts like a switch statement. It’s basically the same as the DataStateBehavior, but with multiple possible values besides just true or false. To use this behavior you expose an enumeration property on your ViewModel and use the DataStateSwitchBehavior to switch to particular visual states for each of the enumeration values. You can use this for example with the application roles of your application, e.g. Guest, Contributor and Administrator.</p>
 <script src="https://gist.github.com/sschutten/a0b2d616d114c7db0bf9c7149dc8e90b.js"></script>
 
-    </div>
+        </div>
 
-    
-    
-      <div class="btn-improve-page">
-          <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5cadvanced-mvvm-doing-visual-states-properly.md">
-            <i class="fas fa-code-branch"></i>
-            Improve This Page
-          </a>
-      </div>
-    
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5cadvanced-mvvm-doing-visual-states-properly.md">
+                <i class="fas fa-code-branch"></i>
+                Improve This Page
+              </a>
+          </div>
+        
 
-    
-  <hr />
-    <div class="row next-prev-navigator">
+        
+      <hr />
+        <div class="row next-prev-navigator">
 
 
   
@@ -296,10 +330,10 @@ This is where behaviors come into the picture. Expression Blend 4 comes packed w
 
 </div>
 
-  <hr />
-  
-  
-      <div id="disqus_thread"></div>
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
 <script type="text/javascript">
   (function () {
     
@@ -327,8 +361,18 @@ This is where behaviors come into the picture. Expression Blend 4 comes packed w
   >comments powered by <span class="logo-disqus">Disqus</span></a
 >
 
-  
-</div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+  </section>
 
     </div>
 
@@ -384,7 +428,7 @@ This is where behaviors come into the picture. Expression Blend 4 comes packed w
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script src="/assets/js/navbar.js"></script>
-<script src="/assets/js/jquery.filterizr.min.js"></script>
+<script src="/assets/js/main.js"></script>
 
 
     

@@ -88,9 +88,7 @@ This tool is intended for developers and IT professionals to simulate load on a 
       <guid>https://sschutten.github.io/posts/biztalk-server-capabilities-poster/</guid>
       <description>From the source:
  This poster lists the BizTalk Server 2006 R2 capabilities bucketed in categories and is designed to provide both a high level and a detailed view of the capabilities and features that are included in the product. (When printed in full scale this poster size is: 35x 32)
- Download the poster here.
-
-</description>
+ Download the poster here.</description>
     </item>
     
     <item>
@@ -128,7 +126,7 @@ Spread includes a pipeline disassembler that parses Excel data (XLS, Excel 2007 
       <pubDate>Wed, 23 Apr 2008 09:34:08 +0000</pubDate>
       
       <guid>https://sschutten.github.io/posts/biztalk-server-2006-r3-just-around-the-corner/</guid>
-      <description>Quote: “Once SQL Server 2008 (…) becomes generally available, we will follow with an updated version of BizTalk Server designed for the latest versions of Windows Server, the .NET Framework, Visual Studio, and SQL Server. This will mean that BizTalk Server customers will continue to take full advantage of the platform’s latest improvements including: scalability for mission-critical workloads, improved support for next-generation web and service oriented applications, improved virtualization support and better business insight through Office.</description>
+      <description>Quote: “Once SQL Server 2008 (…) becomes generally available, we will follow with an updated version of BizTalk Server designed for the latest versions of Windows Server, the .NET Framework, Visual Studio, and SQL Server. This will mean that BizTalk Server customers will continue to take full advantage of the platform’s latest improvements including: scalability for mission-critical workloads, improved support for next-generation web and service oriented applications, improved virtualization support and better business insight through Office.</description>
     </item>
     
   </channel>

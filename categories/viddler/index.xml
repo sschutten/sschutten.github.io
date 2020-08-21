@@ -27,7 +27,7 @@ Find the Codeplex project at http://www.codeplex.com/ViddlerDotNet</description>
       <pubDate>Wed, 20 Aug 2008 18:13:11 +0000</pubDate>
       
       <guid>https://sschutten.github.io/posts/first-release-of-viddlernet/</guid>
-      <description>If you read my article in the Dutch.Net Magazine about Vista Media Center add-ins and you came looking on my blog for the Viddler.Net api, you justfound it! If you don’t know what I’m talking about, please read on This is my first release of the Viddler.Net api, which is a wrapper for the Viddler api. The Viddler.Net api allows a .Net developer to make use of the videos on the Viddler website through code.</description>
+      <description>If you read my article in the Dutch .Net Magazine about Vista Media Center add-ins and you came looking on my blog for the Viddler.Net api, you just found it! If you don’t know what I’m talking about, please read on This is my first release of the Viddler.Net api, which is a wrapper for the Viddler api. The Viddler.Net api allows a .Net developer to make use of the videos on the Viddler website through code.</description>
     </item>
     
   </channel>

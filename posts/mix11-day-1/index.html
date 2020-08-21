@@ -21,11 +21,13 @@
 
 
     
+<meta name="description" content="MIX11: Day 1" />
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
 />
 <link rel="stylesheet" href="/assets/css/single.css" />
+<link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
 
 
     
@@ -45,48 +47,80 @@ if (!doNotTrack) {
     
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
     <div class="container-fluid bg-dimmed wrapper">
       
       
-    <nav class="navbar navbar-expand-lg top-navbar final-navbar shadow">
-    <div class="container">
-      <a class="navbar-brand" href="/posts">
-        <img src="/images/logo.png">Sander Schutten&#39;s Blog</a>
-      <button class="navbar-toggler navbar-light" type="button" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+    
+    
+    
+    
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="https://sschutten.github.io">
+      <img src="/assets/images/main-logo.png">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="top-nav-items">
-        <ul class="navbar-nav ml-auto">
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      </ul>
     </div>
+  </div>
+  
+  <img src="/assets/images/main-logo.png" class="d-none" id="main-logo">
+  <img src="/assets/images/inverted-logo.png" class="d-none" id="inverted-logo">
 </nav>
 
 
 
       
       
-<div class="container p-0 read-area">
-  
-  <div class="hero-area col-sm-12" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
-  </div>
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <input type="text" value="" placeholder="Search" data-search="" id="search-box" />
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
 
-  
-  <div class="page-content">
-    <div class="author-profile ml-auto align-self-lg-center">
-      <img class="rounded-circle" src='/images/avatar.jpg'/>
-      <h5 class="author-name">Sander Schutten</h5>
-      <p>April 13, 2011</p>
+            </div>
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="title">
-      <h1>MIX11: Day 1</h1>
-    </div>
 
-    <div class="post-content" id="post-content">
-      <p><a href="/images/DevExpress_MIX2011_7290E0D7.png"><img src="/images/DevExpress_MIX2011_7290E0D7.png" alt="" title="MIX2011 logo"></a>Today was the first conference day and my second day at MIX11. The day began with a keynote and after that a couple of sessions. These are my findings of today.</p>
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/assets/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg'/>
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>April 13, 2011</p>
+        </div>
+
+        <div class="title">
+          <h1>MIX11: Day 1</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p><a href="/images/DevExpress_MIX2011_7290E0D7.png"><img src="/images/DevExpress_MIX2011_7290E0D7.png" alt="" title="MIX2011 logo"></a>Today was the first conference day and my second day at MIX11. The day began with a keynote and after that a couple of sessions. These are my findings of today.</p>
 <h2 id="keynote-dean-hachamovitch-scott-guthrie">Keynote (Dean Hachamovitch, Scott Guthrie)</h2>
 <p>Dean started off with looking back at the development of IE9 and how successful is has been so far. Then he announced that they’re already three weeks into development of IE10, which didn’t come as a surprise looking at the shirt he was wearing with a bit TEN on it with the ‘E’ being the IE logo. The rest of his talk goes on showing the performance compared to ‘other’ browsers (it was Chrome) and how much the standards have conformed. I’m no big HTML fan and got the creeps when he showed al kinds of variations on riadial gradients for CSS3 (-ms-radial for IE, -moz-radial for Firefox, –o-radial for Opera, etc)</p>
 <p>A great part of the demo was that in the end it appeared that the IE10 demos were actually running on an ARM 1.0Ghz machine and the performance was great. Dean’s talk concluded with the announcement that the first preview of IE10 is available immediately on <a href="http://ietestdrive.com">IETestDrive.com</a></p>
@@ -108,21 +142,21 @@ if (!doNotTrack) {
 <p>This was by far the most inspiring session so far. The idea behind the session is that every speaker has just ten minutes for their talk and their slides are timed and transition automatically. It was a great joy to see how well all speakers were able to time their words just right, where August’s talk topped everything by keeping in sync with every word on his slides. Besides the format, the contents of the talks was also interesting. When we walked out of the room we were inspired to do more with UX and felt that event the most boring battleship grey forms we work with on a daily basis could be improved to make it a pleasant experience for the user.</p>
 <p>Today is day 2 of MIX11 and we expect some serious announcements regarding Kinect and Windows Phone 7. Why Kinect? Well, we noticed about six of them were lined op on stage yesterday during the keynote. Will the Kinect SDK be released today?</p>
 
-    </div>
+        </div>
 
-    
-    
-      <div class="btn-improve-page">
-          <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5cmix11-day-1.md">
-            <i class="fas fa-code-branch"></i>
-            Improve This Page
-          </a>
-      </div>
-    
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/hossainemruz/toha-example-site/edit/master/content/posts%5cmix11-day-1.md">
+                <i class="fas fa-code-branch"></i>
+                Improve This Page
+              </a>
+          </div>
+        
 
-    
-  <hr />
-    <div class="row next-prev-navigator">
+        
+      <hr />
+        <div class="row next-prev-navigator">
 
 
   
@@ -302,10 +336,10 @@ if (!doNotTrack) {
 
 </div>
 
-  <hr />
-  
-  
-      <div id="disqus_thread"></div>
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
 <script type="text/javascript">
   (function () {
     
@@ -333,8 +367,18 @@ if (!doNotTrack) {
   >comments powered by <span class="logo-disqus">Disqus</span></a
 >
 
-  
-</div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+  </section>
 
     </div>
 
@@ -390,7 +434,7 @@ if (!doNotTrack) {
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <script src="/assets/js/navbar.js"></script>
-<script src="/assets/js/jquery.filterizr.min.js"></script>
+<script src="/assets/js/main.js"></script>
 
 
     
