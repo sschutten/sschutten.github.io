@@ -1,25 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>WCF RIA Services on Sander Schutten&#39;s Blog</title>
-    <link>https://sschutten.github.io/categories/wcf-ria-services/</link>
-    <description>Recent content in WCF RIA Services on Sander Schutten&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 24 Nov 2010 17:46:33 +0000</lastBuildDate>
-    
-	<atom:link href="https://sschutten.github.io/categories/wcf-ria-services/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>WCF RIA Services OData endpoint does NOT support update or LINQ</title>
-      <link>https://sschutten.github.io/posts/wcf-ria-services-odata-endpoint-does-not-support-update-or-linq/</link>
-      <pubDate>Wed, 24 Nov 2010 17:46:33 +0000</pubDate>
-      
-      <guid>https://sschutten.github.io/posts/wcf-ria-services-odata-endpoint-does-not-support-update-or-linq/</guid>
-      <description>After struggling with WCF RIA Services v1 (Silverlight 4 RTM) to enable insert/update for the OData endpoint for use with Windows Phone 7, I finally figured it out. The current version of WCF RIA Services does NOT support update or LINQ! I think I searched for a couple of hours until I found the single line of information on this in this following Silverlight TV post:
- NOTE: The ODATA endpoint has very limited support in V1.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WCF RIA Services on Sander Schutten's Blog</title><link>https://sschutten.github.io/categories/wcf-ria-services/</link><description>Recent content in WCF RIA Services on Sander Schutten's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 24 Nov 2010 17:46:33 +0000</lastBuildDate><atom:link href="https://sschutten.github.io/categories/wcf-ria-services/index.xml" rel="self" type="application/rss+xml"/><item><title>WCF RIA Services OData endpoint does NOT support update or LINQ</title><link>https://sschutten.github.io/posts/wcf-ria-services-odata-endpoint-does-not-support-update-or-linq/</link><pubDate>Wed, 24 Nov 2010 17:46:33 +0000</pubDate><guid>https://sschutten.github.io/posts/wcf-ria-services-odata-endpoint-does-not-support-update-or-linq/</guid><description>After struggling with WCF RIA Services v1 (Silverlight 4 RTM) to enable insert/update for the OData endpoint for use with Windows Phone 7, I finally figured it out. The current version of WCF RIA Services does NOT support update or LINQ! I think I searched for a couple of hours until I found the single line of information on this in this following Silverlight TV post:
+NOTE: The ODATA endpoint has very limited support in V1.</description></item></channel></rss>

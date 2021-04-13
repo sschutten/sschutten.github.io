@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Chatbots on Sander Schutten&#39;s Blog</title>
-    <link>https://sschutten.github.io/posts/chatbots/</link>
-    <description>Recent content in Chatbots on Sander Schutten&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://sschutten.github.io/posts/chatbots/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Chatbots on Sander Schutten's Blog</title><link>https://sschutten.github.io/posts/chatbots/</link><description>Recent content in Chatbots on Sander Schutten's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://sschutten.github.io/posts/chatbots/index.xml" rel="self" type="application/rss+xml"/></channel></rss>

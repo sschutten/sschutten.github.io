@@ -1,35 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Microsoft on Sander Schutten&#39;s Blog</title>
-    <link>https://sschutten.github.io/categories/microsoft/</link>
-    <description>Recent content in Microsoft on Sander Schutten&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 02 Jul 2008 12:07:36 +0000</lastBuildDate>
-    
-	<atom:link href="https://sschutten.github.io/categories/microsoft/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Home Server campaign</title>
-      <link>https://sschutten.github.io/posts/86/</link>
-      <pubDate>Wed, 02 Jul 2008 12:07:36 +0000</pubDate>
-      
-      <guid>https://sschutten.github.io/posts/86/</guid>
-      <description>[](File URL)  in case you haven’t seen this yet, Microsoft has a rather interesting marketing campaign around Windows Home Server. One of the parts of the campaign is a book about Home Server which looks like it’s written for kids. The book explains what the magic &amp;lsquo;Server&amp;rsquo; in the house is all about.
-Microsoft went so far with this campaign that it actually looks like you can buy the book from Amazon!</description>
-    </item>
-    
-    <item>
-      <title>Microsoft LoadGen 2007</title>
-      <link>https://sschutten.github.io/posts/microsoft-loadgen-2007/</link>
-      <pubDate>Wed, 02 Jul 2008 11:03:40 +0000</pubDate>
-      
-      <guid>https://sschutten.github.io/posts/microsoft-loadgen-2007/</guid>
-      <description>Microsoft LoadGen 2007 generates message transmission loads to run performance and stress tests for your Microsoft BizTalk Server applications, and provides performance counters to monitor the performance of the infrastructure running BizTalk Server.
-This tool is intended for developers and IT professionals to simulate load on a BizTalk Server. Using this tool, you can simulate load to instrument performance and stress against a BizTalk deployment. In addition, this tool may also be extended by developers to simulate load for custom transports.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Microsoft on Sander Schutten's Blog</title><link>https://sschutten.github.io/categories/microsoft/</link><description>Recent content in Microsoft on Sander Schutten's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 02 Jul 2008 12:07:36 +0000</lastBuildDate><atom:link href="https://sschutten.github.io/categories/microsoft/index.xml" rel="self" type="application/rss+xml"/><item><title>Home Server campaign</title><link>https://sschutten.github.io/posts/86/</link><pubDate>Wed, 02 Jul 2008 12:07:36 +0000</pubDate><guid>https://sschutten.github.io/posts/86/</guid><description>[](File URL) in case you haven’t seen this yet, Microsoft has a rather interesting marketing campaign around Windows Home Server. One of the parts of the campaign is a book about Home Server which looks like it’s written for kids. The book explains what the magic &amp;lsquo;Server&amp;rsquo; in the house is all about.
+Microsoft went so far with this campaign that it actually looks like you can buy the book from Amazon!</description></item><item><title>Microsoft LoadGen 2007</title><link>https://sschutten.github.io/posts/microsoft-loadgen-2007/</link><pubDate>Wed, 02 Jul 2008 11:03:40 +0000</pubDate><guid>https://sschutten.github.io/posts/microsoft-loadgen-2007/</guid><description>Microsoft LoadGen 2007 generates message transmission loads to run performance and stress tests for your Microsoft BizTalk Server applications, and provides performance counters to monitor the performance of the infrastructure running BizTalk Server.
+This tool is intended for developers and IT professionals to simulate load on a BizTalk Server. Using this tool, you can simulate load to instrument performance and stress against a BizTalk deployment. In addition, this tool may also be extended by developers to simulate load for custom transports.</description></item></channel></rss>
