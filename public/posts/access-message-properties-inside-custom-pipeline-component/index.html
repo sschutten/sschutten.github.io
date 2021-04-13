@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Access message properties inside custom pipeline component</title>
+    
+
+
+
+
+
+
+
+
+  
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/layouts/main.css"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/navigators/navbar.css"/>
+<link rel="stylesheet" href="/css/plyr.css"/>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+
+<link rel="icon" type="image/png" href="/images/favicon_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png" />
+
+
+<link rel="stylesheet" href="/css/style.css"/>
+
+    
+<meta name="description" content="Access message properties inside custom pipeline component" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
+/>
+<link rel="stylesheet" href="/css/layouts/single.css"/>
+<link rel="stylesheet" href="/css/navigators/sidebar.css">
+
+
+    
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-xxxxxxxx', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </head>
+
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
+    <div class="container-fluid bg-dimmed wrapper">
+      
+      
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+<nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+      <img src="/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png" alt="Logo">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse lang-selector" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      
+      </ul>
+    </div>
+  </div>
+  
+  <img src="/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png" class="d-none" id="main-logo" alt="Logo">
+  <img src="/images/inverted-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
+</nav>
+
+
+
+      
+      
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <form class="mx-auto" method="get" action="https://sschutten.github.io/search">
+          <input type="text" name="keyword" value="" placeholder="Search" data-search="" id="search-box" />
+        </form>
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg' alt="Author Image">
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>November 10, 2005</p>
+        </div>
+
+        <div class="title">
+          <h1>Access message properties inside custom pipeline component</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p>Just recently I was looking for some default message properties and how to read and write them inside a custom pipeline component. While searching I stumbled over a <a href="http://blogs.msdn.com/skaufman/archive/2004/10/24/247001.aspx">great post </a>listing all the default message properties and how to read them.</p>
+<p>If you want to access the properties in your custom pipeline component, you have to get the IBaseMessageContext object from the IBaseContext and use the Read method to get a value or the Write method to substitute a value with your own.</p>
+<p>For example:</p>
+<p><font face="Courier New" size="1">public IBaseMessage Execute(IPipelineContext pContext, IBaseMessage pInMsg)</font></p>
+<p><font face="Courier New" size="1">{</font></p>
+<p><font face="Courier New" size="1">IBaseMessageContext context = pInMsg.Context;</font></p>
+<p><font face="Courier New" size="1">string value = context.Read(property, namespace).ToString();<br>
+context.Write(property, namespace, value);</font></p>
+<p><font face="Courier New" size="1">}</font></p>
+<p>To make your life a little easier, here’s the full list of properties:</p>
+<p>Receive pipeline properties:</p>
+<table border="0" cellpadding="0" cellspacing="0" style="WIDTH: 434pt; BORDER-COLLAPSE: collapse" width="579" x:str=""><colgroup><font size="1">  
+<col style="WIDTH: 17pt; mso-width-source: userset; mso-width-alt: 841" width="23"></col><col style="WIDTH: 146pt; mso-width-source: userset; mso-width-alt: 7131" width="195"></col><col style="WIDTH: 271pt; mso-width-source: userset; mso-width-alt: 13202" width="361"></col></font>  
+</colgroup><tbody><tr height="17" style="HEIGHT: 12.75pt"><td class="xl24" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext 0.5pt solid; BORDER-LEFT: windowtext 0.5pt solid; WIDTH: 17pt; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: #ff9900" width="23">**<font color="#ffffff" face="Arial" size="1"></font>**</td><td class="xl25" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext 0.5pt solid; BORDER-LEFT: windowtext; WIDTH: 146pt; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: #ff9900" width="195">**<font color="#ffffff" face="Arial" size="1">Property</font>**</td><td class="xl25" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext 0.5pt solid; BORDER-LEFT: windowtext; WIDTH: 271pt; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: #ff9900" width="361">**<font color="#ffffff" face="Arial" size="1">Namespace</font>**</td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">1</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">ReceivedFileName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/file-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">2</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">InboundTransportLocation</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">3</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">InterchangeID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">4</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">ReceivePortID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">5</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">ReceivePortName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">6</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">WasSolicitResponse</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">7</font>
+</td><td class="xl27" style="BORDER-RIGHT: w
+indowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">AuthenticationRequiredOnReceivePort</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">8</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">InboundTransportType</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">9</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">LRPMsgBodyTracking</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">10</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">MessageExchangePattern</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">11</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">PortName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/messagetracking-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">12</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">ReceivePipelineID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">13</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">MessageType</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">14</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">SchemaStrongName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">[http://schemas.microsoft.com/BizTalk/2003/system-properties](http://schemas.microsoft.com/BizTalk/2003/system-properties)</font></td></tr></tbody></table>Send pipeling properties:
+<table border="0" cellpadding="0" cellspacing="0" style="WIDTH: 434pt; BORDER-COLLAPSE: collapse" width="579" x:str=""><colgroup><col style="WIDTH: 17pt; mso-width-source: userset; mso-width-alt: 841" width="23"></col><col style="WIDTH: 146pt; mso-width-source: userset; mso-width-alt: 7131" width="195"></col><col style="WIDTH: 271pt; mso-width-source: userset; mso-width-alt: 13202" width="361"></col></colgroup><tbody><tr height="17" style="HEIGHT: 12.75pt"><td class="xl24" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext 0.5pt solid; BORDER-LEFT: windowtext 0.5pt solid; WIDTH: 17pt; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: #ff9900" width="23">**<font color="#ffffff" face="Arial" size="2"></font>**</td><td class="xl25" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext 0.5pt solid; BORDER-LEFT: windowtext; WIDTH: 146pt; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: #ff9900" width="195">**<font color="#ffffff" face="Arial" size="1">Property</font>**</td><td class="xl25" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext 0.5pt solid; BORDER-LEFT: windowtext; WIDTH: 271pt; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: #ff9900" width="361">**<font color="#ffffff" face="Arial" size="1">Namespace</font>**</td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">1</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtex
+t; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">CopyMode</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/file-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">2</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">LTPMsgBodyTracking</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">3</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">ReceivedFileName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/file-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">4</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">SPID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">5</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">ActualRetryCount</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">6</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">FileName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/file-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">7</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">PartyName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/messagetracking-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">8</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">ReceivePortName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">9</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">WasSolicitResponse</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">10</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">AllowCacheOnWrite</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/file-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">11</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">RetryInterval</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">12</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">OutboundTransportCLSID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">13</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">SPName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">14</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">InboundTransportLocation</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">15</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">InterchangeID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">16</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">ReceivePortID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">17</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">SPTransportID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">18</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">TransmitPipelineID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">19</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">AuthenticationRequiredOnReceivePort</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">20</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">InboundTransportType</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt
+solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">21</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">LRPMsgBodyTracking</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">22</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">MessageExchangePattern</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">23</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">OutboundTransportLocation</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">24</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">PortName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/messagetracking-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">25</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">ReceivePipelineID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">26</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">SourcePartyID</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">27</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">MessageType</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">28</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">OutboundTransportType</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">29</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">PartNames</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/messageagent-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">30</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">RetryCount</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr><tr height="17" style="HEIGHT: 12.75pt"><td class="xl26" height="17" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext 0.5pt solid; BORDER-BOTTOM: windowtext 0.5pt solid; HEIGHT: 12.75pt; BACKGROUND-COLOR: transparent" x:num=""><font face="Verdana" size="1">31</font>
+</td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">SchemaStrongName</font></td><td class="xl27" style="BORDER-RIGHT: windowtext 0.5pt solid; BORDER-TOP: windowtext; BORDER-LEFT: windowtext; BORDER-BOTTOM: windowtext 0.5pt solid; BACKGROUND-COLOR: transparent"><font face="Arial" size="1">http://schemas.microsoft.com/BizTalk/2003/system-properties</font></td></tr></tbody></table>
+
+        </div>
+
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/sschutten/blog/edit/master/content/posts%5caccess-message-properties-inside-custom-pipeline-component.md" target="_blank">
+                <i class="fas fa-code-branch"></i>
+                Improve this page
+              </a>
+          </div>
+        
+
+        
+      <hr />
+        <div class="row next-prev-navigator">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+      <div class="col-md-6 previous-article">
+        <a href="/posts/biztalk-server-2006-ctm-released/" class="btn btn-outline-info">
+          <div><i class="fas fa-chevron-circle-left"></i> Prev</div>
+          <div class="next-prev-text">BizTalk Server 2006 CTM Released</div>
+        </a>
+      </div>
+      
+    
+    
+      
+        
+        
+          
+              
+          
+        
+        <div class="col-md-6 next-article">
+          <a href="/posts/biztalks-sexy-new-xslt-mapper/" class="btn btn-outline-info">
+            <div>Next <i class="fas fa-chevron-circle-right"></i></div>
+            <div class="next-prev-text">BizTalk&amp;#039;s sexy new XSLT mapper</div>
+          </a>
+        </div>
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</div>
+
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function () {
+    
+    
+    if (window.location.hostname == "localhost") return;
+
+    var dsq = document.createElement("script");
+    dsq.type = "text/javascript";
+    dsq.async = true;
+    var disqus_shortname = "does-not-exist";
+    dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+    (
+      document.getElementsByTagName("head")[0] ||
+      document.getElementsByTagName("body")[0]
+    ).appendChild(dsq);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+<a href="https://disqus.com/" class="dsq-brlink"
+  >comments powered by <span class="logo-disqus">Disqus</span></a
+>
+
+      
+      </div>
+    </div>
+  </div>
+  
+  <a id="scroll-to-top" class="btn"><i class="fas fa-chevron-circle-up"></i></a>
+  
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+    <div class="toc-holder">
+      <h5 class="text-center pl-3">Table of Contents</h5>
+      <hr>
+      <div class="toc">
+        <nav id="TableOfContents"></nav>
+      </div>
+    </div>
+    
+  </section>
+
+    </div>
+
+    <footer class="container-fluid text-center align-content-center footer pb-2">
+  <div class="container pt-5">
+    <div class="row text-left">
+      <div class="col-md-4 col-sm-12">
+        <h5>Navigation</h5>
+        
+
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <h5>Contact Me</h5>
+        <ul>
+          
+        </ul>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="container">
+    <div class="row text-left">
+      <div class="col-md-4">
+        <a id="theme" href="https://github.com/hossainemruz/toha" target="#">
+          <img src="/images/logo-inverted.png">
+          Toha
+        </a>
+      </div>
+      <div class="col-md-4">Copyright © 2021</div>
+      <div class="col-md-4">
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/js/navbar.js"></script>
+<script type="text/javascript" src="/js/plyr.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script src="/js/single.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+
+
+  </body>
+</html>

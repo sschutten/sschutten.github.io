@@ -1,0 +1,55 @@
+baseURL: https://sschutten.github.io
+languageCode: en-us
+title: "Sander Schutten's Blog"
+theme: "toha"
+
+# Manage languages
+# For any more details, you can check the official documentation: https://gohugo.io/content-management/multilingual/
+languages:
+  en:
+    languageName: English
+    weight: 1
+
+# Control TOC depth
+markup:
+  tableOfContents:
+    startLevel: 2
+    endLevel: 6
+    ordered: false
+
+# At least HTML and JSON are required for the main HTML content and
+# client-side JavaScript search
+outputs:
+  home:
+  - HTML
+  - RSS
+  - JSON
+
+# Allow raw html in markdown file
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+# Enable Google Analytics
+googleAnalytics: UA-xxxxxxxx
+
+# Enable Disqus forum
+disqusShortname: does-not-exist
+
+# Enable global emoji support
+enableEmoji: true
+
+# Custom parameters
+params:
+  # background image of the landing page
+  background: "images/background.jpg"
+
+  # GitHub repo URL of your site
+  gitRepo: https://github.com/sschutten/blog
+  gitBranch: master
+
+  # specify whether you want to write blog post or not
+  enableBlogPost: true
+
+  enableTOC: true

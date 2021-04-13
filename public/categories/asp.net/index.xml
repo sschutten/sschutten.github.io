@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ASP.NET on Sander Schutten&#39;s Blog</title>
+    <link>https://sschutten.github.io/categories/asp.net/</link>
+    <description>Recent content in ASP.NET on Sander Schutten&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Jul 2008 11:40:56 +0000</lastBuildDate><atom:link href="https://sschutten.github.io/categories/asp.net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How-To: New ASP.NET 3.5 Extensions Video Screencasts</title>
+      <link>https://sschutten.github.io/posts/84/</link>
+      <pubDate>Wed, 02 Jul 2008 11:40:56 +0000</pubDate>
+      
+      <guid>https://sschutten.github.io/posts/84/</guid>
+      <description>From the almighty Scott Hanselman:
+ Released today are four new screencasts about the ASP.NET 3.5 Extensions by various members of the ASP.NET team. Every video is available in numerous formats, and note that this also includes re-encoded versions of my **Intro to MVC Screencast **in a pile of formats including an iPod/iTouch compatible format, as well as ones for the **Zune **and **PSP **and a utterly unwatchable 😉 40 meg 3GP one for 3G Phones.</description>
+    </item>
+    
+  </channel>
+</rss>
