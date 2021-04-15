@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "pipeline-testing-framework-for-bts06",
-  "title": "Pipeline Testing Framework for BTS06"
+  "title": "Pipeline Testing Framework for BTS06",
+  "menu": {
+    "sidebar": {
+      "name": "Pipeline Testing Framework for BTS06",
+      "weight": 200701,
+      "identifier": "pipeline-testing-framework-for-bts06",
+      "parent": "2007/01"
+    }
+  }
 }
 
 

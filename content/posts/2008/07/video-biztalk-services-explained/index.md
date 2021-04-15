@@ -14,7 +14,15 @@
     "Services",
     "WCF"
   ],
-  "title": "Video: BizTalk Services Explained"
+  "title": "Video: BizTalk Services Explained",
+  "menu": {
+    "sidebar": {
+      "name": "Video: BizTalk Services Explained",
+      "weight": 200807,
+      "identifier": "video-biztalk-services-explained",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

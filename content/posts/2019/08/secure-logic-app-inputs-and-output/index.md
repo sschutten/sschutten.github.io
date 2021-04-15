@@ -4,7 +4,15 @@
   "description": "",
   "draft": true,
   "slug": "secure-logic-app-inputs-and-output",
-  "title": "Secure Logic App inputs and output"
+  "title": "Secure Logic App inputs and output",
+  "menu": {
+    "sidebar": {
+      "name": "Secure Logic App inputs and output",
+      "weight": 201908,
+      "identifier": "secure-logic-app-inputs-and-output",
+      "parent": "2019/08"
+    }
+  }
 }
 
 

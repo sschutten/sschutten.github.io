@@ -14,7 +14,15 @@
     "Home Server",
     "Microsoft"
   ],
-  "title": "Home Server campaign"
+  "title": "Home Server campaign",
+  "menu": {
+    "sidebar": {
+      "name": "Home Server campaign",
+      "weight": 200807,
+      "identifier": "86",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

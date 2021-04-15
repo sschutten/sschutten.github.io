@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "first-release-of-mce-guide-editor",
-  "title": "First release of MCE Guide Editor"
+  "title": "First release of MCE Guide Editor",
+  "menu": {
+    "sidebar": {
+      "name": "First release of MCE Guide Editor",
+      "weight": 200705,
+      "identifier": "first-release-of-mce-guide-editor",
+      "parent": "2007/05"
+    }
+  }
 }
 
 

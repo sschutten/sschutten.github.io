@@ -16,7 +16,15 @@
     "SyncFX",
     "Windows Phone 7"
   ],
-  "title": "Using the Sync Framework on Windows Phone 7"
+  "title": "Using the Sync Framework on Windows Phone 7",
+  "menu": {
+    "sidebar": {
+      "name": "Using the Sync Framework on Windows Phone 7",
+      "weight": 201101,
+      "identifier": "using-the-sync-framework-on-windows-phone-7",
+      "parent": "2011/01"
+    }
+  }
 }
 
 

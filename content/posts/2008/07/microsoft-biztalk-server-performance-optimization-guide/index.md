@@ -14,7 +14,15 @@
     "Guide",
     "Optimization"
   ],
-  "title": "Microsoft BizTalk Server Performance Optimization Guide"
+  "title": "Microsoft BizTalk Server Performance Optimization Guide",
+  "menu": {
+    "sidebar": {
+      "name": "Microsoft BizTalk Server Performance Optimization Guide",
+      "weight": 200807,
+      "identifier": "microsoft-biztalk-server-performance-optimization-guide",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

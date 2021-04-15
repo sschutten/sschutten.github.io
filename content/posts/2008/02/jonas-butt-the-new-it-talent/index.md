@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "jonas-butt-the-new-it-talent",
-  "title": "Jonas Butt, the new IT-talent?"
+  "title": "Jonas Butt, the new IT-talent?",
+  "menu": {
+    "sidebar": {
+      "name": "Jonas Butt, the new IT-talent?",
+      "weight": 200802,
+      "identifier": "jonas-butt-the-new-it-talent",
+      "parent": "2008/02"
+    }
+  }
 }
 
 

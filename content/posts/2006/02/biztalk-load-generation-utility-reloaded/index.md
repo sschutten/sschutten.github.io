@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "biztalk-load-generation-utility-reloaded",
-  "title": "BizTalk Load Generation Utility reloaded"
+  "title": "BizTalk Load Generation Utility reloaded",
+  "menu": {
+    "sidebar": {
+      "name": "BizTalk Load Generation Utility reloaded",
+      "weight": 200602,
+      "identifier": "biztalk-load-generation-utility-reloaded",
+      "parent": "2006/02"
+    }
+  }
 }
 
 

@@ -16,7 +16,15 @@
     "Video",
     "WCF"
   ],
-  "title": "First look at WCF Adapter for BizTalk Server 2006 R2"
+  "title": "First look at WCF Adapter for BizTalk Server 2006 R2",
+  "menu": {
+    "sidebar": {
+      "name": "First look at WCF Adapter for BizTalk Server 2006 R2",
+      "weight": 200807,
+      "identifier": "first-look-at-wcf-adapter-for-biztalk-server-2006-r2",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

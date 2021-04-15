@@ -12,7 +12,15 @@
     "Sharepoint",
     "WCF"
   ],
-  "title": "Consume WCF service using Sharepoint Designer"
+  "title": "Consume WCF service using Sharepoint Designer",
+  "menu": {
+    "sidebar": {
+      "name": "Consume WCF service using Sharepoint Designer",
+      "weight": 200810,
+      "identifier": "consume-wcf-service-using-sharepoint-designer",
+      "parent": "2008/10"
+    }
+  }
 }
 
 

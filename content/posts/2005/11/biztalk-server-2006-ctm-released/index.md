@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "biztalk-server-2006-ctm-released",
-  "title": "BizTalk Server 2006 CTM Released"
+  "title": "BizTalk Server 2006 CTM Released",
+  "menu": {
+    "sidebar": {
+      "name": "BizTalk Server 2006 CTM Released",
+      "weight": 200511,
+      "identifier": "biztalk-server-2006-ctm-released",
+      "parent": "2005/11"
+    }
+  }
 }
 
 

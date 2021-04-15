@@ -4,7 +4,15 @@
   "description": "",
   "draft": true,
   "slug": "redis-console",
-  "title": "Redis console"
+  "title": "Redis console",
+  "menu": {
+    "sidebar": {
+      "name": "Redis console",
+      "weight": 201908,
+      "identifier": "redis-console",
+      "parent": "2019/08"
+    }
+  }
 }
 
 

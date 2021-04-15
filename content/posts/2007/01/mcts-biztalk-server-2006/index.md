@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "mcts-biztalk-server-2006",
-  "title": "MCTS BizTalk Server 2006"
+  "title": "MCTS BizTalk Server 2006",
+  "menu": {
+    "sidebar": {
+      "name": "MCTS BizTalk Server 2006",
+      "weight": 200701,
+      "identifier": "mcts-biztalk-server-2006",
+      "parent": "2007/01"
+    }
+  }
 }
 
 

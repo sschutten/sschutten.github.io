@@ -16,7 +16,15 @@
     "Media Center",
     "vista"
   ],
-  "title": "Building Vista Media Center Add-ins (Dutch)"
+  "title": "Building Vista Media Center Add-ins (Dutch)",
+  "menu": {
+    "sidebar": {
+      "name": "Building Vista Media Center Add-ins (Dutch)",
+      "weight": 200811,
+      "identifier": "building-vista-media-center-add-ins-dutch",
+      "parent": "2008/11"
+    }
+  }
 }
 
 

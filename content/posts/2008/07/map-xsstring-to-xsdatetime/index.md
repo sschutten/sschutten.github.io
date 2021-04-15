@@ -18,7 +18,15 @@
     "Mapper",
     "Schema"
   ],
-  "title": "Map xs:string to xs:datetime"
+  "title": "Map xs:string to xs:datetime",
+  "menu": {
+    "sidebar": {
+      "name": "Map xs:string to xs:datetime",
+      "weight": 200807,
+      "identifier": "map-xsstring-to-xsdatetime",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

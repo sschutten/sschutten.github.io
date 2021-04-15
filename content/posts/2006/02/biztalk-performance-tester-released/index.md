@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "biztalk-performance-tester-released",
-  "title": "BizTalk Performance Tester released"
+  "title": "BizTalk Performance Tester released",
+  "menu": {
+    "sidebar": {
+      "name": "BizTalk Performance Tester released",
+      "weight": 200602,
+      "identifier": "biztalk-performance-tester-released",
+      "parent": "2006/02"
+    }
+  }
 }
 
 

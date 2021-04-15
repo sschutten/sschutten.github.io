@@ -12,7 +12,15 @@
     "Guide Editor",
     "Media Center"
   ],
-  "title": "Status update on MCE Guide Editor"
+  "title": "Status update on MCE Guide Editor",
+  "menu": {
+    "sidebar": {
+      "name": "Status update on MCE Guide Editor",
+      "weight": 200803,
+      "identifier": "status-update-on-mce-guide-editor",
+      "parent": "2008/03"
+    }
+  }
 }
 
 

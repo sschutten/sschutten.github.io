@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "biztalk-adapter-whitepaper",
-  "title": "BizTalk Adapter whitepaper"
+  "title": "BizTalk Adapter whitepaper",
+  "menu": {
+    "sidebar": {
+      "name": "BizTalk Adapter whitepaper",
+      "weight": 200701,
+      "identifier": "biztalk-adapter-whitepaper",
+      "parent": "2007/01"
+    }
+  }
 }
 
 

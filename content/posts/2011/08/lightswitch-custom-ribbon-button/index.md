@@ -16,7 +16,15 @@
     "Silverlight",
     "visual studio"
   ],
-  "title": "Lightswitch: custom ribbon button"
+  "title": "Lightswitch: custom ribbon button",
+  "menu": {
+    "sidebar": {
+      "name": "Lightswitch: custom ribbon button",
+      "weight": 201108,
+      "identifier": "lightswitch-custom-ribbon-button",
+      "parent": "2011/08"
+    }
+  }
 }
 
 

@@ -18,7 +18,15 @@
     "PDC",
     "Windows 7"
   ],
-  "title": "Day 0: arrived in LA"
+  "title": "Day 0: arrived in LA",
+  "menu": {
+    "sidebar": {
+      "name": "Day 0: arrived in LA",
+      "weight": 200810,
+      "identifier": "day-0-arrived-in-la",
+      "parent": "2008/10"
+    }
+  }
 }
 
 

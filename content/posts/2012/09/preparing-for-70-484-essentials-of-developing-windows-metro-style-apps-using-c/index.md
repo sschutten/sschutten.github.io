@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "preparing-for-70-484-essentials-of-developing-windows-metro-style-apps-using-c",
-  "title": "Preparing for 70-484: Essentials of Developing Windows Metro style Apps using C#"
+  "title": "Preparing for 70-484: Essentials of Developing Windows Metro style Apps using C#",
+  "menu": {
+    "sidebar": {
+      "name": "Preparing for 70-484: Essentials of Developing Windows Metro style Apps using C#",
+      "weight": 201209,
+      "identifier": "preparing-for-70-484-essentials-of-developing-windows-metro-style-apps-using-c",
+      "parent": "2012/09"
+    }
+  }
 }
 
 

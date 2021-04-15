@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "identify-node-type-in-xslt",
-  "title": "Identify node type in XSLT"
+  "title": "Identify node type in XSLT",
+  "menu": {
+    "sidebar": {
+      "name": "Identify node type in XSLT",
+      "weight": 200601,
+      "identifier": "identify-node-type-in-xslt",
+      "parent": "2006/01"
+    }
+  }
 }
 
 

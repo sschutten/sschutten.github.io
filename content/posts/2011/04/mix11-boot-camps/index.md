@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "mix11-boot-camps",
-  "title": "MIX11: Boot Camps"
+  "title": "MIX11: Boot Camps",
+  "menu": {
+    "sidebar": {
+      "name": "MIX11: Boot Camps",
+      "weight": 201104,
+      "identifier": "mix11-boot-camps",
+      "parent": "2011/04"
+    }
+  }
 }
 
 

@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "using-bam-api-to-create-related-activities",
-  "title": "Using BAM API to create related activities"
+  "title": "Using BAM API to create related activities",
+  "menu": {
+    "sidebar": {
+      "name": "Using BAM API to create related activities",
+      "weight": 200701,
+      "identifier": "using-bam-api-to-create-related-activities",
+      "parent": "2007/01"
+    }
+  }
 }
 
 

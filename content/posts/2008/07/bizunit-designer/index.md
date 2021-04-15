@@ -16,7 +16,15 @@
     "Unit Test",
     "XML"
   ],
-  "title": "BizUnit Designer"
+  "title": "BizUnit Designer",
+  "menu": {
+    "sidebar": {
+      "name": "BizUnit Designer",
+      "weight": 200807,
+      "identifier": "bizunit-designer",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

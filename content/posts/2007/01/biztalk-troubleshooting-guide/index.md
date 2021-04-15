@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "biztalk-troubleshooting-guide",
-  "title": "BizTalk Troubleshooting Guide"
+  "title": "BizTalk Troubleshooting Guide",
+  "menu": {
+    "sidebar": {
+      "name": "BizTalk Troubleshooting Guide",
+      "weight": 200701,
+      "identifier": "biztalk-troubleshooting-guide",
+      "parent": "2007/01"
+    }
+  }
 }
 
 

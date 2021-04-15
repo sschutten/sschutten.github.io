@@ -20,7 +20,15 @@
     "improvements",
     "connectors"
   ],
-  "title": "Logic Apps improvement suggestions"
+  "title": "Logic Apps improvement suggestions",
+  "menu": {
+    "sidebar": {
+      "name": "Logic Apps improvement suggestions",
+      "weight": 201802,
+      "identifier": "logic-apps-improvement-suggestions",
+      "parent": "2018/02"
+    }
+  }
 }
 
 

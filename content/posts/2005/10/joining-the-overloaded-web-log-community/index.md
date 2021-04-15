@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "joining-the-overloaded-web-log-community",
-  "title": "Joining the overloaded web-log community"
+  "title": "Joining the overloaded web-log community",
+  "menu": {
+    "sidebar": {
+      "name": "Joining the overloaded web-log community",
+      "weight": 200510,
+      "identifier": "joining-the-overloaded-web-log-community",
+      "parent": "2005/10"
+    }
+  }
 }
 
 

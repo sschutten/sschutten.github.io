@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "playing-blog-tag",
-  "title": "Playing Blog-Tag"
+  "title": "Playing Blog-Tag",
+  "menu": {
+    "sidebar": {
+      "name": "Playing Blog-Tag",
+      "weight": 200701,
+      "identifier": "playing-blog-tag",
+      "parent": "2007/01"
+    }
+  }
 }
 
 

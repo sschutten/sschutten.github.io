@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "biztalks-sexy-new-xslt-mapper",
-  "title": "BizTalk&#039;s sexy new XSLT mapper"
+  "title": "BizTalk&#039;s sexy new XSLT mapper",
+  "menu": {
+    "sidebar": {
+      "name": "BizTalk&#039;s sexy new XSLT mapper",
+      "weight": 200511,
+      "identifier": "biztalks-sexy-new-xslt-mapper",
+      "parent": "2005/11"
+    }
+  }
 }
 
 

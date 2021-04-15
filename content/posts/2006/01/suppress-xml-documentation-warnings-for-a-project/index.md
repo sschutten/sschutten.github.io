@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "suppress-xml-documentation-warnings-for-a-project",
-  "title": "Suppress XML documentation warnings for a project"
+  "title": "Suppress XML documentation warnings for a project",
+  "menu": {
+    "sidebar": {
+      "name": "Suppress XML documentation warnings for a project",
+      "weight": 200601,
+      "identifier": "suppress-xml-documentation-warnings-for-a-project",
+      "parent": "2006/01"
+    }
+  }
 }
 
 

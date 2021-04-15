@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "biztalk-shell-extension",
-  "title": "BizTalk shell extension"
+  "title": "BizTalk shell extension",
+  "menu": {
+    "sidebar": {
+      "name": "BizTalk shell extension",
+      "weight": 200701,
+      "identifier": "biztalk-shell-extension",
+      "parent": "2007/01"
+    }
+  }
 }
 
 

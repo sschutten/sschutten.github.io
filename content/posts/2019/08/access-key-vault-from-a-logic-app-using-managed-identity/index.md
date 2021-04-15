@@ -4,7 +4,15 @@
   "description": "",
   "draft": true,
   "slug": "access-key-vault-from-a-logic-app-using-managed-identity",
-  "title": "Access Key Vault from a Logic App using Managed Identity"
+  "title": "Access Key Vault from a Logic App using Managed Identity",
+  "menu": {
+    "sidebar": {
+      "name": "Access Key Vault from a Logic App using Managed Identity",
+      "weight": 201908,
+      "identifier": "access-key-vault-from-a-logic-app-using-managed-identity",
+      "parent": "2019/08"
+    }
+  }
 }
 
 

@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "workflow-designer-will-substitute-orchestration-designer-in-biztalk-vnext",
-  "title": "Workflow designer will substitute orchestration designer in BizTalk vNext"
+  "title": "Workflow designer will substitute orchestration designer in BizTalk vNext",
+  "menu": {
+    "sidebar": {
+      "name": "Workflow designer will substitute orchestration designer in BizTalk vNext",
+      "weight": 200510,
+      "identifier": "workflow-designer-will-substitute-orchestration-designer-in-biztalk-vnext",
+      "parent": "2005/10"
+    }
+  }
 }
 
 

@@ -14,7 +14,15 @@
     "Media Center",
     "SideShow"
   ],
-  "title": "Control Windows Media Center with New Windows SideShow BETA Gadgets"
+  "title": "Control Windows Media Center with New Windows SideShow BETA Gadgets",
+  "menu": {
+    "sidebar": {
+      "name": "Control Windows Media Center with New Windows SideShow BETA Gadgets",
+      "weight": 200807,
+      "identifier": "control-windows-media-center-with-new-windows-sideshow-beta-gadgets",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

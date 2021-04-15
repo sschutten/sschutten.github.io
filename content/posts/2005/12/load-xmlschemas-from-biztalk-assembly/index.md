@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "load-xmlschemas-from-biztalk-assembly",
-  "title": "Load XmlSchema&#039;s from BizTalk assembly"
+  "title": "Load XmlSchema&#039;s from BizTalk assembly",
+  "menu": {
+    "sidebar": {
+      "name": "Load XmlSchema&#039;s from BizTalk assembly",
+      "weight": 200512,
+      "identifier": "load-xmlschemas-from-biztalk-assembly",
+      "parent": "2005/12"
+    }
+  }
 }
 
 

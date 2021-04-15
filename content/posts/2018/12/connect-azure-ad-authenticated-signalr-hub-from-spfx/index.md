@@ -1,17 +1,30 @@
-+++
-author = "Sander Schutten"
-categories = ["signalr", "spfx"]
-date = 2018-12-11T07:30:00Z
-description = ""
-draft = false
-slug = "connect-azure-ad-authenticated-signalr-hub-from-spfx"
-tags = ["signalr", "spfx"]
-title = "Connect to Azure AD secured SignalR Hub from your SPFx code"
-aliases = [
+{
+  "aliases": [
     "/posts/connect-azure-ad-authenticated-signalr-hub-from-spfx/"
-]
-
-+++
+  ],
+  "author": "Sander Schutten",
+  "categories": [
+    "signalr",
+    "spfx"
+  ],
+  "date": "2018-12-11T07:30:00Z",
+  "description": "",
+  "draft": false,
+  "slug": "connect-azure-ad-authenticated-signalr-hub-from-spfx",
+  "tags": [
+    "signalr",
+    "spfx"
+  ],
+  "title": "Connect to Azure AD secured SignalR Hub from your SPFx code",
+  "menu": {
+    "sidebar": {
+      "name": "Connect to Azure AD secured SignalR Hub from your SPFx code",
+      "weight": 201812,
+      "identifier": "connect-azure-ad-authenticated-signalr-hub-from-spfx",
+      "parent": "2018/12"
+    }
+  }
+}
 
 
 SignalR is a great technology to provide users with real-time UI updates of events happening in the back-end. It's a perfect match with SPFX to build some amazing web parts for SharePoint. With the recent release of ASPNET SignalR Core (now incorporated in the [ASP.NET Core GitHub project](https://github.com/aspnet/AspNetCore)) SignalR is easier to use than before. So you've gone and created a web part that connects to a SignalR hub and the experience makes a real impact for your users. But how do you ensure only allowed people can connect to the SignalR hub? That's what this blog post will get into.

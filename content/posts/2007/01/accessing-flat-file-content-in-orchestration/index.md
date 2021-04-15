@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "accessing-flat-file-content-in-orchestration",
-  "title": "Accessing flat file content in orchestration"
+  "title": "Accessing flat file content in orchestration",
+  "menu": {
+    "sidebar": {
+      "name": "Accessing flat file content in orchestration",
+      "weight": 200701,
+      "identifier": "accessing-flat-file-content-in-orchestration",
+      "parent": "2007/01"
+    }
+  }
 }
 
 

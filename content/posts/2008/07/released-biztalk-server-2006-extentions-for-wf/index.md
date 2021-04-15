@@ -16,7 +16,15 @@
     "WF",
     "Workflow"
   ],
-  "title": "Released: BizTalk Server 2006 extentions for WF"
+  "title": "Released: BizTalk Server 2006 extentions for WF",
+  "menu": {
+    "sidebar": {
+      "name": "Released: BizTalk Server 2006 extentions for WF",
+      "weight": 200807,
+      "identifier": "released-biztalk-server-2006-extentions-for-wf",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

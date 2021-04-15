@@ -4,7 +4,15 @@
   "description": "",
   "draft": true,
   "slug": "upgrade-spfx-to-1-8-0",
-  "title": "Upgrade SPFx to 1.8.0"
+  "title": "Upgrade SPFx to 1.8.0",
+  "menu": {
+    "sidebar": {
+      "name": "Upgrade SPFx to 1.8.0",
+      "weight": 201908,
+      "identifier": "upgrade-spfx-to-1-8-0",
+      "parent": "2019/08"
+    }
+  }
 }
 
 

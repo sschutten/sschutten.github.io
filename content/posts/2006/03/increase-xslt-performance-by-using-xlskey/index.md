@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "increase-xslt-performance-by-using-xlskey",
-  "title": "Increase XSLT performance by using xls:key"
+  "title": "Increase XSLT performance by using xls:key",
+  "menu": {
+    "sidebar": {
+      "name": "Increase XSLT performance by using xls:key",
+      "weight": 200603,
+      "identifier": "increase-xslt-performance-by-using-xlskey",
+      "parent": "2006/03"
+    }
+  }
 }
 
 

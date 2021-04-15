@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "html-generator-stylesheet-for-biztalk-2004-maps",
-  "title": "HTML Generator Stylesheet for BizTalk 2004 Maps"
+  "title": "HTML Generator Stylesheet for BizTalk 2004 Maps",
+  "menu": {
+    "sidebar": {
+      "name": "HTML Generator Stylesheet for BizTalk 2004 Maps",
+      "weight": 200603,
+      "identifier": "html-generator-stylesheet-for-biztalk-2004-maps",
+      "parent": "2006/03"
+    }
+  }
 }
 
 

@@ -16,7 +16,15 @@
     "location",
     "wp7"
   ],
-  "title": "Building a location aware Windows Phone 7 application"
+  "title": "Building a location aware Windows Phone 7 application",
+  "menu": {
+    "sidebar": {
+      "name": "Building a location aware Windows Phone 7 application",
+      "weight": 201012,
+      "identifier": "building-a-location-aware-windows-phone-7-application-2",
+      "parent": "2010/12"
+    }
+  }
 }
 
 

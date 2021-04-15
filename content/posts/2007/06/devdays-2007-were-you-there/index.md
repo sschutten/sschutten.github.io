@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "devdays-2007-were-you-there",
-  "title": "DevDays 2007, were you there?"
+  "title": "DevDays 2007, were you there?",
+  "menu": {
+    "sidebar": {
+      "name": "DevDays 2007, were you there?",
+      "weight": 200706,
+      "identifier": "devdays-2007-were-you-there",
+      "parent": "2007/06"
+    }
+  }
 }
 
 

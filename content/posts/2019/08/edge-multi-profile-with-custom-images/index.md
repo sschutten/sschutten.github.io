@@ -1,17 +1,32 @@
-+++
-author = "Sander Schutten"
-categories = ["Edge", "Profiles", "Tricks"]
-date = 2019-08-12T06:18:00Z
-description = ""
-draft = false
-slug = "edge-multi-profile-with-custom-images"
-tags = ["Edge", "Profiles", "Tricks"]
-title = "Custom profile images in Edge"
-aliases = [
+{
+  "aliases": [
     "/posts/edge-multi-profile-with-custom-images/"
-]
-
-+++
+  ],
+  "author": "Sander Schutten",
+  "categories": [
+    "Edge",
+    "Profiles",
+    "Tricks"
+  ],
+  "date": "2019-08-12T06:18:00Z",
+  "description": "",
+  "draft": false,
+  "slug": "edge-multi-profile-with-custom-images",
+  "tags": [
+    "Edge",
+    "Profiles",
+    "Tricks"
+  ],
+  "title": "Custom profile images in Edge",
+  "menu": {
+    "sidebar": {
+      "name": "Custom profile images in Edge",
+      "weight": 201908,
+      "identifier": "edge-multi-profile-with-custom-images",
+      "parent": "2019/08"
+    }
+  }
+}
 
 
 Ever since Microsoft [announced](https://blogs.windows.com/windowsexperience/2018/12/06/microsoft-edge-making-the-web-better-through-more-open-source-collaboration/) the next version of Edge will be based on Chromium and provided the [Edge Insider](https://www.microsoftedgeinsider.com/en-us/) program I've been happily running the Dev channel of Edge. If you haven't tried yet, you should. It's that good.

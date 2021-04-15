@@ -16,7 +16,15 @@
     "vhd",
     "virtual machine"
   ],
-  "title": "Move your development VM to Azure"
+  "title": "Move your development VM to Azure",
+  "menu": {
+    "sidebar": {
+      "name": "Move your development VM to Azure",
+      "weight": 201306,
+      "identifier": "move-your-development-vm-to-azure",
+      "parent": "2013/06"
+    }
+  }
 }
 
 

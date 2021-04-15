@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "add-existing-project-from-web-drama",
-  "title": "Add existing project from web drama"
+  "title": "Add existing project from web drama",
+  "menu": {
+    "sidebar": {
+      "name": "Add existing project from web drama",
+      "weight": 200611,
+      "identifier": "add-existing-project-from-web-drama",
+      "parent": "2006/11"
+    }
+  }
 }
 
 

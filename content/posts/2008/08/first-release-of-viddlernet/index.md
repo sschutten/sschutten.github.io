@@ -16,7 +16,15 @@
     "C#",
     "Viddler"
   ],
-  "title": "First release of Viddler.Net"
+  "title": "First release of Viddler.Net",
+  "menu": {
+    "sidebar": {
+      "name": "First release of Viddler.Net",
+      "weight": 200808,
+      "identifier": "first-release-of-viddlernet",
+      "parent": "2008/08"
+    }
+  }
 }
 
 

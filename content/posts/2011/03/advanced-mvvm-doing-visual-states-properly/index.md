@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "advanced-mvvm-doing-visual-states-properly",
-  "title": "Advanced MVVM: Doing visual states properly"
+  "title": "Advanced MVVM: Doing visual states properly",
+  "menu": {
+    "sidebar": {
+      "name": "Advanced MVVM: Doing visual states properly",
+      "weight": 201103,
+      "identifier": "advanced-mvvm-doing-visual-states-properly",
+      "parent": "2011/03"
+    }
+  }
 }
 
 

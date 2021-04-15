@@ -18,7 +18,15 @@
     "Spread",
     "XML"
   ],
-  "title": "FarPoint Spread for BizTalk Server 2006"
+  "title": "FarPoint Spread for BizTalk Server 2006",
+  "menu": {
+    "sidebar": {
+      "name": "FarPoint Spread for BizTalk Server 2006",
+      "weight": 200807,
+      "identifier": "farpoint-spread-for-biztalk-server-2006",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

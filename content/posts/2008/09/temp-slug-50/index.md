@@ -4,7 +4,15 @@
   "description": "",
   "draft": true,
   "slug": "temp-slug-50",
-  "title": "Media Center Showcase"
+  "title": "Media Center Showcase",
+  "menu": {
+    "sidebar": {
+      "name": "Media Center Showcase",
+      "weight": 200809,
+      "identifier": "temp-slug-50",
+      "parent": "2008/09"
+    }
+  }
 }
 
 

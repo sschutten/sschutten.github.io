@@ -16,7 +16,15 @@
     "Ext JS",
     "Javascript"
   ],
-  "title": "Ext JS"
+  "title": "Ext JS",
+  "menu": {
+    "sidebar": {
+      "name": "Ext JS",
+      "weight": 200807,
+      "identifier": "ext-js",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

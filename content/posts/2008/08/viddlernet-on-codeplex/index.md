@@ -16,7 +16,15 @@
     "C#",
     "Viddler"
   ],
-  "title": "Viddler.Net on Codeplex"
+  "title": "Viddler.Net on Codeplex",
+  "menu": {
+    "sidebar": {
+      "name": "Viddler.Net on Codeplex",
+      "weight": 200808,
+      "identifier": "viddlernet-on-codeplex",
+      "parent": "2008/08"
+    }
+  }
 }
 
 

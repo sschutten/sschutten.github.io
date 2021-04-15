@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "net-magazine-article-published-online",
-  "title": ".Net Magazine article published online"
+  "title": ".Net Magazine article published online",
+  "menu": {
+    "sidebar": {
+      "name": ".Net Magazine article published online",
+      "weight": 200702,
+      "identifier": "net-magazine-article-published-online",
+      "parent": "2007/02"
+    }
+  }
 }
 
 

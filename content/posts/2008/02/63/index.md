@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "63",
-  "title": "Running"
+  "title": "Running",
+  "menu": {
+    "sidebar": {
+      "name": "Running",
+      "weight": 200802,
+      "identifier": "63",
+      "parent": "2008/02"
+    }
+  }
 }
 
 

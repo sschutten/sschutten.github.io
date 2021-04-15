@@ -16,7 +16,15 @@
     "Microsoft",
     "Performance"
   ],
-  "title": "Microsoft LoadGen 2007"
+  "title": "Microsoft LoadGen 2007",
+  "menu": {
+    "sidebar": {
+      "name": "Microsoft LoadGen 2007",
+      "weight": 200807,
+      "identifier": "microsoft-loadgen-2007",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

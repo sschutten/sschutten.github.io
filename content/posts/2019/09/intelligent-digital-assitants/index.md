@@ -1,16 +1,26 @@
-+++
-author = "Sander Schutten"
-date = 2019-09-25T07:10:17Z
-description = ""
-categories = ["Chatbots", "Conversational AI"]
-draft = false
-slug = "intelligent-digital-assitants"
-title = "Intelligent chatbots for Microsoft Teams"
-aliases = [
+{
+  "aliases": [
     "/posts/intelligent-digital-assitants/"
-]
-
-+++
+  ],
+  "author": "Sander Schutten",
+  "categories": [
+    "Chatbots",
+    "Conversational AI"
+  ],
+  "date": "2019-09-25T07:10:17Z",
+  "description": "",
+  "draft": false,
+  "slug": "intelligent-digital-assitants",
+  "title": "Intelligent chatbots for Microsoft Teams",
+  "menu": {
+    "sidebar": {
+      "name": "Intelligent chatbots for Microsoft Teams",
+      "weight": 201909,
+      "identifier": "intelligent-digital-assitants",
+      "parent": "2019/09"
+    }
+  }
+}
 
 
 We're living in the decade of the rise of conversational platforms like chatbots. Gartner [predicts](https://www.gartner.com/en/newsroom/press-releases/2019-01-09-gartner-predicts-25-percent-of-digital-workers-will-u) that by 2022 over 70% of modern workers use conversational platforms on a daily basis. Chatbots are around for many years, even [dating back to 1966](https://www.analyticsindiamag.com/story-eliza-first-chatbot-developed-1966/), with fluctuating interest over time. The last few years we see a big increase of excitement for chatbots with artificial intelligence (AI) becoming mainstream. The use of AI enables chatbots to better understand natural language and be able to more intelligently respond to users.

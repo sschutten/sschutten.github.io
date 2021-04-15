@@ -12,7 +12,15 @@
     "BizTalk",
     "Poster"
   ],
-  "title": "More BizTalk posters"
+  "title": "More BizTalk posters",
+  "menu": {
+    "sidebar": {
+      "name": "More BizTalk posters",
+      "weight": 200807,
+      "identifier": "more-biztalk-posters",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

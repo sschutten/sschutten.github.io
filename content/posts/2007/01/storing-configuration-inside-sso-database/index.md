@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "storing-configuration-inside-sso-database",
-  "title": "Storing configuration inside SSO database"
+  "title": "Storing configuration inside SSO database",
+  "menu": {
+    "sidebar": {
+      "name": "Storing configuration inside SSO database",
+      "weight": 200701,
+      "identifier": "storing-configuration-inside-sso-database",
+      "parent": "2007/01"
+    }
+  }
 }
 
 

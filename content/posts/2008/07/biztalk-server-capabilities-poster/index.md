@@ -12,7 +12,15 @@
     "BizTalk",
     "Poster"
   ],
-  "title": "BizTalk Server capabilities poster"
+  "title": "BizTalk Server capabilities poster",
+  "menu": {
+    "sidebar": {
+      "name": "BizTalk Server capabilities poster",
+      "weight": 200807,
+      "identifier": "biztalk-server-capabilities-poster",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

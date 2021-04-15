@@ -4,7 +4,15 @@
   "description": "",
   "draft": true,
   "slug": "documentation-done-right",
-  "title": "Documentation done right"
+  "title": "Documentation done right",
+  "menu": {
+    "sidebar": {
+      "name": "Documentation done right",
+      "weight": 201711,
+      "identifier": "documentation-done-right",
+      "parent": "2017/11"
+    }
+  }
 }
 
 

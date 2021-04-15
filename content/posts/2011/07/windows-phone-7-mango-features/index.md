@@ -16,7 +16,15 @@
     "Mango",
     "Windows Phone 7"
   ],
-  "title": "Windows Phone 7 Mango features"
+  "title": "Windows Phone 7 Mango features",
+  "menu": {
+    "sidebar": {
+      "name": "Windows Phone 7 Mango features",
+      "weight": 201107,
+      "identifier": "windows-phone-7-mango-features",
+      "parent": "2011/07"
+    }
+  }
 }
 
 

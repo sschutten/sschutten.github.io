@@ -14,7 +14,15 @@
     "ASP.NET",
     "Screencast"
   ],
-  "title": "How-To: New ASP.NET 3.5 Extensions Video Screencasts"
+  "title": "How-To: New ASP.NET 3.5 Extensions Video Screencasts",
+  "menu": {
+    "sidebar": {
+      "name": "How-To: New ASP.NET 3.5 Extensions Video Screencasts",
+      "weight": 200807,
+      "identifier": "84",
+      "parent": "2008/07"
+    }
+  }
 }
 
 

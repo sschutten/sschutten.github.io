@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "happy-new-year",
-  "title": "Happy new year!"
+  "title": "Happy new year!",
+  "menu": {
+    "sidebar": {
+      "name": "Happy new year!",
+      "weight": 200601,
+      "identifier": "happy-new-year",
+      "parent": "2006/01"
+    }
+  }
 }
 
 

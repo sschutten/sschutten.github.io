@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "mix11-day-2",
-  "title": "MIX11: Day 2"
+  "title": "MIX11: Day 2",
+  "menu": {
+    "sidebar": {
+      "name": "MIX11: Day 2",
+      "weight": 201104,
+      "identifier": "mix11-day-2",
+      "parent": "2011/04"
+    }
+  }
 }
 
 

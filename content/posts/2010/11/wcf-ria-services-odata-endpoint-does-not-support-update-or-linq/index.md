@@ -14,7 +14,15 @@
     "Silverlight",
     "WCF RIA Services"
   ],
-  "title": "WCF RIA Services OData endpoint does NOT support update or LINQ"
+  "title": "WCF RIA Services OData endpoint does NOT support update or LINQ",
+  "menu": {
+    "sidebar": {
+      "name": "WCF RIA Services OData endpoint does NOT support update or LINQ",
+      "weight": 201011,
+      "identifier": "wcf-ria-services-odata-endpoint-does-not-support-update-or-linq",
+      "parent": "2010/11"
+    }
+  }
 }
 
 

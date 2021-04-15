@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "developing-for-vista-media-center",
-  "title": "Developing for Vista Media Center"
+  "title": "Developing for Vista Media Center",
+  "menu": {
+    "sidebar": {
+      "name": "Developing for Vista Media Center",
+      "weight": 200603,
+      "identifier": "developing-for-vista-media-center",
+      "parent": "2006/03"
+    }
+  }
 }
 
 

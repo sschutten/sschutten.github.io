@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "bizunit-20-released",
-  "title": "BizUnit 2.0 released"
+  "title": "BizUnit 2.0 released",
+  "menu": {
+    "sidebar": {
+      "name": "BizUnit 2.0 released",
+      "weight": 200510,
+      "identifier": "bizunit-20-released",
+      "parent": "2005/10"
+    }
+  }
 }
 
 

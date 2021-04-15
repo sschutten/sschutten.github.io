@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "devdays-7-8-march",
-  "title": "DevDays 7 &amp; 8 March"
+  "title": "DevDays 7 &amp; 8 March",
+  "menu": {
+    "sidebar": {
+      "name": "DevDays 7 &amp; 8 March",
+      "weight": 200602,
+      "identifier": "devdays-7-8-march",
+      "parent": "2006/02"
+    }
+  }
 }
 
 

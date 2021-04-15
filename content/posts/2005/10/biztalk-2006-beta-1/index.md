@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "biztalk-2006-beta-1",
-  "title": "BizTalk 2006 Beta 1"
+  "title": "BizTalk 2006 Beta 1",
+  "menu": {
+    "sidebar": {
+      "name": "BizTalk 2006 Beta 1",
+      "weight": 200510,
+      "identifier": "biztalk-2006-beta-1",
+      "parent": "2005/10"
+    }
+  }
 }
 
 

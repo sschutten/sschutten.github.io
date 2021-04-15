@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "preparing-for-70-485-advanced-metro-style-app-development-using-c",
-  "title": "Preparing for 70-485: Advanced Metro style App Development using C#"
+  "title": "Preparing for 70-485: Advanced Metro style App Development using C#",
+  "menu": {
+    "sidebar": {
+      "name": "Preparing for 70-485: Advanced Metro style App Development using C#",
+      "weight": 201209,
+      "identifier": "preparing-for-70-485-advanced-metro-style-app-development-using-c",
+      "parent": "2012/09"
+    }
+  }
 }
 
 

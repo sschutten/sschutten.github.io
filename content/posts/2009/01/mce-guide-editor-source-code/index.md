@@ -18,7 +18,15 @@
     "MCE",
     "source"
   ],
-  "title": "MCE Guide Editor source code"
+  "title": "MCE Guide Editor source code",
+  "menu": {
+    "sidebar": {
+      "name": "MCE Guide Editor source code",
+      "weight": 200901,
+      "identifier": "mce-guide-editor-source-code",
+      "parent": "2009/01"
+    }
+  }
 }
 
 

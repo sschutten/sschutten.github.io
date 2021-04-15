@@ -12,7 +12,15 @@
     "BizTalk",
     "R3"
   ],
-  "title": "BizTalk Server 2006 R3 just around the corner"
+  "title": "BizTalk Server 2006 R3 just around the corner",
+  "menu": {
+    "sidebar": {
+      "name": "BizTalk Server 2006 R3 just around the corner",
+      "weight": 200804,
+      "identifier": "biztalk-server-2006-r3-just-around-the-corner",
+      "parent": "2008/04"
+    }
+  }
 }
 
 

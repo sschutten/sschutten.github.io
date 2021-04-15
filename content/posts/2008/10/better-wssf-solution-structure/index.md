@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "better-wssf-solution-structure",
-  "title": "Better WSSF solution structure"
+  "title": "Better WSSF solution structure",
+  "menu": {
+    "sidebar": {
+      "name": "Better WSSF solution structure",
+      "weight": 200810,
+      "identifier": "better-wssf-solution-structure",
+      "parent": "2008/10"
+    }
+  }
 }
 
 

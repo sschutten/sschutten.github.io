@@ -4,7 +4,15 @@
   "description": "",
   "draft": false,
   "slug": "access-message-properties-inside-custom-pipeline-component",
-  "title": "Access message properties inside custom pipeline component"
+  "title": "Access message properties inside custom pipeline component",
+  "menu": {
+    "sidebar": {
+      "name": "Access message properties inside custom pipeline component",
+      "weight": 200511,
+      "identifier": "access-message-properties-inside-custom-pipeline-component",
+      "parent": "2005/11"
+    }
+  }
 }
 
 

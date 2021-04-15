@@ -14,7 +14,15 @@
     "brand",
     "car"
   ],
-  "title": "Honk twice if you see us!"
+  "title": "Honk twice if you see us!",
+  "menu": {
+    "sidebar": {
+      "name": "Honk twice if you see us!",
+      "weight": 200811,
+      "identifier": "honk-twice-if-you-see-us",
+      "parent": "2008/11"
+    }
+  }
 }
 
 

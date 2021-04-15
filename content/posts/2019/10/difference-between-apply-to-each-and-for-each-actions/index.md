@@ -1,17 +1,32 @@
-+++
-author = "Sander Schutten"
-categories = ["Flow", "Logic Apps", "Concurrency"]
-date = 2019-10-01T10:48:10Z
-description = ""
-draft = false
-slug = "difference-between-apply-to-each-and-for-each-actions"
-tags = ["Flow", "logic apps", "concurrency"]
-title = "Difference between Apply to each and For each actions"
-aliases = [
+{
+  "aliases": [
     "/posts/difference-between-apply-to-each-and-for-each-action/"
-]
-
-+++
+  ],
+  "author": "Sander Schutten",
+  "categories": [
+    "Flow",
+    "Logic Apps",
+    "Concurrency"
+  ],
+  "date": "2019-10-01T10:48:10Z",
+  "description": "",
+  "draft": false,
+  "slug": "difference-between-apply-to-each-and-for-each-actions",
+  "tags": [
+    "Flow",
+    "logic apps",
+    "concurrency"
+  ],
+  "title": "Difference between Apply to each and For each actions",
+  "menu": {
+    "sidebar": {
+      "name": "Difference between Apply to each and For each actions",
+      "weight": 201910,
+      "identifier": "difference-between-apply-to-each-and-for-each-actions",
+      "parent": "2019/10"
+    }
+  }
+}
 
 
 Microsoft Flow and Azure Logic Apps are based on the same platform and therefor very similar. There are, however, cases where they're a little different. Take for example the `Apply to each` (Flow) action and the `For each` (Logic Apps) action. They're very similar in that they execute the actions for each of the items in the array. There's one caveat though and that is the default concurrency setting.

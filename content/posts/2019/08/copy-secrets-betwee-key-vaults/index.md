@@ -4,7 +4,15 @@
   "description": "",
   "draft": true,
   "slug": "copy-secrets-betwee-key-vaults",
-  "title": "Copy secrets betwee Key Vaults"
+  "title": "Copy secrets betwee Key Vaults",
+  "menu": {
+    "sidebar": {
+      "name": "Copy secrets betwee Key Vaults",
+      "weight": 201908,
+      "identifier": "copy-secrets-betwee-key-vaults",
+      "parent": "2019/08"
+    }
+  }
 }
 
 
