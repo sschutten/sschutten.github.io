@@ -1,11 +1,538 @@
-<!doctype html><html><head><title>MIX11: Boot Camps</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/layouts/main.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/navigators/navbar.css><link rel=stylesheet href=/css/plyr.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/favicon_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png><link rel=stylesheet href=/css/style.css><meta name=description content="MIX11: Boot Camps"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/css/layouts/single.css><link rel=stylesheet href=/css/navigators/sidebar.css><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-xxxxxxxx','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
-<span class=navbar-toggler-icon></span></button>
-<a class=navbar-brand href=/><img src=/images/main-logo_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png alt=Logo>Sander Schutten's Blog</a>
-<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=/images/main-logo_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png class=d-none id=main-logo alt=Logo>
-<img src=/images/inverted-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png class=d-none id=inverted-logo alt="Inverted Logo"></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><form class=mx-auto method=get action=https://sschutten.github.io/search><input type=text name=keyword placeholder=Search data-search id=search-box></form><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://sschutten.github.io/images/default-hero.jpg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/avatar.jpg alt="Author Image"><h5 class=author-name>Sander Schutten</h5><p>April 12, 2011</p></div><div class=title><h1>MIX11: Boot Camps</h1></div><div class=post-content id=post-content><p><a href=/images/DevExpress_MIX2011_7290E0D7.png><img src=/images/DevExpress_MIX2011_7290E0D7.png alt title="MIX2011 logo"></a>
-Today was the preconference day at MIX11, which means boot camps for everyone that applied for them. There were options for the morning and afternoon boot camps and I chose the Silverlight and SharePoint & Silverlight boot camps. This is a brief summary of what I think were things of interest.</p><h2 id=silverlight-boot-camp>Silverlight boot camp</h2><p>I didn’t came to this boot camp to improve my knowledge on Silverlight, but more because of the speakers: John Papa and Mike Taulty. I think they might be considered heroes in the field of Silverlight. As expected, the boot camp was planned well and packed with the basics for building line of business apps with Silverlight. Even for an experienced Silverlight developer there were interesting things as well.</p><p>Silverlight comes with two HTTP stacks: the browser HTTP stack and the client HTTP stack. The difference is that the browser HTTP stack is easier to use, but is limited in its functionality. E.g. the browser stack automatically marshals the callback to the UI thread so you don’t need to. The browser stack on the other hand only supports 200 and 400 status codes and all other codes are converted to any of these. The client HTTP stack supports the full HTTP protocol, but requires more complex code. Always go for the browser HTTP stack, unless you need specific features e.g. in the case of SOAP, WCF, put or delete operations etc. To choose for a specific HTTP stack you can either do it on a per call basis or use the WebClient.RegisterPrecix static method to define the HTTP stack to use for certain URLs.</p><p>This week SP2 of WCF RIA Services for Silverlight 5 will be released. New features in this release are:</p><ul><li>DateTimeOffset, which allows the developer to explicitly specify a date time offset to use instead of the default one (by popular demand)</li><li>MVVM support, by generating client side classes that are more suitable for databinding than the current ones</li></ul><p>In the near future we can expect Entity Framework Code First to be supported by WCF RIA Services, but it will be in the release after the SP2.</p><p>Alongside all the demos and information a few new small added features of Silverlight 5 were disclosed today:</p><ul><li>DataContextChanged event is added, which allows you to respond to DataContext changes</li><li>Ancestor binding, which is derived from WPF and allows you to move up the control hierarchy and break out of the context of the (inherited) DataContext</li></ul><h2 id=sharepoint--silverlight-boot-camp>SharePoint & Silverlight boot camp</h2><p>This boot camp was particularly interesting because it explained what to keep in mind when combining SharePoint and Silverlight to achieve an improved user experience.</p><p>The announcement was made that the SharePoint and Silverlight training is available on MSDN <a href=http://msdn.microsoft.com/nl-nl/SharePointAndSilverlightTrainingCourse>here</a>.</p><p>Things to keep in mind when building Silverlight for SharePoint are:</p><ul><li>Use a consistent theme in both SharePoint and Silverlight so they both blend</li><li>Expose a JavaScript API, so SharePoint developers can interact with the Silverlight control</li><li>Provide down level support, so the site still works even if someone doesn’t have Silverlight installed</li><li>Tightly integrate with SharePoint, e.g. use the ribbon in combination with the Silverlight webpart</li></ul><p>There are four ways to add Silverlight to SharePoint:</p><ul><li>Upload a XAP file</li><li>Use the built-in Silverlight webpart</li><li>Use the Silverlight SharePoint webparts extension</li><li>Do it all by hand</li></ul><p>The Silverlight SharePoint webparts (found <a href=http://visualstudiogallery.msdn.microsoft.com/e8360a85-58ca-42d1-8de0-e48a1ab071c7>here</a>) is a great extension to the SharePoint solution project for Visual Studio, allowing you to easily add an Silverlight webpart. The steps to do this are:</p><ul><li>Add a Silverlight application to the solution</li><li>Add a SharePoint solution to the solution</li><li>Add a Silverlight webpart project item to the SharePoint solution</li><li>Modify the config of the webpart to point to the XAP file</li></ul><p>The SharePoint and Silverlight training contains code for a custom Silverlight webpart. One of the main reasons for using this webpart is because the default webpart has a timeout limit of 5 seconds, which means the Silverlight app needs to be running within 5 seconds or SharePoint kills it.</p><p>SharePoint 2010 exposes an OData service when using WCF Data Services. This allows for full CRUD operations from within Silverlight. The pros for this method are: the code is type-safe and intellisense is provides.</p><p>An other option to get to the SharePoint data is to use the SharePoint client object model. This client object model provides access to a subset of types and members contained in the Microsoft.SharePoint namespace from .NET, JavaScript and Silverlight. This means you can access lists and pages from within Silverlight just as you would when using the server object model. Pros for this method: flexible, code re-use.</p><p>That’s it for now, more tomorrow on the first conference day at MIX11. I think we can expect a few announcements / releases during the keynote. My thoughts are: Silverlight 5 beta and new Windows Phone 7 SDK with new APIs.</p></div><div class=btn-improve-page><a href=https://github.com/sschutten/blog/edit/master/content/posts/mix11-boot-camps.md target=_blank><i class="fas fa-code-branch"></i>
-Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-6 previous-article"><a href=/posts/mix11-day-1/ class="btn btn-outline-info"><div><i class="fas fa-chevron-circle-left"></i> Prev</div><div class=next-prev-text>MIX11: Day 1</div></a></div><div class="col-md-6 next-article"><a href=/posts/advanced-mvvm-doing-visual-states-properly/ class="btn btn-outline-info"><div>Next <i class="fas fa-chevron-circle-right"></i></div><div class=next-prev-text>Advanced MVVM: Doing visual states properly</div></a></div></div><hr><div id=disqus_thread></div><script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement("script"),a.type="text/javascript",a.async=!0,b="does-not-exist",a.src="//"+b+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})()</script><noscript>Please enable JavaScript to view the
-<a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div></div><a id=scroll-to-top class=btn><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#silverlight-boot-camp>Silverlight boot camp</a></li><li><a href=#sharepoint--silverlight-boot-camp>SharePoint & Silverlight boot camp</a></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=/#recent-posts>Recent Posts</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>sander@dotnetstudio.nl</span></li><li><span>Phone:</span> <span>+31 6 3830 4494</span></li></ul></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=_blank><img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png alt="Toha Theme Logo">
-Toha</a></div><div class="col-md-4 text-center">Copyright © 2021</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/ target=_blank>Powered by
-<img src=/images/hugo-logo.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script type=text/javascript src=/js/jquery-3.4.1.min.js></script><script type=text/javascript src=/js/popper.min.js></script><script type=text/javascript src=/js/bootstrap.min.js></script><script type=text/javascript src=/js/navbar.js></script><script type=text/javascript src=/js/plyr.js></script><script type=text/javascript src=/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/js/single.js></script><script>hljs.initHighlightingOnLoad()</script></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MIX11: Boot Camps</title>
+    
+
+
+
+
+
+
+
+
+  
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/layouts/main.css"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/navigators/navbar.css"/>
+<link rel="stylesheet" href="/css/plyr.css"/>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+
+<link rel="icon" type="image/png" href="/images/favicon_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png" />
+
+
+<link rel="stylesheet" href="/css/style.css"/>
+
+    
+<meta name="description" content="MIX11: Boot Camps" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
+/>
+<link rel="stylesheet" href="/css/layouts/single.css"/>
+<link rel="stylesheet" href="/css/navigators/sidebar.css">
+
+
+    
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-xxxxxxxx', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </head>
+
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
+    <div class="container-fluid bg-dimmed wrapper">
+      
+      
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+<nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+      <img src="/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png" alt="Logo">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse lang-selector" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      
+      </ul>
+    </div>
+  </div>
+  
+  <img src="/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png" class="d-none" id="main-logo" alt="Logo">
+  <img src="/images/inverted-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
+</nav>
+
+
+
+      
+      
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <form class="mx-auto" method="get" action="https://sschutten.github.io/search">
+          <input type="text" name="keyword" value="" placeholder="Search" data-search="" id="search-box" />
+        </form>
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg' alt="Author Image">
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>April 12, 2011</p>
+        </div>
+
+        <div class="title">
+          <h1>MIX11: Boot Camps</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p><a href="/images/DevExpress_MIX2011_7290E0D7.png"><img src="/images/DevExpress_MIX2011_7290E0D7.png" alt="" title="MIX2011 logo"></a>
+Today was the preconference day at MIX11, which means boot camps for everyone that applied for them. There were options for the morning and afternoon boot camps and I chose the Silverlight and SharePoint &amp; Silverlight boot camps. This is a brief summary of what I think were things of interest.</p>
+<h2 id="silverlight-boot-camp">Silverlight boot camp</h2>
+<p>I didn’t came to this boot camp to improve my knowledge on Silverlight, but more because of the speakers: John Papa and Mike Taulty. I think they might be considered heroes in the field of Silverlight. As expected, the boot camp was planned well and packed with the basics for building line of business apps with Silverlight. Even for an experienced Silverlight developer there were interesting things as well.</p>
+<p>Silverlight comes with two HTTP stacks: the browser HTTP stack and the client HTTP stack. The difference is that the browser HTTP stack is easier to use, but is limited in its functionality. E.g. the browser stack automatically marshals the callback to the UI thread so you don’t need to. The browser stack on the other hand only supports 200 and 400 status codes and all other codes are converted to any of these. The client HTTP stack supports the full HTTP protocol, but requires more complex code. Always go for the browser HTTP stack, unless you need specific features e.g. in the case of SOAP, WCF, put or delete operations etc. To choose for a specific HTTP stack you can either do it on a per call basis or use the WebClient.RegisterPrecix static method to define the HTTP stack to use for certain URLs.</p>
+<p>This week SP2 of WCF RIA Services for Silverlight 5 will be released. New features in this release are:</p>
+<ul>
+<li>DateTimeOffset, which allows the developer to explicitly specify a date time offset to use instead of the default one (by popular demand)</li>
+<li>MVVM support, by generating client side classes that are more suitable for databinding than the current ones</li>
+</ul>
+<p>In the near future we can expect Entity Framework Code First to be supported by WCF RIA Services, but it will be in the release after the SP2.</p>
+<p>Alongside all the demos and information a few new small added features of Silverlight 5 were disclosed today:</p>
+<ul>
+<li>DataContextChanged event is added, which allows you to respond to DataContext changes</li>
+<li>Ancestor binding, which is derived from WPF and allows you to move up the control hierarchy and break out of the context of the (inherited) DataContext</li>
+</ul>
+<h2 id="sharepoint--silverlight-boot-camp">SharePoint &amp; Silverlight boot camp</h2>
+<p>This boot camp was particularly interesting because it explained what to keep in mind when combining SharePoint and Silverlight to achieve an improved user experience.</p>
+<p>The announcement was made that the SharePoint and Silverlight training is available on MSDN <a href="http://msdn.microsoft.com/nl-nl/SharePointAndSilverlightTrainingCourse">here</a>.</p>
+<p>Things to keep in mind when building Silverlight for SharePoint are:</p>
+<ul>
+<li>Use a consistent theme in both SharePoint and Silverlight so they both blend</li>
+<li>Expose a JavaScript API, so SharePoint developers can interact with the Silverlight control</li>
+<li>Provide down level support, so the site still works even if someone doesn’t have Silverlight installed</li>
+<li>Tightly integrate with SharePoint, e.g. use the ribbon in combination with the Silverlight webpart</li>
+</ul>
+<p>There are four ways to add Silverlight to SharePoint:</p>
+<ul>
+<li>Upload a XAP file</li>
+<li>Use the built-in Silverlight webpart</li>
+<li>Use the Silverlight SharePoint webparts extension</li>
+<li>Do it all by hand</li>
+</ul>
+<p>The Silverlight SharePoint webparts (found <a href="http://visualstudiogallery.msdn.microsoft.com/e8360a85-58ca-42d1-8de0-e48a1ab071c7">here</a>) is a great extension to the SharePoint solution project for Visual Studio, allowing you to easily add an Silverlight webpart. The steps to do this are:</p>
+<ul>
+<li>Add a Silverlight application to the solution</li>
+<li>Add a SharePoint solution to the solution</li>
+<li>Add a Silverlight webpart project item to the SharePoint solution</li>
+<li>Modify the config of the webpart to point to the XAP file</li>
+</ul>
+<p>The SharePoint and Silverlight training contains code for a custom Silverlight webpart. One of the main reasons for using this webpart is because the default webpart has a timeout limit of 5 seconds, which means the Silverlight app needs to be running within 5 seconds or SharePoint kills it.</p>
+<p>SharePoint 2010 exposes an OData service when using WCF Data Services. This allows for full CRUD operations from within Silverlight. The pros for this method are: the code is type-safe and intellisense is provides.</p>
+<p>An other option to get to the SharePoint data is to use the SharePoint client object model. This client object model provides access to a subset of types and members contained in the Microsoft.SharePoint namespace from .NET, JavaScript and Silverlight. This means you can access lists and pages from within Silverlight just as you would when using the server object model. Pros for this method: flexible, code re-use.</p>
+<p>That’s it for now, more tomorrow on the first conference day at MIX11. I think we can expect a few announcements / releases during the keynote. My thoughts are: Silverlight 5 beta and new Windows Phone 7 SDK with new APIs.</p>
+
+        </div>
+
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/sschutten/blog/edit/master/content/posts%5cmix11-boot-camps.md" target="_blank">
+                <i class="fas fa-code-branch"></i>
+                Improve this page
+              </a>
+          </div>
+        
+
+        
+      <hr />
+        <div class="row next-prev-navigator">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+      <div class="col-md-6 previous-article">
+        <a href="/posts/mix11-day-1/" class="btn btn-outline-info">
+          <div><i class="fas fa-chevron-circle-left"></i> Prev</div>
+          <div class="next-prev-text">MIX11: Day 1</div>
+        </a>
+      </div>
+      
+    
+    
+      
+        
+        
+          
+              
+          
+        
+        <div class="col-md-6 next-article">
+          <a href="/posts/advanced-mvvm-doing-visual-states-properly/" class="btn btn-outline-info">
+            <div>Next <i class="fas fa-chevron-circle-right"></i></div>
+            <div class="next-prev-text">Advanced MVVM: Doing visual states properly</div>
+          </a>
+        </div>
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</div>
+
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function () {
+    
+    
+    if (window.location.hostname == "localhost") return;
+
+    var dsq = document.createElement("script");
+    dsq.type = "text/javascript";
+    dsq.async = true;
+    var disqus_shortname = "does-not-exist";
+    dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+    (
+      document.getElementsByTagName("head")[0] ||
+      document.getElementsByTagName("body")[0]
+    ).appendChild(dsq);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+<a href="https://disqus.com/" class="dsq-brlink"
+  >comments powered by <span class="logo-disqus">Disqus</span></a
+>
+
+      
+      </div>
+    </div>
+  </div>
+  
+  <a id="scroll-to-top" class="btn"><i class="fas fa-chevron-circle-up"></i></a>
+  
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+    <div class="toc-holder">
+      <h5 class="text-center pl-3">Table of Contents</h5>
+      <hr>
+      <div class="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#silverlight-boot-camp">Silverlight boot camp</a></li>
+    <li><a href="#sharepoint--silverlight-boot-camp">SharePoint &amp; Silverlight boot camp</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+    
+  </section>
+
+    </div>
+
+    <footer class="container-fluid text-center align-content-center footer pb-2">
+  <div class="container pt-5">
+    <div class="row text-left">
+      <div class="col-md-4 col-sm-12">
+        <h5>Navigation</h5>
+        
+
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <h5>Contact Me</h5>
+        <ul>
+          
+        </ul>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="container">
+    <div class="row text-left">
+      <div class="col-md-4">
+        <a id="theme" href="https://github.com/hossainemruz/toha" target="#">
+          <img src="/images/logo-inverted.png">
+          Toha
+        </a>
+      </div>
+      <div class="col-md-4">Copyright © 2021</div>
+      <div class="col-md-4">
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/js/navbar.js"></script>
+<script type="text/javascript" src="/js/plyr.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script src="/js/single.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+
+
+  </body>
+</html>

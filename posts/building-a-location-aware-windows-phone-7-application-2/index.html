@@ -1,10 +1,530 @@
-<!doctype html><html><head><title>Building a location aware Windows Phone 7 application</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/layouts/main.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/navigators/navbar.css><link rel=stylesheet href=/css/plyr.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/favicon_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png><link rel=stylesheet href=/css/style.css><meta name=description content="Building a location aware Windows Phone 7 application"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/css/layouts/single.css><link rel=stylesheet href=/css/navigators/sidebar.css><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-xxxxxxxx','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
-<span class=navbar-toggler-icon></span></button>
-<a class=navbar-brand href=/><img src=/images/main-logo_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png alt=Logo>Sander Schutten's Blog</a>
-<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=/images/main-logo_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png class=d-none id=main-logo alt=Logo>
-<img src=/images/inverted-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png class=d-none id=inverted-logo alt="Inverted Logo"></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><form class=mx-auto method=get action=https://sschutten.github.io/search><input type=text name=keyword placeholder=Search data-search id=search-box></form><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://sschutten.github.io/images/default-hero.jpg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/avatar.jpg alt="Author Image"><h5 class=author-name>Sander Schutten</h5><p>December 6, 2010</p></div><div class=title><h1>Building a location aware Windows Phone 7 application</h1></div><div class=post-content id=post-content><p>The Windows Phone 7 SDK contains a couple of APIs for interacting with different parts of the phone hardware, like accessing the camera or initiating a phone call. One of the cool APIs of Windows Phone 7 is the Location API. Just as in the desktop version of .NET Framework 4.0, the Location API enables you to get the approximate location of the user. To find the location of the user, the API uses GPS, WiFi or cell tower triangulation, where the first is the most and the latter least accurate. The API hides the method of determining the location for you as a developer and will attempt to use the most accurate available method. By default it uses cell tower triangulation, but if you tell it you need high accuracy it will try WiFi or GPS when available. For you as a developer you need to carefully determine the level of accuracy, since the more accurate method the slower and more power consuming it gets.</p><p>In this example I’ll show you how to use the Location API. First off I created a new Windows Phone application using the ‘Windows Phone Databound Application’ project template. You can use any of the project templates, but I chose this one because I like to use MVVM all the time. The next thing I do is changing the UI. Because I use the Bing maps control, make sure you reference the Microsoft.Phone.Controls.Maps.dll assembly. Also add a reference to the namespace to the MainPage.xaml, like this:</p><p>xmlns:maps=&ldquo;clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps&rdquo;</p><p>We will use a TextBlock to show the current estimated address and a Maps control to show your current estimated location on a map. Replace the complete contents of the ContentPanel Grid with the following XAML snippet. You may need to remove some code from the codebehind of MainPage.xaml because it references the ListBox we remove.</p><p><stackpanel><textblock text="{Binding Status}"><textblock text="{Binding Address}">&lt;maps:Map Center="{Binding Location, Mode=TwoWay}" ZoomLevel=&ldquo;13&rdquo;> <a href=maps:Map.CredentialsProvider>maps:Map.CredentialsProvider</a> &lt;maps:ApplicationIdCredentialsProvider ApplicationId="<yourkeyhere>"/> &lt;/maps:Map.CredentialsProvider> &lt;maps:Pushpin Content=&ldquo;You are here&rdquo; Location="{Binding Location}" /> &lt;/maps:Map></stackpanel></p><p>In order to use the Bing maps control, you need your own key. Request a key on the <a href=http://www.bingmapsportal.com/>Bing maps portal</a>.</p><p>In the XAML I’ve used bindings to Status, Address and Location properties. These properties do not yet exist, so the next thing is to add these properties to the MainViewModel class in MainViewModel.cs. The Status property is of type GeoPositionStatus and contains the status of the GeoCoordinateWatcher, the Address property is a string containing the current estimated address and the Location property is of type GeoCoordinate, which is a type used to represent a lat/long position. The following code snippet shows you the three properties to be added to the view model:</p><p>private GeoPositionStatus _status; /// <summary>/// Contains the status of the GeoCoordinateWatcher to see if it is initializing, ready or not getting any data. ///</summary> /// <returns></returns>public GeoPositionStatus Status { get { return _status; } set { if (value != _status) { _status = value; NotifyPropertyChanged(&ldquo;Status&rdquo;); } } } private string _address; /// <summary>/// Contains the current estimated address as returned by the reverse geolocation web service. ///</summary> /// <returns></returns>public string Address { get { return _address; } set { if (value != _address) { _address = value; NotifyPropertyChanged(&ldquo;Address&rdquo;); } } } private GeoCoordinate _location; /// <summary>/// Contains the current estimated lat/long location as returned by the GeoCoordinateWatcher. ///</summary> /// <returns></returns>public GeoCoordinate Location { get { return _location; } set { if (value != _location) { _location = value; NotifyPropertyChanged(&ldquo;Location&rdquo;); } } }</p><p>Now that we’ve set up our UI and bindings, it’s time to start using the Location API. The Location API consists of two classes: GeoCoordinateWatcher and CivicAddressResolver, just like in the desktop framework. The GeoCoordinateWatcher does the heavy lifting of calculating the approximate lat/long of the phone, while the CivicAddressResolver translates the lat/long to a human readable address using reverse geolocation. Unlike the desktop version of the .NET Framework, the CivicAddressResolver isn’t implemented on the phone. Instead of throwing an exeption it will always tell you the address is unknown. This means we can’t use this class yet to resolve the lat/long to an address. Instead we will use the Bing web service for that, but more on that later.</p><p>In order to get the lat/long of our current position, we need to create an instance of the GeoCoordinateWatcher, subscribe to the StatusChanged and PositionChanged event and start listening for position changes. The following lines of code will do just that:</p><p>GeoCoordinateWatcher gcw; public MainViewModel() { Items = new ObservableCollection<itemviewmodel>(); gcw = new GeoCoordinateWatcher(GeoPositionAccuracy.High); gcw.StatusChanged += gcw_StatusChanged; gcw.PositionChanged += gcw_PositionChanged; gcw.Start(); } void gcw_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e) { Status = e.Status; } void gcw_PositionChanged(object sender, GeoPositionChangedEventArgs<geocoordinate> e) { Location = e.Position.Location; Address = String.Format("{0}, {1}", Location.Latitude, Location.Longitude); }</p><p>In other examples on the web you’ll find that most of the time also the StatusChanged event of the GeoCoordinateWatcher is handled to see if it is ready before listening for position changes. Because you could get a PositionChanged event before you’ve even received a StatusChanged event, it’s not very useful to do so and may cause you to miss the PositionChanged event. So be sure just to listen for the PositionChanged event and only use the StatusChanged event to display the status, like done in this example.</p><p>In this case I used the default constructor of the GeoCoordinateWatcher, which uses the default accuracy (which only uses cell tower triangulation). If I wanted, I could pass in GeoPositionAccuracy.High as a parameter, which tells the GeoCoordinateWatcher to use WiFi triangulation or GPS when available. The PositionChangedEvent gives you a property ‘HorizontalAccuracy’ which tells you, in meters, how accurate the detection of the position was and allows you to filter for specific accuracy. Note that when done indoors and without a WiFi connection, it won’t provide a better accuracy then the default, since only cell tower triangulation is available.</p><p>The event handler for the StatusChanged event updates the Status property and the PositionChanged event handler updates the Location property and takes the latitude and longitude and concatenates them into the Address property.</p><p>Now if you run the application in the emulator by pressing F5 (which is the default), you’ll notice that nothing happens and the status is ‘NoData’. This is because the emulator doesn’t emulate location data. There are two things you can do:</p><ol><li><p>Simulate location data using <a href=http://timheuer.com/blog/archive/2010/03/22/geo-location-services-in-windows-phone-7-developer-emulator.aspx>this technique</a> described by Tim Heuer.</p></li><li><p>Test on your Windows Phone. This requires your phone being developer unlocked.<br><img src=/images/clip_image001_thumb.png alt=clip_image001 title=clip_image001><br>If you have the possibility to test on a physical Windows Phone, I’d highly recommend it. During my tests it appeared the location data on the phone wasn’t what I expected. For instance, the GeoLocationWatcher was unable to find my location using cell tower triangulation as soon as I have HSDPA connectivity. This probably has something to do with the way HSDPA works. It also shows you that the GeoCoordinateWatcher may jump between NoData and Ready every now and then when e.g. connection is lost or the phone switches to a different type of connection.</p></li></ol><p>As soon as you run the application on an actual phone you’ll see something similar to this:<br><img src=/images/clip_image002_thumb.png alt=clip_image002 title=clip_image002><br>Now that we’re able to obtain the lat/long of our estimated position, I’d like to translate the lat/long into an address I can understand. As mentioned earlier, we can’t use the the CivicAddressResolver class since it’s not implemented for Windows Phone 7. Instead we’ll use the Bing web service. In order to do this, add a service reference to the following URL:</p><p><a href=http://dev.virtualearth.net/webservices/v1/geocodeservice/geocodeservice.svc>http://dev.virtualearth.net/webservices/v1/geocodeservice/geocodeservice.svc</a><br><img src=/images/clip_image003_thumb.png alt=clip_image003 title=clip_image003><br>Adding the service reference also creates a new file ‘ServiceReferences.ClientConfig’ to your project. This file contains the WCF bindings required for calling the web service. By default it will add two end points: a SOAP endpoint (the first) and a Binary endpoint (the second). Because WCF can’t decide by itself which of the two to use, we remove the SOAP binding from the file.</p><p>Now we want to modify our code to call the ReverseGeocode service method once we receive a position update. In order to do so we modify the MainViewModel class. First we add a field of type GeocodeServiceClient. In the constructor we initialize the field and handle the ReverseGeocodeCompleted event. In the event handler we check if any addresses are returned and display the first found address. In the PositionChanged event hander of the GeoCoordinateWatcher, instead of setting the Address property using the lat/long values, we construct a ReverseGeocodeRequest using the Bind key we used earlier and the lat/long values and call the ReverseGeocodeAsync method. The changes to the MainViewModel are shown in the following snippet (changes are in bold):</p><p>GeoCoordinateWatcher gcw; GeocodeServiceClient gsc; public MainViewModel() { Items = new ObservableCollection<itemviewmodel>(); gsc = new GeocodeServiceClient(); gsc.ReverseGeocodeCompleted += gsc_ReverseGeocodeCompleted; gcw = new GeoCoordinateWatcher(GeoPositionAccuracy.High); gcw.StatusChanged += gcw_StatusChanged; gcw.PositionChanged += gcw_PositionChanged; gcw.Start(); } void gcw_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e) { Status = e.Status; } void gcw_PositionChanged(object sender, GeoPositionChangedEventArgs<geocoordinate> e) { Location = e.Position.Location; var request = new ReverseGeocodeRequest(); request.Credentials = new Credentials { ApplicationId = @&ldquo;MyApplicationId&rdquo; }; request.Location = new Location { Latitude = e.Position.Location.Latitude, Longitude = e.Position.Location.Longitude }; gsc.ReverseGeocodeAsync(request); } void gsc_ReverseGeocodeCompleted(object sender, GeoCodeService.ReverseGeocodeCompletedEventArgs e) { if (e.Result.Results.Count == 0) Address = &ldquo;No address found&rdquo;; else Address = e.Result.Results[0].DisplayName; }</p><p>Now if we run the application, we don’t see the lat/long values, but instead see a readable address of our estimated location.<br><img src=/images/clip_image004_thumb.png alt=clip_image004 title=clip_image004><br>There are a couple of things wrong with this implementation. First, each time the position is changed a new web request is done to get the address, even if the location didn’t change (much). Second, if a web request is underway, it’s not cancelled, but instead a new web request is done. This could lead to a racing condition where the second request would complete before the first, resulting in the address of the first location being displayed. Third, the PositionChanged event keeps firing, even if the position doesn’t change. This costs unnecessary resources on the phone.</p><p>The third flaw could be overcome by using a MovementThreshold. MovementThreshold is a property on the GeoCoordinateWatcher and specifies the amount of movement is necessary before a new PositionChanged event is fired. A common MovementThreshold is one of 20.0, e.g.:</p><p>gcw = new GeoCoordinateWatcher(GeoPositionAccuracy.High); gcw.MovementThreshold = 20.0; gcw.StatusChanged += gcw_StatusChanged; gcw.PositionChanged += gcw_PositionChanged; gcw.Start();</p><p>The first two flaws can be overcome by writing more boilerplate code, like starting timers and cancelling web requests. This could easily lead to hard to read code since it is all scattered around. A way to simplify things is to use <a href=http://msdn.microsoft.com/en-us/devlabs/ee794896.aspx>Reactive Extensions</a>, but that’s food for another blog post.</p><div class=wlWriterEditableSmartContent id=scid:fb3a1972-4489-4e52-abe7-25a00bb07fdf:2f2dfbb0-9062-41ef-b879-081b83a6e3f5 style=margin:0;display:inline;float:none;padding:0>[Download sample project](/images/LocationApiSample1.zip)</div></div><div class=btn-improve-page><a href=https://github.com/sschutten/blog/edit/master/content/posts/building-a-location-aware-windows-phone-7-application-2.md target=_blank><i class="fas fa-code-branch"></i>
-Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-6 previous-article"><a href=/posts/using-the-sync-framework-on-windows-phone-7/ class="btn btn-outline-info"><div><i class="fas fa-chevron-circle-left"></i> Prev</div><div class=next-prev-text>Using the Sync Framework on Windows Phone 7</div></a></div><div class="col-md-6 next-article"><a href=/posts/wcf-ria-services-odata-endpoint-does-not-support-update-or-linq/ class="btn btn-outline-info"><div>Next <i class="fas fa-chevron-circle-right"></i></div><div class=next-prev-text>WCF RIA Services OData endpoint does NOT support update or LINQ</div></a></div></div><hr><div id=disqus_thread></div><script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement("script"),a.type="text/javascript",a.async=!0,b="does-not-exist",a.src="//"+b+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})()</script><noscript>Please enable JavaScript to view the
-<a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div></div><a id=scroll-to-top class=btn><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=/#recent-posts>Recent Posts</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>sander@dotnetstudio.nl</span></li><li><span>Phone:</span> <span>+31 6 3830 4494</span></li></ul></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=_blank><img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png alt="Toha Theme Logo">
-Toha</a></div><div class="col-md-4 text-center">Copyright © 2021</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/ target=_blank>Powered by
-<img src=/images/hugo-logo.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script type=text/javascript src=/js/jquery-3.4.1.min.js></script><script type=text/javascript src=/js/popper.min.js></script><script type=text/javascript src=/js/bootstrap.min.js></script><script type=text/javascript src=/js/navbar.js></script><script type=text/javascript src=/js/plyr.js></script><script type=text/javascript src=/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/js/single.js></script><script>hljs.initHighlightingOnLoad()</script></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Building a location aware Windows Phone 7 application</title>
+    
+
+
+
+
+
+
+
+
+  
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/layouts/main.css"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/navigators/navbar.css"/>
+<link rel="stylesheet" href="/css/plyr.css"/>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+
+<link rel="icon" type="image/png" href="/images/favicon_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png" />
+
+
+<link rel="stylesheet" href="/css/style.css"/>
+
+    
+<meta name="description" content="Building a location aware Windows Phone 7 application" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
+/>
+<link rel="stylesheet" href="/css/layouts/single.css"/>
+<link rel="stylesheet" href="/css/navigators/sidebar.css">
+
+
+    
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-xxxxxxxx', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </head>
+
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
+    <div class="container-fluid bg-dimmed wrapper">
+      
+      
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+<nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+      <img src="/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png" alt="Logo">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse lang-selector" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      
+      </ul>
+    </div>
+  </div>
+  
+  <img src="/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png" class="d-none" id="main-logo" alt="Logo">
+  <img src="/images/inverted-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
+</nav>
+
+
+
+      
+      
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <form class="mx-auto" method="get" action="https://sschutten.github.io/search">
+          <input type="text" name="keyword" value="" placeholder="Search" data-search="" id="search-box" />
+        </form>
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg' alt="Author Image">
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>December 6, 2010</p>
+        </div>
+
+        <div class="title">
+          <h1>Building a location aware Windows Phone 7 application</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p>The Windows Phone 7 SDK contains a couple of APIs for interacting with different parts of the phone hardware, like accessing the camera or initiating a phone call. One of the cool APIs of Windows Phone 7 is the Location API. Just as in the desktop version of .NET Framework 4.0, the Location API enables you to get the approximate location of the user. To find the location of the user, the API uses GPS, WiFi or cell tower triangulation, where the first is the most and the latter least accurate. The API hides the method of determining the location for you as a developer and will attempt to use the most accurate available method. By default it uses cell tower triangulation, but if you tell it you need high accuracy it will try WiFi or GPS when available. For you as a developer you need to carefully determine the level of accuracy, since the more accurate method the slower and more power consuming it gets.</p>
+<p>In this example I’ll show you how to use the Location API. First off I created a new Windows Phone application using the ‘Windows Phone Databound Application’ project template. You can use any of the project templates, but I chose this one because I like to use MVVM all the time. The next thing I do is changing the UI. Because I use the Bing maps control, make sure you reference the Microsoft.Phone.Controls.Maps.dll assembly. Also add a reference to the namespace to the MainPage.xaml, like this:</p>
+<p>xmlns:maps=&ldquo;clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps&rdquo;</p>
+<p>We will use a TextBlock to show the current estimated address and a Maps control to show your current estimated location on a map. Replace the complete contents of the ContentPanel Grid with the following XAML snippet. You may need to remove some code from the codebehind of MainPage.xaml because it references the ListBox we remove.</p>
+<p><StackPanel> <TextBlock Text="{Binding Status}" /> <TextBlock Text="{Binding Address}" /> &lt;maps:Map Center=&quot;{Binding Location, Mode=TwoWay}&quot; ZoomLevel=&ldquo;13&rdquo;&gt; <a href="maps:Map.CredentialsProvider">maps:Map.CredentialsProvider</a> &lt;maps:ApplicationIdCredentialsProvider ApplicationId=&quot;<YourKeyHere>&quot;/&gt; &lt;/maps:Map.CredentialsProvider&gt; &lt;maps:Pushpin Content=&ldquo;You are here&rdquo; Location=&quot;{Binding Location}&quot; /&gt; &lt;/maps:Map&gt; </StackPanel></p>
+<p>In order to use the Bing maps control, you need your own key. Request a key on the <a href="http://www.bingmapsportal.com/">Bing maps portal</a>.</p>
+<p>In the XAML I’ve used bindings to Status, Address and Location properties. These properties do not yet exist, so the next thing is to add these properties to the MainViewModel class in MainViewModel.cs. The Status property is of type GeoPositionStatus and contains the status of the GeoCoordinateWatcher, the Address property is a string containing the current estimated address and the Location property is of type GeoCoordinate, which is a type used to represent a lat/long position. The following code snippet shows you the three properties to be added to the view model:</p>
+<p>private GeoPositionStatus _status; /// <summary> /// Contains the status of the GeoCoordinateWatcher to see if it is initializing, ready or not getting any data. /// </summary> /// <returns></returns> public GeoPositionStatus Status { get { return _status; } set { if (value != _status) { _status = value; NotifyPropertyChanged(&ldquo;Status&rdquo;); } } } private string _address; /// <summary> /// Contains the current estimated address as returned by the reverse geolocation web service. /// </summary> /// <returns></returns> public string Address { get { return _address; } set { if (value != _address) { _address = value; NotifyPropertyChanged(&ldquo;Address&rdquo;); } } } private GeoCoordinate _location; /// <summary> /// Contains the current estimated lat/long location as returned by the GeoCoordinateWatcher. /// </summary> /// <returns></returns> public GeoCoordinate Location { get { return _location; } set { if (value != _location) { _location = value; NotifyPropertyChanged(&ldquo;Location&rdquo;); } } }</p>
+<p>Now that we’ve set up our UI and bindings, it’s time to start using the Location API. The Location API consists of two classes: GeoCoordinateWatcher and CivicAddressResolver, just like in the desktop framework. The GeoCoordinateWatcher does the heavy lifting of calculating the approximate lat/long of the phone, while the CivicAddressResolver translates the lat/long to a human readable address using reverse geolocation. Unlike the desktop version of the .NET Framework, the CivicAddressResolver isn’t implemented on the phone. Instead of throwing an exeption it will always tell you the address is unknown. This means we can’t use this class yet to resolve the lat/long to an address. Instead we will use the Bing web service for that, but more on that later.</p>
+<p>In order to get the lat/long of our current position, we need to create an instance of the GeoCoordinateWatcher, subscribe to the StatusChanged and PositionChanged event and start listening for position changes. The following lines of code will do just that:</p>
+<p>GeoCoordinateWatcher gcw; public MainViewModel() { Items = new ObservableCollection<ItemViewModel>(); gcw = new GeoCoordinateWatcher(GeoPositionAccuracy.High); gcw.StatusChanged += gcw_StatusChanged; gcw.PositionChanged += gcw_PositionChanged; gcw.Start(); } void gcw_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e) { Status = e.Status; } void gcw_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e) { Location = e.Position.Location; Address = String.Format(&quot;{0}, {1}&quot;, Location.Latitude, Location.Longitude); }</p>
+<p>In other examples on the web you’ll find that most of the time also the StatusChanged event of the GeoCoordinateWatcher is handled to see if it is ready before listening for position changes. Because you could get a PositionChanged event before you’ve even received a StatusChanged event, it’s not very useful to do so and may cause you to miss the PositionChanged event. So be sure just to listen for the PositionChanged event and only use the StatusChanged event to display the status, like done in this example.</p>
+<p>In this case I used the default constructor of the GeoCoordinateWatcher, which uses the default accuracy (which only uses cell tower triangulation). If I wanted, I could pass in GeoPositionAccuracy.High as a parameter, which tells the GeoCoordinateWatcher to use WiFi triangulation or GPS when available. The PositionChangedEvent gives you a property ‘HorizontalAccuracy’ which tells you, in meters, how accurate the detection of the position was and allows you to filter for specific accuracy. Note that when done indoors and without a WiFi connection, it won’t provide a better accuracy then the default, since only cell tower triangulation is available.</p>
+<p>The event handler for the StatusChanged event updates the Status property and the PositionChanged event handler updates the Location property and takes the latitude and longitude and concatenates them into the Address property.</p>
+<p>Now if you run the application in the emulator by pressing F5 (which is the default), you’ll notice that nothing happens and the status is ‘NoData’. This is because the emulator doesn’t emulate location data. There are two things you can do:</p>
+<ol>
+<li>
+<p>Simulate location data using <a href="http://timheuer.com/blog/archive/2010/03/22/geo-location-services-in-windows-phone-7-developer-emulator.aspx">this technique</a> described by Tim Heuer.</p>
+</li>
+<li>
+<p>Test on your Windows Phone. This requires your phone being developer unlocked.<br>
+<img src="/images/clip_image001_thumb.png" alt="clip_image001" title="clip_image001"><br>
+If you have the possibility to test on a physical Windows Phone, I’d highly recommend it. During my tests it appeared the location data on the phone wasn’t what I expected. For instance, the GeoLocationWatcher was unable to find my location using cell tower triangulation as soon as I have HSDPA connectivity. This probably has something to do with the way HSDPA works. It also shows you that the GeoCoordinateWatcher may jump between NoData and Ready every now and then when e.g. connection is lost or the phone switches to a different type of connection.</p>
+</li>
+</ol>
+<p>As soon as you run the application on an actual phone you’ll see something similar to this:<br>
+<img src="/images/clip_image002_thumb.png" alt="clip_image002" title="clip_image002"><br>
+Now that we’re able to obtain the lat/long of our estimated position, I’d like to translate the lat/long into an address I can understand. As mentioned earlier, we can’t use the the CivicAddressResolver class since it’s not implemented for Windows Phone 7. Instead we’ll use the Bing web service. In order to do this, add a service reference to the following URL:</p>
+<p><a href="http://dev.virtualearth.net/webservices/v1/geocodeservice/geocodeservice.svc">http://dev.virtualearth.net/webservices/v1/geocodeservice/geocodeservice.svc</a><br>
+<img src="/images/clip_image003_thumb.png" alt="clip_image003" title="clip_image003"><br>
+Adding the service reference also creates a new file ‘ServiceReferences.ClientConfig’ to your project. This file contains the WCF bindings required for calling the web service. By default it will add two end points: a SOAP endpoint (the first) and a Binary endpoint (the second). Because WCF can’t decide by itself which of the two to use, we remove the SOAP binding from the file.</p>
+<p>Now we want to modify our code to call the ReverseGeocode service method once we receive a position update. In order to do so we modify the MainViewModel class. First we add a field of type GeocodeServiceClient. In the constructor we initialize the field and handle the ReverseGeocodeCompleted event. In the event handler we check if any addresses are returned and display the first found address. In the PositionChanged event hander of the GeoCoordinateWatcher, instead of setting the Address property using the lat/long values, we construct a ReverseGeocodeRequest using the Bind key we used earlier and the lat/long values and call the ReverseGeocodeAsync method. The changes to the MainViewModel are shown in the following snippet (changes are in bold):</p>
+<p>GeoCoordinateWatcher gcw; GeocodeServiceClient gsc; public MainViewModel() { Items = new ObservableCollection<ItemViewModel>(); gsc = new GeocodeServiceClient(); gsc.ReverseGeocodeCompleted += gsc_ReverseGeocodeCompleted; gcw = new GeoCoordinateWatcher(GeoPositionAccuracy.High); gcw.StatusChanged += gcw_StatusChanged; gcw.PositionChanged += gcw_PositionChanged; gcw.Start(); } void gcw_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e) { Status = e.Status; } void gcw_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e) { Location = e.Position.Location; var request = new ReverseGeocodeRequest(); request.Credentials = new Credentials { ApplicationId = @&ldquo;MyApplicationId&rdquo; }; request.Location = new Location { Latitude = e.Position.Location.Latitude, Longitude = e.Position.Location.Longitude }; gsc.ReverseGeocodeAsync(request); } void gsc_ReverseGeocodeCompleted(object sender, GeoCodeService.ReverseGeocodeCompletedEventArgs e) { if (e.Result.Results.Count == 0) Address = &ldquo;No address found&rdquo;; else Address = e.Result.Results[0].DisplayName; }</p>
+<p>Now if we run the application, we don’t see the lat/long values, but instead see a readable address of our estimated location.<br>
+<img src="/images/clip_image004_thumb.png" alt="clip_image004" title="clip_image004"><br>
+There are a couple of things wrong with this implementation. First, each time the position is changed a new web request is done to get the address, even if the location didn’t change (much). Second, if a web request is underway, it’s not cancelled, but instead a new web request is done. This could lead to a racing condition where the second request would complete before the first, resulting in the address of the first location being displayed. Third, the PositionChanged event keeps firing, even if the position doesn’t change. This costs unnecessary resources on the phone.</p>
+<p>The third flaw could be overcome by using a MovementThreshold. MovementThreshold is a property on the GeoCoordinateWatcher and specifies the amount of movement is necessary before a new PositionChanged event is fired. A common MovementThreshold is one of 20.0, e.g.:</p>
+<p>gcw = new GeoCoordinateWatcher(GeoPositionAccuracy.High); gcw.MovementThreshold = 20.0; gcw.StatusChanged += gcw_StatusChanged; gcw.PositionChanged += gcw_PositionChanged; gcw.Start();</p>
+<p>The first two flaws can be overcome by writing more boilerplate code, like starting timers and cancelling web requests. This could easily lead to hard to read code since it is all scattered around. A way to simplify things is to use <a href="http://msdn.microsoft.com/en-us/devlabs/ee794896.aspx">Reactive Extensions</a>, but that’s food for another blog post.</p>
+<div class="wlWriterEditableSmartContent" id="scid:fb3a1972-4489-4e52-abe7-25a00bb07fdf:2f2dfbb0-9062-41ef-b879-081b83a6e3f5" style="margin: 0px; display: inline; float: none; padding: 0px;">[Download sample project](/images/LocationApiSample1.zip)
+</div>
+
+        </div>
+
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/sschutten/blog/edit/master/content/posts%5cbuilding-a-location-aware-windows-phone-7-application-2.md" target="_blank">
+                <i class="fas fa-code-branch"></i>
+                Improve this page
+              </a>
+          </div>
+        
+
+        
+      <hr />
+        <div class="row next-prev-navigator">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+      <div class="col-md-6 previous-article">
+        <a href="/posts/using-the-sync-framework-on-windows-phone-7/" class="btn btn-outline-info">
+          <div><i class="fas fa-chevron-circle-left"></i> Prev</div>
+          <div class="next-prev-text">Using the Sync Framework on Windows Phone 7</div>
+        </a>
+      </div>
+      
+    
+    
+      
+        
+        
+          
+              
+          
+        
+        <div class="col-md-6 next-article">
+          <a href="/posts/wcf-ria-services-odata-endpoint-does-not-support-update-or-linq/" class="btn btn-outline-info">
+            <div>Next <i class="fas fa-chevron-circle-right"></i></div>
+            <div class="next-prev-text">WCF RIA Services OData endpoint does NOT support update or LINQ</div>
+          </a>
+        </div>
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</div>
+
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function () {
+    
+    
+    if (window.location.hostname == "localhost") return;
+
+    var dsq = document.createElement("script");
+    dsq.type = "text/javascript";
+    dsq.async = true;
+    var disqus_shortname = "does-not-exist";
+    dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+    (
+      document.getElementsByTagName("head")[0] ||
+      document.getElementsByTagName("body")[0]
+    ).appendChild(dsq);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+<a href="https://disqus.com/" class="dsq-brlink"
+  >comments powered by <span class="logo-disqus">Disqus</span></a
+>
+
+      
+      </div>
+    </div>
+  </div>
+  
+  <a id="scroll-to-top" class="btn"><i class="fas fa-chevron-circle-up"></i></a>
+  
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+    <div class="toc-holder">
+      <h5 class="text-center pl-3">Table of Contents</h5>
+      <hr>
+      <div class="toc">
+        <nav id="TableOfContents"></nav>
+      </div>
+    </div>
+    
+  </section>
+
+    </div>
+
+    <footer class="container-fluid text-center align-content-center footer pb-2">
+  <div class="container pt-5">
+    <div class="row text-left">
+      <div class="col-md-4 col-sm-12">
+        <h5>Navigation</h5>
+        
+
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <h5>Contact Me</h5>
+        <ul>
+          
+        </ul>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="container">
+    <div class="row text-left">
+      <div class="col-md-4">
+        <a id="theme" href="https://github.com/hossainemruz/toha" target="#">
+          <img src="/images/logo-inverted.png">
+          Toha
+        </a>
+      </div>
+      <div class="col-md-4">Copyright © 2021</div>
+      <div class="col-md-4">
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/js/navbar.js"></script>
+<script type="text/javascript" src="/js/plyr.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script src="/js/single.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+
+
+  </body>
+</html>

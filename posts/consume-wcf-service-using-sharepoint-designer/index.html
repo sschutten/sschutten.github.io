@@ -1,16 +1,623 @@
-<!doctype html><html><head><title>Consume WCF service using Sharepoint Designer</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/css/bootstrap.min.css><link rel=stylesheet href=/css/layouts/main.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/navigators/navbar.css><link rel=stylesheet href=/css/plyr.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/favicon_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png><link rel=stylesheet href=/css/style.css><meta name=description content="Consume WCF service using Sharepoint Designer"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/css/layouts/single.css><link rel=stylesheet href=/css/navigators/sidebar.css><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-xxxxxxxx','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
-<span class=navbar-toggler-icon></span></button>
-<a class=navbar-brand href=/><img src=/images/main-logo_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png alt=Logo>Sander Schutten's Blog</a>
-<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=/images/main-logo_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png class=d-none id=main-logo alt=Logo>
-<img src=/images/inverted-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png class=d-none id=inverted-logo alt="Inverted Logo"></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><form class=mx-auto method=get action=https://sschutten.github.io/search><input type=text name=keyword placeholder=Search data-search id=search-box></form><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://sschutten.github.io/images/default-hero.jpg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/avatar.jpg alt="Author Image"><h5 class=author-name>Sander Schutten</h5><p>October 23, 2008</p></div><div class=title><h1>Consume WCF service using Sharepoint Designer</h1></div><div class=post-content id=post-content><p>By default the SharePoint Designer is unable to consume WCF services because it fails to recognize the structure of the request messages. There is a workaround if you still need to consume WCF services using the Designer. However, this does not work via the datasource wizard but instead requires some manual intervention. There are two methods to do accomplish this:</p><ul><li>Modify the datasource</li><li>Modify the code in the page</li></ul><p>The first method is easier to implement and gives you more control over the output. The only downside is that the WCF service must use a wrapped request message contract. This means that you either need full control over the WCF service so you can enable the request message to be wrapped, or you have to be lucky that the WCF service you’re trying to consume uses wrapped message contracts. From the WSDL it’s difficult to see if wrapped message contracts are used. If you’re not sure you can try the first method. If the Designer crashes as soon as you want to use the modified data source, the WCF service probably doesn’t support it. If you have full control over your service, the first method will also describe how te enable wrapped message contracts.</p><h2 id=method-1-modify-the-datasource>Method 1: Modify the datasource</h2><p>To consume a WCF service in the Designer by modifying the datasource you perform the following steps:</p><ul><li>Enable wrapped message contracts</li><li>Create a datasource using the wizard</li><li>Obtain request message by calling the service with Webservice Studio</li><li>Modify the soap envelope of the datasource</li></ul><h3 id=11-enable-wrapped-message-contracts>1.1 Enable wrapped message contracts</h3><p>In this step you’ll set the <strong>IsWrapped</strong> property of the request message contract to <strong>True</strong>.</p><p><a href=/images/wrapped.gif><img src=/images/wrapped.gif alt title=wrapped></a>If you used Web Service Software Factory for creating your WCF service you can set the request message contract to be wrapped in the service contract model. Open the service contract model and select the request message contract. In the properties window of the message contract you change <strong>Is Wrapped</strong> to <strong>True</strong>. Save the model and generate the code for the service contract.</p><p>If you didn’t use Web Service Software Factory you can have the request message contract set to wrapped by modifying the MessageContract atribute. Open the file containing the request message contract and locate the MessageContract attribute. Make sure that the attribute does not set IsWrapped to False. If it does you can simply remove the property assignment or you set it to True, which is the default value. You can also give the wrapper a name and namespace if you like, but this is not required. In the end your message contract should look a little similar to the code sample below:</p><p>[sourcecode language=”csharp”]<br>///</p><summary>/// Service Contract Class – HelloWorldRequestMessage
-///</summary><p>[WCF::MessageContract(<br>WrapperName = “HelloWorldRequestMessage”,<br>WrapperNamespace = “urn:HelloWorldService.ServiceContracts”)]<br>public partial class HelloWorldRequestMessage<br>{<br>private string name;</p><p>[WCF::MessageBodyMember(Name = “Name”)]<br>public string Name<br>{<br>get { return name; }<br>set { name = value; }<br>}<br>}<br>[/sourcecode]</p><p>Whether you changed the wrapped value using WSSF or directly in the code, you should make sure to rebuild your project.</p><h3 id=12-create-a-datasource-using-the-wizard>1.2 Create a datasource using the wizard</h3><p>In this step you’ll create a new datasource using the Sharepoint Designer wizard. Open Sharepoint Designer, connect to your site and go to the Datasource Library tab on the right side of your screen. Click on the <strong>Connect to a webservice</strong> link underneath the XML Web Services. In de dialog you enter the URL to your services endpoint and click the <strong>Connect Now</strong> button. The wizard will connect to your web service and present you a list of endpoints and methods. It doesn’t matter which endpoint or method you select here, because we’ll change that later. Click <strong>OK</strong> to exit the wizard and create the new datasource.</p><h3 id=13-obtain-request-message-by-calling-the-service-with-webservice-studio>1.3 Obtain request message by calling the service with Webservice Studio</h3><p>In this step you’ll obtain the appropriate request message for calling your webservice. Because the request message generated by the Sharepoint Designer wizard is incorrect you need to replace that with the correct one. For this purpose we’ll use Webservice Studio (<a href=http://www.codeplex.com/WebserviceStudio>http://www.codeplex.com/WebserviceStudio</a>).</p><p><a href=/images/webservicestudio.gif><img src=/images/webservicestudio-300x161.gif alt title=webservicestudio></a>Before calling the web service you should make sure you have the URL to the service’s WSDL and that the service is running.</p><p>To call a web service you start Webservice Studio, type the URL to the service’s WSDL in the WSDL Endpoint drop down list and click on the <strong>Get</strong> button. Webservice Studio attempts to create a proxy for the WSDL it found at the specified URL.</p><p>Once the creation of the proxy is finished you are promted with the web service’s methods on the left. By clicking on a method the required input parameters are shown and you are able to specify their values.</p><p>Once you’ve specified the required parameters you can call the web service by clicking the <strong>Invoke</strong> button. The response of the web service is shown in the Output window if the call was successful. We then move to the Request/Response tab to be able to view the raw request message. Copy the soap:Envelope record of the request message and store it somewhere so we can use it in our next step.</p><h3 id=14-modify-the-soap-envelope-of-the-datasource>1.4 Modify the soap envelope of the datasource</h3><p>In this step you’ll modify the XML Webservice datasource of the Sharepoint Designer.</p><p>To access the datasources you need to be connected to your site using the Sharepoint Designer. In the site’s tree you navigate to <strong>_catalogsfpdatasources</strong>. This directory contains xml files with the datasource configurations. Open the xml file that has the name of your service. The contents will look similar to this (reformatted for better reading):</p><p>[sourcecode language=”xml”]</p><datasource majorversion=2 minorversion=0 xmlns:udc=http://schemas.microsoft.com/data/udc><name>HelloWorldService</name>
-<connectioninfo><datasourcecontrol><soapdatasource authtype=None id=SoapDataSource runat=server selectaction=HelloWorld selectport=HelloWorldServiceEndpoint selectservicename=HelloWorldService selecturl=http://amsdc1-s-7150:3055/HelloWorldService/HelloWorldService.svc wsdlpath=http://localhost:3055/HelloWorldService/HelloWorldService.svc?WSDL><selectcommand><envelope xmlns:soap=http://schemas.xmlsoap.org/soap/envelope/><helloworld><parameters></parameters></helloworld></envelope></selectcommand></soapdatasource>]]></datasourcecontrol></connectioninfo>
-<type majorversion=1 minorversion=0 type=Soap></type></datasource>[/sourcecode]<p>The soap:Envelope part is what we’re interested in. Replace the complete soap:Envelope with the soap envelope you obtained using Webservice Studio. Now your datasource will look similar to this (reformatted for better reading):</p><p>[sourcecode language=”xml”]</p><datasource majorversion=2 minorversion=0 xmlns:udc=http://schemas.microsoft.com/data/udc><name>HelloWorldService</name>
-<connectioninfo><datasourcecontrol><soapdatasource authtype=None id=SoapDataSource runat=server selectaction=HelloWorld selectport=HelloWorldServiceEndpoint selectservicename=HelloWorldService selecturl=http://amsdc1-s-7150:3055/HelloWorldService/HelloWorldService.svc wsdlpath=http://localhost:3055/HelloWorldService/HelloWorldService.svc?WSDL><selectcommand><envelope xmlns:soap=http://schemas.xmlsoap.org/soap/envelope/ xmlns:xsd=http://www.w3.org/2001/XMLSchema xmlns:xsi=http://www.w3.org/2001/XMLSchema-instance><helloworldrequestmessage xmlns=urn:HelloWorldService.ServiceContracts><name>Sander</name></helloworldrequestmessage></envelope></selectcommand></soapdatasource> ]]></datasourcecontrol></connectioninfo>
-<type majorversion=1 minorversion=0 type=Soap></type></datasource>[/sourcecode]<p>Note that the soap:Body is completely different from what the Designer’s wizard gave you. After modifying the soap:Envelope you can save the changes to the datasource. Refresh the list of datasources in the Datasource Library and use the datasource like you would any other. Be careful not to reconnect the datasource using the wizard because that would render it unusable again.</p><h2 id=method-2-modify-the-code-in-the-page>Method 2: Modify the code in the page</h2><p>To consume a WCF service in the Designer by modifying the code in the page you perform the following steps:</p><ol><li>Obtain request message by calling the service with Webservice Studio</li><li>Complete DataFormWebPart XML</li><li>Paste XML in WebPart</li></ol><h3 id=21-obtain-request-message-by-calling-the-service-with-webservice-studio>2.1 Obtain request message by calling the service with Webservice Studio</h3><p>This step is the same as in the previous method.</p><h3 id=22-complete-dataformwebpart-xml>2.2 Complete DataFormWebPart XML</h3><p>After obtaining the request message of the web service we can complete the XML of a DataFormWebPart. Below is the basis of the DataFormWebPart. Have a look at the structure and then continue reading on how to complete it.</p><p>[sourcecode language=”xml”]</p><dataformwebpart __markuptype=vsattributemarkup __webpartid={1AE4A625-99D4-470E-9DCB-91412F2A364E} id=g_1ae4a625_99d4_470e_9dcb_91412f2a364e isincluded=True nodefaultstyle=TRUE partorder=1 runat=server title="Test Service" viewflag=0><datasources><soapdatasource authtype=None id=Test_x0020_Service1 runat=server selectaction=urn:ASBusinessServices.ServiceContracts.MeteringPointServiceContract.GetMeterDetails selectport=MeteringPointServiceEndpoint selectservicename=GetMeteringPointDetails selecturl=http://localhost:3391/MeteringPointService/MeteringPointService.svc wsdlpath=http://localhost:3391/MeteringPointService/MeteringPointService.svc?wsdl><selectcommand><envelope xmlns:soap=http://schemas.xmlsoap.org/soap/envelope/ xmlns:xsd=http://www.w3.org/2001/XMLSchema xmlns:xsi=http://www.w3.org/2001/XMLSchema-instance><request xmlns=urn:ASBusinessServices.ServiceContracts><p><meteringpointname xmlns=urn:AFBusinessServices.ServiceContracts>{MeteringPointName}</meteringpointname><br><metername xmlns=urn:AFBusinessServices.ServiceContracts>{MeterName}</metername><br></request></p></envelope></selectcommand><selectparameters><p><dataformparameter defaultvalue=FR-150 name=MeteringPointName parameterkey=MeteringPointName propertyname=ParameterValues></dataformparameter><br><dataformparameter defaultvalue=Meter1 name=MeterName parameterkey=MeterName propertyname=ParameterValues></dataformparameter><br></selectparameters><br></soapdatasource><br></datasources></dataformwebpart></p><p><parameterbindings><parameterbinding location=Postback;Connection name=dvt_apos></parameterbinding><parameterbinding defaultvalue=CurrentUserName location=CAMLVariable name=UserID></parameterbinding><parameterbinding defaultvalue=CurrentDate location=CAMLVariable name=Today></parameterbinding><parameterbinding defaultvalue=FR-150 location=None name=MeteringPointName></parameterbinding><parameterbinding defaultvalue=Meter1 location=None name=MeteringName></parameterbinding></parameterbindings><datafields></datafields><br><xsl></p><stylesheet exclude-result-prefixes="xsl msxsl ddwrt" version=1.0 xmlns:__designer=http://schemas.microsoft.com/WebParts/v2/DataView/designer xmlns:asp=http://schemas.microsoft.com/ASPNET/20 xmlns:ddw1=http://tempuri.org/ xmlns:ddwrt=http://schemas.microsoft.com/WebParts/v2/DataView/runtime xmlns:ddwrt2=urn:frontpage:internal xmlns:msxsl=urn:schemas-microsoft-com:xslt xmlns:sharepoint=Microsoft.SharePoint.WebControls xmlns:soap=http://schemas.xmlsoap.org/soap/envelope/ xmlns:xsl=http://www.w3.org/1999/XSL/Transform><output indent=no method=html></output><decimal-format nan></decimal-format><param name=dvt_apos>'</param>
-<template match=/><value-of select="//*[local-name()='Id']"></value-of></template></stylesheet></xsl><p>[/sourcecode]The SharePoint:SoapDataSource contains a couple of attributes that need to be set. The first is the WsdlPath, which is the same path as you used in Webservice Studio. Then there’s the select path, which in most cases is almost identical to the WsdlPath with ‘?wsdl’ removed from the end. The SelectAction is the soap action of the method you’d like to call. If you’re uncertain what this value should be, you can look it up in Webservice Studio, on the left side of the Request/Response tab. SelectPort is the name of the endpoint of the service. This is specified in the Wsdl as the name of the binding to which the operation belongs. The last attribute is the SelectServiceName attribute. It’s value is the name of the method. If you’re unsure of the values of the latter two attributes, you can use the add XML Webservice wizard to obtain them.</p><p>A little below the SharePoint:SoapDataSource you find the SelectCommand. The SelectCommand should contain the soap envelope you’ve obtained using Webservice Studio. You can substiture the values of the parameters by variable names enclosed by braces. This allows the value of the parameter to be set via Web Part connection. In you do this you should also make sure to add the parameter to the SelectParameters and ParameterBindings collections.</p><p>The last thing you probably want to do is to modify the XSL for the desired output. This is pretty straightforward if you’re familiar with XSL. If not, there’s a lot of content out on the web to help you get started.</p><h3 id=23-paste-xml-in-webpart>2.3 Paste XML in WebPart</h3><p>All the hard work is done in the previous steps. The only thing to do now is to copy the completed XML from the previous step and paste it inside a WebPart. The easiest way to do this is by selecting the split view in the SharePoint Designer and then clicking on a WebPart. This selects the code of the WebPart. Find the <zonetemplate></zonetemplate>tags and paste the XML between them. Once you save the document it will update the design and call the WCF service.</p></div><div class=btn-improve-page><a href=https://github.com/sschutten/blog/edit/master/content/posts/consume-wcf-service-using-sharepoint-designer.md target=_blank><i class="fas fa-code-branch"></i>
-Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-6 previous-article"><a href=/posts/day-0-arrived-in-la/ class="btn btn-outline-info"><div><i class="fas fa-chevron-circle-left"></i> Prev</div><div class=next-prev-text>Day 0: arrived in LA</div></a></div><div class="col-md-6 next-article"><a href=/posts/better-wssf-solution-structure/ class="btn btn-outline-info"><div>Next <i class="fas fa-chevron-circle-right"></i></div><div class=next-prev-text>Better WSSF solution structure</div></a></div></div><hr><div id=disqus_thread></div><script type=text/javascript>(function(){var a,b;if(window.location.hostname=="localhost")return;a=document.createElement("script"),a.type="text/javascript",a.async=!0,b="does-not-exist",a.src="//"+b+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})()</script><noscript>Please enable JavaScript to view the
-<a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com/ class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div></div><a id=scroll-to-top class=btn><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#method-1-modify-the-datasource>Method 1: Modify the datasource</a><ul><li><a href=#11-enable-wrapped-message-contracts>1.1 Enable wrapped message contracts</a></li><li><a href=#12-create-a-datasource-using-the-wizard>1.2 Create a datasource using the wizard</a></li><li><a href=#13-obtain-request-message-by-calling-the-service-with-webservice-studio>1.3 Obtain request message by calling the service with Webservice Studio</a></li><li><a href=#14-modify-the-soap-envelope-of-the-datasource>1.4 Modify the soap envelope of the datasource</a></li></ul></li><li><a href=#method-2-modify-the-code-in-the-page>Method 2: Modify the code in the page</a><ul><li><a href=#21-obtain-request-message-by-calling-the-service-with-webservice-studio>2.1 Obtain request message by calling the service with Webservice Studio</a></li><li><a href=#22-complete-dataformwebpart-xml>2.2 Complete DataFormWebPart XML</a></li><li><a href=#23-paste-xml-in-webpart>2.3 Paste XML in WebPart</a></li></ul></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=/#recent-posts>Recent Posts</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>sander@dotnetstudio.nl</span></li><li><span>Phone:</span> <span>+31 6 3830 4494</span></li></ul></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=_blank><img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_2.png alt="Toha Theme Logo">
-Toha</a></div><div class="col-md-4 text-center">Copyright © 2021</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/ target=_blank>Powered by
-<img src=/images/hugo-logo.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script type=text/javascript src=/js/jquery-3.4.1.min.js></script><script type=text/javascript src=/js/popper.min.js></script><script type=text/javascript src=/js/bootstrap.min.js></script><script type=text/javascript src=/js/navbar.js></script><script type=text/javascript src=/js/plyr.js></script><script type=text/javascript src=/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/js/single.js></script><script>hljs.initHighlightingOnLoad()</script></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Consume WCF service using Sharepoint Designer</title>
+    
+
+
+
+
+
+
+
+
+  
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/css/layouts/main.css"/>
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/navigators/navbar.css"/>
+<link rel="stylesheet" href="/css/plyr.css"/>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+
+<link rel="icon" type="image/png" href="/images/favicon_hu71cff7c6f06c0ce56c441b69c0864ea6_5216_42x0_resize_box_2.png" />
+
+
+<link rel="stylesheet" href="/css/style.css"/>
+
+    
+<meta name="description" content="Consume WCF service using Sharepoint Designer" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
+/>
+<link rel="stylesheet" href="/css/layouts/single.css"/>
+<link rel="stylesheet" href="/css/navigators/sidebar.css">
+
+
+    
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-xxxxxxxx', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </head>
+
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
+    <div class="container-fluid bg-dimmed wrapper">
+      
+      
+    
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+<nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+      <img src="/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png" alt="Logo">Sander Schutten&#39;s Blog</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse lang-selector" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      
+      </ul>
+    </div>
+  </div>
+  
+  <img src="/images/main-logo_hu864bbe108f1be1ae04b57f7f2fd9d631_5637_42x0_resize_box_2.png" class="d-none" id="main-logo" alt="Logo">
+  <img src="/images/inverted-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_42x0_resize_box_2.png" class="d-none" id="inverted-logo" alt="Inverted Logo">
+</nav>
+
+
+
+      
+      
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <form class="mx-auto" method="get" action="https://sschutten.github.io/search">
+          <input type="text" name="keyword" value="" placeholder="Search" data-search="" id="search-box" />
+        </form>
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://sschutten.github.io/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/avatar.jpg' alt="Author Image">
+          <h5 class="author-name">Sander Schutten</h5>
+          <p>October 23, 2008</p>
+        </div>
+
+        <div class="title">
+          <h1>Consume WCF service using Sharepoint Designer</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <p>By default the SharePoint Designer is unable to consume WCF services because it fails to recognize the structure of the request messages. There is a workaround if you still need to consume WCF services using the Designer. However, this does not work via the datasource wizard but instead requires some manual intervention. There are two methods to do accomplish this:</p>
+<ul>
+<li>Modify the datasource</li>
+<li>Modify the code in the page</li>
+</ul>
+<p>The first method is easier to implement and gives you more control over the output. The only downside is that the WCF service must use a wrapped request message contract. This means that you either need full control over the WCF service so you can enable the request message to be wrapped, or you have to be lucky that the WCF service you’re trying to consume uses wrapped message contracts. From the WSDL it’s difficult to see if wrapped message contracts are used. If you’re not sure you can try the first method. If the Designer crashes as soon as you want to use the modified data source, the WCF service probably doesn’t support it. If you have full control over your service, the first method will also describe how te enable wrapped message contracts.</p>
+<h2 id="method-1-modify-the-datasource">Method 1: Modify the datasource</h2>
+<p>To consume a WCF service in the Designer by modifying the datasource you perform the following steps:</p>
+<ul>
+<li>Enable wrapped message contracts</li>
+<li>Create a datasource using the wizard</li>
+<li>Obtain request message by calling the service with Webservice Studio</li>
+<li>Modify the soap envelope of the datasource</li>
+</ul>
+<h3 id="11-enable-wrapped-message-contracts">1.1 Enable wrapped message contracts</h3>
+<p>In this step you’ll set the <strong>IsWrapped</strong> property of the request message contract to <strong>True</strong>.</p>
+<p><a href="/images/wrapped.gif"><img src="/images/wrapped.gif" alt="" title="wrapped"></a>If you used Web Service Software Factory for creating your WCF service you can set the request message contract to be wrapped in the service contract model. Open the service contract model and select the request message contract. In the properties window of the message contract you change <strong>Is Wrapped</strong> to <strong>True</strong>. Save the model and generate the code for the service contract.</p>
+<p>If you didn’t use Web Service Software Factory you can have the request message contract set to wrapped by modifying the MessageContract atribute. Open the file containing the request message contract and locate the MessageContract attribute. Make sure that the attribute does not set IsWrapped to False. If it does you can simply remove the property assignment or you set it to True, which is the default value. You can also give the wrapper a name and namespace if you like, but this is not required. In the end your message contract should look a little similar to the code sample below:</p>
+<p>[sourcecode language=”csharp”]<br>
+///</p>
+<summary> /// Service Contract Class – HelloWorldRequestMessage  
+ /// </summary>
+<p>[WCF::MessageContract(<br>
+WrapperName = “HelloWorldRequestMessage”,<br>
+WrapperNamespace = “urn:HelloWorldService.ServiceContracts”)]<br>
+public partial class HelloWorldRequestMessage<br>
+{<br>
+private string name;</p>
+<p>[WCF::MessageBodyMember(Name = “Name”)]<br>
+public string Name<br>
+{<br>
+get { return name; }<br>
+set { name = value; }<br>
+}<br>
+}<br>
+[/sourcecode]</p>
+<p>Whether you changed the wrapped value using WSSF or directly in the code, you should make sure to rebuild your project.</p>
+<h3 id="12-create-a-datasource-using-the-wizard">1.2 Create a datasource using the wizard</h3>
+<p>In this step you’ll create a new datasource using the Sharepoint Designer wizard. Open Sharepoint Designer, connect to your site and go to the Datasource Library tab on the right side of your screen. Click on the <strong>Connect to a webservice</strong> link underneath the XML Web Services. In de dialog you enter the URL to your services endpoint and click the <strong>Connect Now</strong> button. The wizard will connect to your web service and present you a list of endpoints and methods. It doesn’t matter which endpoint or method you select here, because we’ll change that later. Click <strong>OK</strong> to exit the wizard and create the new datasource.</p>
+<h3 id="13-obtain-request-message-by-calling-the-service-with-webservice-studio">1.3 Obtain request message by calling the service with Webservice Studio</h3>
+<p>In this step you’ll obtain the appropriate request message for calling your webservice. Because the request message generated by the Sharepoint Designer wizard is incorrect you need to replace that with the correct one. For this purpose we’ll use Webservice Studio (<a href="http://www.codeplex.com/WebserviceStudio">http://www.codeplex.com/WebserviceStudio</a>).</p>
+<p><a href="/images/webservicestudio.gif"><img src="/images/webservicestudio-300x161.gif" alt="" title="webservicestudio"></a>Before calling the web service you should make sure you have the URL to the service’s WSDL and that the service is running.</p>
+<p>To call a web service you start Webservice Studio, type the URL to the service’s WSDL in the WSDL Endpoint drop down list and click on the <strong>Get</strong> button. Webservice Studio attempts to create a proxy for the WSDL it found at the specified URL.</p>
+<p>Once the creation of the proxy is finished you are promted with the web service’s methods on the left. By clicking on a method the required input parameters are shown and you are able to specify their values.</p>
+<p>Once you’ve specified the required parameters you can call the web service by clicking the <strong>Invoke</strong> button. The response of the web service is shown in the Output window if the call was successful. We then move to the Request/Response tab to be able to view the raw request message. Copy the soap:Envelope record of the request message and store it somewhere so we can use it in our next step.</p>
+<h3 id="14-modify-the-soap-envelope-of-the-datasource">1.4 Modify the soap envelope of the datasource</h3>
+<p>In this step you’ll modify the XML Webservice datasource of the Sharepoint Designer.</p>
+<p>To access the datasources you need to be connected to your site using the Sharepoint Designer. In the site’s tree you navigate to <strong>_catalogsfpdatasources</strong>. This directory contains xml files with the datasource configurations. Open the xml file that has the name of your service. The contents will look similar to this (reformatted for better reading):</p>
+<p>[sourcecode language=”xml”]</p>
+<datasource majorversion="2" minorversion="0" xmlns:udc="http://schemas.microsoft.com/data/udc">  
+<name>HelloWorldService</name>  
+<connectioninfo>  
+<datasourcecontrol>  
+<soapdatasource authtype="None" id="SoapDataSource" runat="server" selectaction="HelloWorld" selectport="HelloWorldServiceEndpoint" selectservicename="HelloWorldService" selecturl="http://amsdc1-s-7150:3055/HelloWorldService/HelloWorldService.svc" wsdlpath="http://localhost:3055/HelloWorldService/HelloWorldService.svc?WSDL"><selectcommand><envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><helloworld><parameters></parameters></helloworld></envelope></selectcommand></soapdatasource> ]]></datasourcecontrol>  
+</connectioninfo>  
+<type majorversion="1" minorversion="0" type="Soap"></type>  
+</datasource>  
+ [/sourcecode]
+<p>The soap:Envelope part is what we’re interested in. Replace the complete soap:Envelope with the soap envelope you obtained using Webservice Studio. Now your datasource will look similar to this (reformatted for better reading):</p>
+<p>[sourcecode language=”xml”]</p>
+<datasource majorversion="2" minorversion="0" xmlns:udc="http://schemas.microsoft.com/data/udc">  
+<name>HelloWorldService</name>  
+<connectioninfo>  
+<datasourcecontrol>  
+<soapdatasource authtype="None" id="SoapDataSource" runat="server" selectaction="HelloWorld" selectport="HelloWorldServiceEndpoint" selectservicename="HelloWorldService" selecturl="http://amsdc1-s-7150:3055/HelloWorldService/HelloWorldService.svc" wsdlpath="http://localhost:3055/HelloWorldService/HelloWorldService.svc?WSDL"><selectcommand><envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><helloworldrequestmessage xmlns="urn:HelloWorldService.ServiceContracts"><name>Sander</name></helloworldrequestmessage></envelope></selectcommand></soapdatasource> ]]>  
+</datasourcecontrol>  
+</connectioninfo>  
+<type majorversion="1" minorversion="0" type="Soap"></type>  
+</datasource>  
+ [/sourcecode]
+<p>Note that the soap:Body is completely different from what the Designer’s wizard gave you. After modifying the soap:Envelope you can save the changes to the datasource. Refresh the list of datasources in the Datasource Library and use the datasource like you would any other. Be careful not to reconnect the datasource using the wizard because that would render it unusable again.</p>
+<h2 id="method-2-modify-the-code-in-the-page">Method 2: Modify the code in the page</h2>
+<p>To consume a WCF service in the Designer by modifying the code in the page you perform the following steps:</p>
+<ol>
+<li>Obtain request message by calling the service with Webservice Studio</li>
+<li>Complete DataFormWebPart XML</li>
+<li>Paste XML in WebPart</li>
+</ol>
+<h3 id="21-obtain-request-message-by-calling-the-service-with-webservice-studio">2.1 Obtain request message by calling the service with Webservice Studio</h3>
+<p>This step is the same as in the previous method.</p>
+<h3 id="22-complete-dataformwebpart-xml">2.2 Complete DataFormWebPart XML</h3>
+<p>After obtaining the request message of the web service we can complete the XML of a DataFormWebPart. Below is the basis of the DataFormWebPart. Have a look at the structure and then continue reading on how to complete it.</p>
+<p>[sourcecode language=”xml”]</p>
+<dataformwebpart __markuptype="vsattributemarkup" __webpartid="{1AE4A625-99D4-470E-9DCB-91412F2A364E}" id="g_1ae4a625_99d4_470e_9dcb_91412f2a364e" isincluded="True" nodefaultstyle="TRUE" partorder="1" runat="server" title="Test Service" viewflag="0">  
+<datasources>  
+<soapdatasource authtype="None" id="Test_x0020_Service1" runat="server" selectaction="urn:ASBusinessServices.ServiceContracts.MeteringPointServiceContract.GetMeterDetails" selectport="MeteringPointServiceEndpoint" selectservicename="GetMeteringPointDetails" selecturl="http://localhost:3391/MeteringPointService/MeteringPointService.svc" wsdlpath="http://localhost:3391/MeteringPointService/MeteringPointService.svc?wsdl">  
+<selectcommand>  
+<envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">  
+<request xmlns="urn:ASBusinessServices.ServiceContracts">  
+<p><meteringpointname xmlns="urn:AFBusinessServices.ServiceContracts">{MeteringPointName}</meteringpointname><br>
+<metername xmlns="urn:AFBusinessServices.ServiceContracts">{MeterName}</metername><br>
+</request></p>
+</envelope>  
+</selectcommand>  
+<selectparameters>  
+<p><dataformparameter defaultvalue="FR-150" name="MeteringPointName" parameterkey="MeteringPointName" propertyname="ParameterValues"></dataformparameter><br>
+<dataformparameter defaultvalue="Meter1" name="MeterName" parameterkey="MeterName" propertyname="ParameterValues"></dataformparameter><br>
+</selectparameters><br>
+</soapdatasource><br>
+</datasources></dataformwebpart></p>
+<p><parameterbindings><parameterbinding location="Postback;Connection" name="dvt_apos"></parameterbinding><parameterbinding defaultvalue="CurrentUserName" location="CAMLVariable" name="UserID"></parameterbinding><parameterbinding defaultvalue="CurrentDate" location="CAMLVariable" name="Today"></parameterbinding><parameterbinding defaultvalue="FR-150" location="None" name="MeteringPointName"></parameterbinding><parameterbinding defaultvalue="Meter1" location="None" name="MeteringName"></parameterbinding></parameterbindings><datafields></datafields><br>
+<xsl></p>
+<stylesheet exclude-result-prefixes="xsl msxsl ddwrt" version="1.0" xmlns:__designer="http://schemas.microsoft.com/WebParts/v2/DataView/designer" xmlns:asp="http://schemas.microsoft.com/ASPNET/20" xmlns:ddw1="http://tempuri.org/" xmlns:ddwrt="http://schemas.microsoft.com/WebParts/v2/DataView/runtime" xmlns:ddwrt2="urn:frontpage:internal" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:sharepoint="Microsoft.SharePoint.WebControls" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">  
+<output indent="no" method="html"></output>  
+<decimal-format nan=""></decimal-format>  
+<param name="dvt_apos">'</param>  
+<template match="/">  
+<value-of select="//*[local-name()='Id']"></value-of>  
+</template>  
+</stylesheet>  
+</xsl>  
+<p>[/sourcecode]The SharePoint:SoapDataSource contains a couple of attributes that need to be set. The first is the WsdlPath, which is the same path as you used in Webservice Studio. Then there’s the select path, which in most cases is almost identical to the WsdlPath with ‘?wsdl’ removed from the end. The SelectAction is the soap action of the method you’d like to call. If you’re uncertain what this value should be, you can look it up in Webservice Studio, on the left side of the Request/Response tab. SelectPort is the name of the endpoint of the service. This is specified in the Wsdl as the name of the binding to which the operation belongs. The last attribute is the SelectServiceName attribute. It’s value is the name of the method. If you’re unsure of the values of the latter two attributes, you can use the add XML Webservice wizard to obtain them.</p>
+<p>A little below the SharePoint:SoapDataSource you find the SelectCommand. The SelectCommand should contain the soap envelope you’ve obtained using Webservice Studio. You can substiture the values of the parameters by variable names enclosed by braces. This allows the value of the parameter to be set via Web Part connection. In you do this you should also make sure to add the parameter to the SelectParameters and ParameterBindings collections.</p>
+<p>The last thing you probably want to do is to modify the XSL for the desired output. This is pretty straightforward if you’re familiar with XSL. If not, there’s a lot of content out on the web to help you get started.</p>
+<h3 id="23-paste-xml-in-webpart">2.3 Paste XML in WebPart</h3>
+<p>All the hard work is done in the previous steps. The only thing to do now is to copy the completed XML from the previous step and paste it inside a WebPart. The easiest way to do this is by selecting the split view in the SharePoint Designer and then clicking on a WebPart. This selects the code of the WebPart. Find the <zonetemplate></zonetemplate> tags and paste the XML between them. Once you save the document it will update the design and call the WCF service.</p>
+
+        </div>
+
+        
+        
+          <div class="btn-improve-page">
+              <a href="https://github.com/sschutten/blog/edit/master/content/posts%5cconsume-wcf-service-using-sharepoint-designer.md" target="_blank">
+                <i class="fas fa-code-branch"></i>
+                Improve this page
+              </a>
+          </div>
+        
+
+        
+      <hr />
+        <div class="row next-prev-navigator">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+      <div class="col-md-6 previous-article">
+        <a href="/posts/day-0-arrived-in-la/" class="btn btn-outline-info">
+          <div><i class="fas fa-chevron-circle-left"></i> Prev</div>
+          <div class="next-prev-text">Day 0: arrived in LA</div>
+        </a>
+      </div>
+      
+    
+    
+      
+        
+        
+          
+              
+          
+        
+        <div class="col-md-6 next-article">
+          <a href="/posts/better-wssf-solution-structure/" class="btn btn-outline-info">
+            <div>Next <i class="fas fa-chevron-circle-right"></i></div>
+            <div class="next-prev-text">Better WSSF solution structure</div>
+          </a>
+        </div>
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</div>
+
+      <hr />
+      
+      
+          <div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function () {
+    
+    
+    if (window.location.hostname == "localhost") return;
+
+    var dsq = document.createElement("script");
+    dsq.type = "text/javascript";
+    dsq.async = true;
+    var disqus_shortname = "does-not-exist";
+    dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+    (
+      document.getElementsByTagName("head")[0] ||
+      document.getElementsByTagName("body")[0]
+    ).appendChild(dsq);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+<a href="https://disqus.com/" class="dsq-brlink"
+  >comments powered by <span class="logo-disqus">Disqus</span></a
+>
+
+      
+      </div>
+    </div>
+  </div>
+  
+  <a id="scroll-to-top" class="btn"><i class="fas fa-chevron-circle-up"></i></a>
+  
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+    <div class="toc-holder">
+      <h5 class="text-center pl-3">Table of Contents</h5>
+      <hr>
+      <div class="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#method-1-modify-the-datasource">Method 1: Modify the datasource</a>
+      <ul>
+        <li><a href="#11-enable-wrapped-message-contracts">1.1 Enable wrapped message contracts</a></li>
+        <li><a href="#12-create-a-datasource-using-the-wizard">1.2 Create a datasource using the wizard</a></li>
+        <li><a href="#13-obtain-request-message-by-calling-the-service-with-webservice-studio">1.3 Obtain request message by calling the service with Webservice Studio</a></li>
+        <li><a href="#14-modify-the-soap-envelope-of-the-datasource">1.4 Modify the soap envelope of the datasource</a></li>
+      </ul>
+    </li>
+    <li><a href="#method-2-modify-the-code-in-the-page">Method 2: Modify the code in the page</a>
+      <ul>
+        <li><a href="#21-obtain-request-message-by-calling-the-service-with-webservice-studio">2.1 Obtain request message by calling the service with Webservice Studio</a></li>
+        <li><a href="#22-complete-dataformwebpart-xml">2.2 Complete DataFormWebPart XML</a></li>
+        <li><a href="#23-paste-xml-in-webpart">2.3 Paste XML in WebPart</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+    
+  </section>
+
+    </div>
+
+    <footer class="container-fluid text-center align-content-center footer pb-2">
+  <div class="container pt-5">
+    <div class="row text-left">
+      <div class="col-md-4 col-sm-12">
+        <h5>Navigation</h5>
+        
+
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <h5>Contact Me</h5>
+        <ul>
+          
+        </ul>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="container">
+    <div class="row text-left">
+      <div class="col-md-4">
+        <a id="theme" href="https://github.com/hossainemruz/toha" target="#">
+          <img src="/images/logo-inverted.png">
+          Toha
+        </a>
+      </div>
+      <div class="col-md-4">Copyright © 2021</div>
+      <div class="col-md-4">
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/js/navbar.js"></script>
+<script type="text/javascript" src="/js/plyr.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script src="/js/single.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+
+
+  </body>
+</html>
