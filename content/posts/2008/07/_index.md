@@ -2,9 +2,9 @@
   "menu": {
     "sidebar": {
       "name": "July",
+      "parent": "2008",
       "weight": 5,
-      "identifier": "2008/07",
-      "parent": "2008"
+      "identifier": "2008/07"
     }
   }
 }

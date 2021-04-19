@@ -2,8 +2,8 @@
   "menu": {
     "sidebar": {
       "name": "2009",
-      "identifier": "2009",
-      "weight": -1009
+      "weight": 7991,
+      "identifier": "2009"
     }
   }
 }
