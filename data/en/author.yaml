@@ -1,0 +1,16 @@
+name: "Sander Schutten"
+nickname: "Sander"
+image: "images/avatar.jpg"
+
+# give your some contact information. they will be used in the footer
+contactInfo:
+  email: "sander@dotnetstudio.nl"
+  phone: "+31 6 3830 4494"
+  
+# a summary of what you do
+summary:
+- I am a developer
+- I love serverless
+- I am a .NET geek
+- A proud InSpark employee
+- I'm into kick boxing
