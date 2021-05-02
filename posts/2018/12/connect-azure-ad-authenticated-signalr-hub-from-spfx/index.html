@@ -13,14 +13,14 @@
 }
 </code></pre></div><p>Add a constructor to the <code>Startup</code> class that takes in the <code>IConfiguration</code> dependency and stores it in a local field. This allows us to easily access the configuration in later lifecycle methods. See the following snippet for details. The snippet also shows you how to get other properties through dependency injection like <code>IHostingEnvironment</code> and <code>ILoggerFactory</code>.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Startup</span>
 {
-    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> IConfiguration _config;
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> IConfiguration <span style=color:#ae81ff>_</span>config;
     <span style=color:#75715e>// ...
 </span><span style=color:#75715e></span>    
     <span style=color:#66d9ef>public</span> Startup(IHostingEnvironment env,
         IConfiguration config,
         ILoggerFactory loggerFactory)
     {
-        _config = config;
+        <span style=color:#ae81ff>_</span>config = config;
         <span style=color:#75715e>// ...
 </span><span style=color:#75715e></span>    }
     
@@ -32,7 +32,7 @@
 </span><span style=color:#75715e></span>    
     services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
         .AddCookie()
-        .AddAzureADBearer(options =&gt; _config.Bind(<span style=color:#e6db74>&#34;AzureAd&#34;</span>, options));
+        .AddAzureADBearer(options =&gt; <span style=color:#ae81ff>_</span>config.Bind(<span style=color:#e6db74>&#34;AzureAd&#34;</span>, options));
 }
 </code></pre></div><p>Add a call to the <code>UseAuthentication</code> extension method on the <code>IApplicationBuilder</code> in the <code>Configure</code> lifecycle method of the <code>Startup</code> class. This tells ASP.NET Core to actually use the authentication that we&rsquo;ve configured in the <code>ConfigureServices</code> method. Make sure to call the <code>UseAuthentication</code> method before the call to <code>UseSignalR</code> as it can give unexpected results if you add it after.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
