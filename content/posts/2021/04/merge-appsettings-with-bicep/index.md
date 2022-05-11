@@ -46,7 +46,7 @@ param currentAppSettings object
 param appSettings object
 
 resource siteconfig 'Microsoft.Web/sites/config@2020-12-01' = {
-  name: myAwesomeFunction
+  name: myAwesomeFunction/appSettings
   properties: union(currentAppSettings, appSettings)
 }
 ```
