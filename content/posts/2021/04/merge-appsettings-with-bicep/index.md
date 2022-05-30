@@ -74,7 +74,7 @@ resource myAwesomeFunction 'Microsoft.Web/sites@2020-12-01' = {
 module appSettings 'appSettings.bicep' = {
   name: 'myAwesomeFunction-appSettings'
   params: {
-    currentAppSettings: list('{apiWebApp.id}/config/appsettings', '2020-12-01').properties
+    currentAppSettings: list('{myAwesomeFunction.id}/config/appsettings', '2020-12-01').properties
     appSettings: {
       'Foo': 'Bar'
     }
